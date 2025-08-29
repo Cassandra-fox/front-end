@@ -65,3 +65,66 @@
     /* 文字阴影 */
     /* 水平偏移（必需） 垂直偏移（必需） 模糊距离（可选） 颜色（可选） */
 }
+
+.floatl {
+    width: 200px;
+    height: 50px;
+    background-color: lightblue;
+    float: left;
+    margin-right: 20px;
+}
+
+.floatr {
+    width: 200px;
+    height: 50px;
+    background-color: lightblue;
+    float: right;
+    margin-left: 20px;
+}
+
+.box6 {
+    width: 1200px;
+    height: 460px;
+    background-color: darkseagreen;
+    margin: 0 auto;
+}
+
+.left {
+    float: left;
+    width: 230px;
+    height: 460px;
+    background-color: azure;
+}
+
+.right {
+    float: right;
+    width: 970px;
+    height: 460px;
+    background-color: cornflowerblue;
+}
+
+.box7 {
+    width: 1226px;
+    height: 285px;
+    background-color: darkseagreen;
+    margin: 0 auto;
+}
+
+li {
+    list-style: none;
+}
+
+.box7 li {
+    width: 296px;
+    height: 285px;
+    background-color: lightblue;
+    float: left;
+    margin-right: 14px;
+    text-align: center;
+    line-height: 285px;
+}
+
+/* 注意权重 */
+.box7 .last {
+    margin-right: 0;
+}
