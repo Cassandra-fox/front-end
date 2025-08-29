@@ -1,0 +1,27 @@
+body {
+    background-color: antiquewhite;
+    text-decoration-color: #333;
+}
+
+div {
+    height: 300px;
+    width: 300px;
+    background-image: url(../images/小王子.png);
+    background-size: cover;
+}
+
+.login {
+    width: 200px;
+    height: 50px;
+    font-size: 30px;
+    color: #fff;
+    font-weight: normal;
+    line-height: 50px;
+    background-color: #672a35;
+    background-image: url(../images/login.webp);
+    background-repeat: no-repeat;
+    background-size: auto 80%;
+    background-position: left center;
+    text-indent: 2.5em;
+    align-items: center;
+}

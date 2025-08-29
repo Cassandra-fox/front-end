@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>821</title>
+    <link rel="stylesheet" href="821.css">
+</head>
+
+<body>
+    <h1>单行文字垂直居中</h1>
+    <p>让文字的行高等于盒子的高度</p>
+
+    <h1>CSS的背景</h1>
+
+    <h2>背景颜色</h2>
+    <p>
+        background-color:颜色值<br>
+        默认是transparent<br>
+    </p>
+
+    <h2>背景图片</h2>
+    <p>
+        非常便于控制位置<br>
+        background-image:url(url)<br>
+        默认是none无图片，精灵图是一种应用场景
+    </p>
+    <div></div>
+
+    <h2>背景平铺</h2>
+    <p>
+        background-repeat: repeat|no-repeat|repeat-x|repeat-y<br>
+        默认是平铺的<br>
+        repeat:在x和y轴上平铺
+    </p>
+
+    <h2>背景图片位置</h2>
+    <p>
+        background-position: x y;<br>
+        参数是方位名词；left right top cneter bottom<br>
+        若省略其中一个则为居中对齐
+    </p>
+    <div class="login">欢迎登录</div>
+    <p>
+        参数为精确数字px：左x右y<br>
+        若只指定一个参数则为水平，另一个默认为垂直居中<br>
+        参数是混合单位：左x右y
+    </p>
+
+    <h2>背景固定</h2>
+    <p>background-attachment: scroll|fixed</p>
+
+    <h2>背景复合写法</h2>
+    <p>
+        没有顺序要求<br>
+        一般 颜色，图片地址，背景平铺，背景图像滚动，背景图片位置<br>
+        background: transparent url() repeat-y fixed top<br>
+    </p>
+
+    <h2>背景色半透明</h2>
+    <p>
+        background:rgba(0,0,0,0.3)<br>
+        alpha透明度，值从0到1，实际开发中可省略小于1 的小数的整数部分
+    </p>
+
+    <p>装饰性的小图片和logo，超大背景，一般使用背景图片，方便控制位置</p>
+
+
+
+</body>
+
+</html>

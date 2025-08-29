@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>822</title>
+    <link rel="stylesheet" href="822.css">
+</head>
+
+<body>
+    <h1>CSS的三大特性</h1>
+    <h2>层叠性</h2>
+    <p>
+        相同选择器设置同一种样式，冲突时就近原则，一个样式会覆盖另一个样式
+    </p>
+    <h2>继承性</h2>
+    <p>
+        字标签会继承亲标签的某些样式，如文本颜色和字号<br>
+        text-,font-,line-开头元素可以继承，以及color属性<br>
+        行高的继承：亲元素行高可以不跟单位，子元素行高为子元素文字大小的“行高”倍数
+    </p>
+
+    <h2>优先级</h2>
+    <p>
+        同一元素不同选择器，选择器种类相同则执行层叠性<br>
+        不同选择器，根据选择器权重执行，<br>
+        !important >> 行内样式 > id选择器 > 类选择器和伪类选择器 > 元素选择权 > 继承或者 *<br>
+        继承的权重为0
+        <br>
+        <strong>权重叠加</strong><br>
+        复合选择器会有权重叠加的问题：ul li 权重（两个元素选择器累加）（不会进位）大于li
+    </p>
+
+    <h1>盒子模型</h1>
+    <p>
+        页面布局三大核心：盒子模型，浮动和定位<br>
+        网页布局过程：准备网页元素，基本都是盒子；利用CSS设置好盒子样式，然后摆放到相应位置；往盒子里装内容<br>
+    </p>
+
+    <p>
+        组成：<br>
+        封装周围的html元素，包括：边框，内外边距和实际内容<br>
+        border边框 content内容 padding内边距 margin外边距<br>
+    </p>
+
+    <h2>边框border</h2>
+
+    <p>
+        边框宽度border-width 以px为单位<br>
+        样式border-style solid实线边框 dashed虚线边框 dotted电线边框 其余见手册<br>
+        颜色border-color <br>
+    </p>
+    <div></div>
+    <p>
+        边框的复合写法：border: 1px solid red; 没有顺序<br>
+        分开写法：border-top:5px solid pink;<br>
+        <span class="hang-indent">border-bottom:10px dashed blue;</span>
+    </p>
+
+    <p>
+        <strong>表格的细线边框</strong><br>
+
+    </p>
+    <table>
+
+        <thead>
+            <tr>
+                <th colspan="6">音乐剧热度榜</th>
+            </tr>
+            <tr>
+                <th>排名</th>
+                <th>关键词</th>
+                <th>趋势</th>
+                <th>今日搜索</th>
+                <th>最近七日</th>
+                <th>相关链接</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>摇滚红与黑</td>
+                <td><img src="down.jpg" /></td>
+                <td>888</td>
+                <td>8888</td>
+                <td><a href="#">大麦</a> <a href="#">小红书</a></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>都市莫里哀</td>
+                <td><img src="up.jpg" /></td>
+                <td>666</td>
+                <td>6666</td>
+                <td><a href="#">大麦</a> <a href="#">小红书</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <strong>边框会影响盒子的实际大小</strong><br>
+        边框加在盒子外圈
+    </p>
+
+    <h2>内边距padding</h2>
+    <p>
+        分lrtb<br>
+        复合写法: <br>
+        padding:5px 10px 15px 20px 上 右 下 左<br>
+        padding:5px 上下左右<br>
+        padding:5px 10px 上下 左右<br>
+        padding:5px 10px 15px 上 左右 下<br>
+    </p>
+    <p><strong>内边距影响盒子实际大小</strong><br>
+        内边距会把盒子撑大
+    </p>
+</body>
+
+</html>

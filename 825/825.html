@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>825</title>
+    <link rel="stylesheet" href="825.css">
+</head>
+
+<body>
+    <h1>新浪导航栏</h1>
+    <div class="nav">
+        <a href="#">新浪导航</a>
+        <a href="#">手机新浪网</a>
+        <a href="#">移动客户端</a>
+        <a href="#">微博</a>
+        <a href="#">客户端</a>
+    </div>
+
+    <p>
+        padding不影响盒子大小的情况<br>
+        盒子没有指定宽高时padding不会改变盒子大小
+    </p>
+
+    <h1>盒子外边距margin</h1>
+    <p>
+        盒子与盒子之间的边距<br>
+    </p>
+    <div class="mar">1</div>
+    <div class="mar">2</div>
+    <p>
+        可实现块级盒子水平居中<br>
+        行内元素或行内块元素水平居中
+    </p>
+
+    <h2>外边距合并</h2>
+    <p>
+        相邻块元素垂直外边距的合并:<br>
+        当上下两个相邻的块元素相遇时，如果上面的元素有下外边距，下面的元素有上外边距，则他们之间的垂直间距不是margin-bottom与margin-top之和，而是取两者之间的较大值<br>
+        <strong>尽量只给其中的一个盒子添加外边距</strong><br>
+        <br>
+        嵌套块元素垂直外边距的塌陷:<br>
+        对于两个嵌套关系的块元素，亲元素有上边距同时子元素也有上边距，此时亲元素会塌陷较大的外边距值<br>
+        <strong>为亲元素定义（上）边框<br>
+            为亲元素定义上内边距<br>
+            为亲元素添加overflow:hidden<br></strong>
+
+    </p>
+
+    <h1>清除内外边距</h1>
+    <p>很多网页元素带有默认的内外边距，而且不同的浏览器默认的也不一致。因此布局前首先清除网页元素的内外边距</p>
+    <p>css的第一行代码<br>
+        * {<br>
+        padding: 0;<br>
+        margin: 0;}
+    </p>
+    <p>行内元素为了照顾兼容性，尽量只设置左右内外边距，不要设置上下内外边距。但是转换成块级和行内块元素就可以了</p>
+
+
+
+
+
+
+
+</body>
+
+</html>

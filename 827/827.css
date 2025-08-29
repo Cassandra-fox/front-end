@@ -1,0 +1,19 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.box {
+    box-sizing: border-box;
+    width: 496px;
+    height: 326px;
+    border: 2px solid #cccccc;
+    margin: 200px auto;
+}
+
+.nav {
+    height: 64px;
+    border-bottom: 2px dotted #cccccc;
+    font-size: 26px;
+    text-decoration: none;
+}

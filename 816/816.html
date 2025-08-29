@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="cn-ZH">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>816</title>
+
+    <style>
+        /* 选择器 {样式} */
+        * {
+            background-color: rgb(228, 215, 196);
+        }
+
+        h1 {
+            color: blueviolet;
+            font-size: 40px;
+        }
+
+        .red {
+            color: cadetblue;
+        }
+
+        .font13 {
+            font-size: 13px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .green {
+            background-color: aquamarine;
+        }
+
+        #nav {
+            color: forestgreen;
+        }
+
+        /* 微软雅黑 */
+        body {
+            font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;
+            font-weight: normal;
+        }
+
+        .font {
+            font: italic 700 16px/20px 'Microsoft Yahei';
+        }
+
+        .pink {
+            color: hotpink;
+            text-align: center;
+            text-decoration: underline;
+            line-height: 26px;
+        }
+
+        a {
+            text-decoration: none;
+            color: indianred;
+        }
+
+        p {
+            text-indent: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>CSS</h1>
+    <div>层叠样式表 级联样式表 标记语言</div>
+    <div>结构与样式相分离</div>
+
+    <h2>语法：</h2>
+    <div>选择器 {样式;}</div>
+    <div>选择器为html标签</div>
+
+    <h2>代码风格：</h2>
+    <h3>1.格式</h3>
+    <div>展开格式</div>
+    <h3>2.大小写</h3>
+    <div>小写</div>
+    <h3>3.空格</h3>
+    <div>属性值前，冒号后，保留一个空格</div>
+    <div>选择器和大括号之间保留空格</div>
+
+    <h2>基础选择器</h2>
+    <h3>1.种类</h3>
+    <h4>基础选择器</h4>
+    <div>1\标签选择器：标签名作为选择器</div>
+    <div class="red">2\类选择器：单独选一个或某几个标签，自定义，类名不能与标签名相同，可以使用-来分割词组，参见类命名规范</div>
+    <div class="box blue"></div>
+    <div class="box green">柑</div>
+    <div class="box blue"></div>
+    <div class="red font13">多类名——给一个标签指定多个类名，用空格隔开</div>
+    <div class="red font13">分出公共类和单独类，免去冗余代码，方便统一管理</div>
+    <div id="nav">3\id选择器：id只能调用一次，有唯一性，一般通过js</div>
+    <div>4\通配符选择器：*选取页面中所有元素</div>
+
+    <h2>CSS字体属性</h2>
+    <div>字体：多个字体用英文逗号隔开</div>
+    <div>大小：font-size，标题标签的大小需要单独指定，body内的其他可以统一</div>
+    <div>字体粗细：font-weight, normal400 bold700,实际开发中习惯使用数字</div>
+    <div>文字样式：font-style, normal正常 italic倾斜</div>
+    <div class="font">字体复合属性：font: font-style font-weight font-size/line-height font-family;</div>
+
+    <h2>CSS文本属性</h2>
+    <div>定义文本的外观样式</div>
+    <p class="pink">
+        文本颜色：预定义的颜色值；十六进制；rgb代码<br>
+        对齐文本：text-align用于设置水平对齐方式<br>
+        装饰文本：text-decoration规定添加到文本的装饰。<br>
+        none默认\underline下划线\line-througn删除线\overline上划线<br>
+        文本缩进：text-indent指定文本第一行的缩进<br>
+        em是一个相对单位，是当前元素一个文字的大小<br>
+        行间距：line-height
+    </p>
+    <a href="#">链接</a>
+
+
+</body>
+
+</html>

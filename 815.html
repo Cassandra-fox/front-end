@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="cn-ZH">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>815</title>
+</head>
+
+<body>
+    <h1>标签（下）</h1>
+
+    <h2>1.表格标签</h2>
+    <div>表格：用来展示数据</div>
+    <p>基本语法：</p>
+    <!-- 嵌套关系 -->
+    <table>
+        <tr>
+            <th>表头一</th>
+            <th>表头二</th>
+            <th>表头三</th>
+            <!-- 表头单元格，加粗居中 -->
+        </tr>
+        <tr>
+            <td>单元格内的文字</td>
+            <td>第二个单元格</td>
+            <td>第三个单元格</td>
+            <!-- 单元格 -->
+        </tr>
+        <!-- 行 -->
+        <tr>
+            <td>第二行</td>
+            <td>第二个单元格</td>
+            <td>第三个单元格</td>
+            <!-- 单元格 -->
+        </tr>
+    </table>
+    <!-- 表格 -->
+
+    <h2>2.表格属性</h2>
+    <div>一般通过css</div>
+    <div>align (left,center,right) 表格相对周边元素的对齐方式 </div>
+    <div>border (1/无) 规定表格是否有边框，默认为""，表示没有边框</div>
+    <div>cellpadding 规定单元边沿与其内容之间的空白，默认为1像素</div>
+    <div>cellspacing 规定单元格之间的空白，默认2像素</div>
+    <div>width 规定表格的宽度</div>
+    <table align="center" border="1" cellpadding="10" cellspacing="0" width="">
+        <tr>
+            <th>表头一</th>
+            <th>表头二</th>
+            <th>表头三</th>
+            <!-- 表头单元格，加粗居中 -->
+        </tr>
+        <tr>
+            <td>单元格内的文字</td>
+            <td>第二个单元格</td>
+            <td>第三个单元格</td>
+            <!-- 单元格 -->
+        </tr>
+        <!-- 行 -->
+        <tr>
+            <td>第二行</td>
+            <td>第二个单元格</td>
+            <td>第三个单元格</td>
+            <!-- 单元格 -->
+        </tr>
+    </table>
+
+    <h2>3.表格案例</h2>
+    <table align="center" width="500" height="160" border="1" cellpadding="10" cellspacing="0">
+
+        <thead>
+            <tr>
+                <th colspan="6">音乐剧热度榜</th>
+            </tr>
+            <tr>
+                <th>排名</th>
+                <th>关键词</th>
+                <th>趋势</th>
+                <th>今日搜索</th>
+                <th>最近七日</th>
+                <th>相关链接</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>摇滚红与黑</td>
+                <td><img src="down.jpg" /></td>
+                <td>888</td>
+                <td>8888</td>
+                <td><a href="#">大麦</a> <a href="#">小红书</a></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>都市莫里哀</td>
+                <td><img src="up.jpg" /></td>
+                <td>666</td>
+                <td>6666</td>
+                <td><a href="#">大麦</a> <a href="#">小红书</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4.表格结构标签</h2>
+    <div>thead 头部区域 ； tbody 主体区域</div>
+
+    <h2>5.合并单元格</h2>
+    <p>
+    <div>方式1：rowspan="合并单元格的个数" 跨行合并</div>
+    <div>方式2：colspan="合并单元格的个数" 跨列合并</div>
+    </p>
+    <div>目标单元格：写合并代码</div>
+    <div>跨行写最上</div>
+    <div>跨列写最左</div>
+    <p>删除多余的单元格</p>
+
+
+    <h1>列表标签</h1>
+    <p>整齐有序</p>
+    <div>无序列表，有序列表，自定义列表</div>
+    <h2>1.无序列表（重点）</h2>
+    <div>ul</div>
+    <ul>
+        <li>列表项1</li>
+        <li>列表项2</li>
+        <li>列表项3</li>
+        <li>列表项4</li>
+    </ul>
+    <div>各个列表项之间并列关系，无序</div>
+    <div>li是最小容器</div>
+    <div>带有默认样式属性</div>
+    <h2>2.有序列表</h2>
+    <div>ol</div>
+    <ol>
+        <li>列表项1</li>
+        <li>列表项2</li>
+        <li>列表项3</li>
+        <li>列表项4</li>
+    </ol>
+    <h2>3.自定义列表（重点）</h2>
+    <div>常用于对术语或名词进行解释和描述，列表项前无项目符号</div>
+    <div>dl</div>
+    <dl>
+        <dt>伊丽莎白</dt>
+        <dd>德语音乐剧</dd>
+        <dd>美泉宫</dd>
+        <dd>sisi</dd>
+    </dl>
+    <div>dd是最小容器</div>
+    <div>dt和dd没有个数限制，经常是一个dt对应多个dd</div>
+
+
+    <h1>表单标签</h1>
+    <div>收集用户信息，和用户进行交互</div>
+    <div>由 表单域，表单控件（表单元素），提示信息 3个部分组成</div>
+    <h2>1.表单域</h2>
+    <div>实现用户信息的收集和传递</div>
+    <div>form标签把他范围内的表单元素信息提交给服务器</div>
+    <div>action 用于指定接收并处理表单数据的服务器程序的url地址</div>
+    <div>method 用于设置表单数据的提交方式，其取值为get或post</div>
+    <div>name 用于指定表单的名称，以区分同一个页面中的多个表单域</div><br>
+
+    <form action="url地址" method="提交方式" name="表单域名称">
+        <!-- 各种表单元素控件 -->
+        用户名：<input type="text" name="username" value="请输入用户名" maxlength="6"><br>
+        密码：<input type="password"><br>
+        国籍<select>
+            <option>中国</option>
+            <option>美国</option>
+            <option>法国</option>
+            <option selected="selected">英国</option>
+        </select><br>
+        <!-- input的name属性相同时才能实现单选 -->
+        性别：<label for="sex">人</label> <input type="radio" name="sex" value="人" id="sex"> <label for="sex0">非人</label>
+        <input type="radio" name="sex" value="非人" id="sex0"><br>
+        <!-- 单选按钮和复选框可以设置checked属性，当页面打开时默认选中此按钮 -->
+        爱好：吃<input type="checkbox" checked="checked"> 走<input type="checkbox"> 跳<input type="checkbox"><br>
+        <!-- 点击提交按钮后,将表单域form里面的表单元素 里面的值 提交给后台服务器 -->
+        自我介绍:<textarea cols="50" rows="5">默认</textarea><br>
+        <input type="submit" value="注册">
+        <input type="reset" value="重新填写"><br>
+        <input type="button" value="发送验证码"><br>
+        <input type="file" value="上传头像">
+
+    </form>
+
+    <h2>2.表单控件</h2>
+    <ol>
+        <li>input输入表单元素</li>
+        <li>select下拉表单元素</li>
+        <li>textarea文本域元素</li>
+    </ol>
+
+    <h3>1.input输入表单元素</h3>
+    <div>用于收集用户信息</div>
+    <div>包含一个type属性，根据不同的属性值，输入字段拥有很多种形式，（文本框、复选框、掩码后的文本控件、单选按钮、按钮 等）</div>
+    <div>input标签为单标签</div>
+    <br>
+    <div>name属性定义input元素的名字</div>
+    <div>value属性规定input元素的值，在文本框中可显示 </div>
+    <div>checked属性值checked，规定此input元素首次加载时应被选中</div>
+    <div>maxlength属性规定输入字段中的字符的最大长度</div>
+    <br>
+    <div>type属性来指定不同的控件类型:</div>
+    <div>text 单行的输入字段，用户可在其中输入文本。默认宽度为20个字符</div>
+    <div>password 定义密码字段，该字段中的字符被掩码</div>
+    <div>radio 单选按钮</div>
+    <div>checkbox 定义复选框</div>
+    <div>reset 重置</div>
+    <div>submit 提交</div>
+    <div>button 定义可点击按钮,一般通过js</div>
+    <div>file 上传文件</div>
+
+
+    <h3>2.label标签</h3>
+    <div>为input元素定义标注(标签)</div>
+    <div>用于绑定一个表单元素,当点击label标签内的文本时,浏览器会自动选择对应的表单元素,增加用户体验</div>
+    <div>for对应id</div>
+
+    <h3>3.select下拉表单元素</h3>
+    <div>下拉选择,至少包含一对option</div>
+    <div>option中定义selected="selected"时,当前项即为默认选中项</div>
+
+    <h3>4.textarea文本域元素</h3>
+    <div>实现多行文本输入</div>
+
+    <h1>学会查阅文档</h1>
+    <div><a href="https://www.w3school.com.cn" target="_blank">w3chool</a></div>
+    <div><a href="https://developer.mozilla.org/zh-CN/" target="_blank">MDN</a></div>
+
+</body>
+
+</html>
