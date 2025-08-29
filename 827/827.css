@@ -5,15 +5,42 @@
 
 .box {
     box-sizing: border-box;
-    width: 496px;
-    height: 326px;
-    border: 2px solid #cccccc;
-    margin: 200px auto;
+    width: 248px;
+    height: 163px;
+    border: 1px solid #ccc;
+    margin: 100px auto;
 }
 
 .nav {
-    height: 64px;
-    border-bottom: 2px dotted #cccccc;
-    font-size: 26px;
+    height: 32px;
+    border-bottom: 1px dotted #ccc;
+    font-size: 14px;
     text-decoration: none;
+    line-height: 32px;
+    padding-left: 15px;
+}
+
+li {
+    list-style: none;
+}
+
+.info ul li a {
+    font-size: 12px;
+    text-decoration: none;
+    color: #666;
+}
+
+.info ul li {
+    height: 23px;
+    line-height: 23px;
+    padding-left: 20px;
+    overflow: hidden;
+}
+
+.info ul {
+    margin-top: 7px;
+}
+
+.info ul li a:hover {
+    text-decoration: underline;
 }
