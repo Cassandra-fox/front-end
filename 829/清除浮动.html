@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>清除浮动</title>
+    <style>
+        /* after伪元素法 */
+        .clearfix::after {
+            content: "";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+
+        .clearfix {
+            /* IE6、7低版本专有 */
+            zoom: 1;
+        }
+
+        /* 双伪元素清除浮动 */
+        .clearfix::before,
+        .clearfix::after {
+            content: "";
+            display: table;
+        }
+
+        .clearfix::after {
+            clear: both;
+        }
+
+        .clearfix {
+            /* IE6、7低版本专有 */
+            zoom: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        亲盒子有时不方便设置高度，最好使子元素撑开父元素高度，可以使用清除浮动的方式。
+    </p>
+
+    <p>
+        清除浮动的本质是清除浮动元素造成的影响
+    </p>
+
+    <h1>clear</h1>
+    <p>
+        clear属性可以清除浮动的影响<br>
+        clear:both<br>
+        清除浮动的策略是闭合浮动<br>
+    </p>
+
+    <p>
+        额外标签法（隔离法），是W3C推荐的做法<br>
+        在浮动元素末尾添加一个空的标签。例如div style="clear:both></div><br>
+        这种方法的缺点是增加了额外的标签，影响语义化<br>
+        新添加的标签必需是块元素<br>
+    </p>
+
+    <p>
+        给亲元素添加overflow<br>
+        将其overflow属性设置为hidden、auto或scroll<br>
+        这种方法的缺点是可能会隐藏掉超出亲元素的内容<br>
+    </p>
+
+    <p>
+        after伪元素法<br>
+        给亲元素添加伪元素，并设置其clear属性<br>
+        .parent::after{content:"";display:block;clear:both;}<br>
+        向类中添加clearfix类<br>
+        这种方法的缺点是需要了解伪元素的用法<br>
+        百度、淘宝、网易等大型网站都在使用这种方法<br>
+    </p>
+
+    <p>
+        双伪元素清除浮动<br>
+        这种方法是after伪元素法的升级版<br>
+        代码更简洁，兼容性更好<br>
+        小米,腾讯等大型网站都在使用这种方法<br>
+    </p>
+
+</body>
+
+</html>
