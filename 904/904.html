@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>904</title>
+</head>
+
+<body>
+    <h1>前端开发切图工具：蓝湖、摹客、像素大厨</h1>
+    <h1>换成2025新版教程，使用字节旗下ai ide，怀疑收钱了……</h1>
+    <br>
+    <h1>音视频标签及下载方式</h1>
+    <p>
+        controls控件<br>
+        audio标签和video标签都有controls属性，用于显示播放控件。<br>
+        h5中简写一个controls<br>
+        <br>
+        其他属性<br>
+        autoplay自动播放， 可简写 ，浏览器策略规定自动播放的前期是静音<br>
+        loop循环播放<br>
+        muted静音<br>
+        poster预览图像<br>
+
+        audio标签<br>
+        <audio src="Anna Lea - Suffocation.ogg" controls="controls"></audio><br>
+        video标签<br>
+        <video src="http://www.w3school.com.cn/i/movie.mp4" controls="controls"></video><br>
+    </p>
+
+    <br>
+    视频标签兼容性写法：<br>
+    浏览器会检查sourse元素，并播放第一个兼容的媒体
+    <video controls>
+        <source src="#" type="video/mp4">
+        <source src="#" type="video/ogg">
+        <source src="#" type="video/webm">
+        <p>您的浏览器不支持 HTML 5 Video 标签，请升级浏览器。</p>
+    </video><br>
+
+    <br>
+
+    音频标签兼容性写法：<br>
+    <audio controls>
+        <source src="#" type="audio/mp3">
+        <source src="#" type="audio/ogg">
+        <source src="#" type="audio/wav">
+        <p>您的浏览器不支持 HTML 5 Audio 标签，请升级浏览器。</p>
+    </audio>
+    <p>音频不允许自动播放，后续通过js实现</p>
+    <br>
+    <h1>网站结构标签（h5新增）</h1>
+    <p>
+    <header>头部</header><br>
+    <nav>导航</nav><br>
+    <main>网页内容，美国页面只有一个</main>
+    <section>分块</section><br>
+    <article>文章</article><br>
+    <aside>侧边栏</aside><br>
+    <footer>底部</footer><br>
+
+</body>
+
+</html>
