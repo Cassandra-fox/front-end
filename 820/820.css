@@ -1,3 +1,19 @@
 ol li {
     color: aquamarine;
 }
+
+a:link {
+    color: blueviolet;
+}
+
+a:visited {
+    color: rgb(13, 99, 22);
+}
+
+a:hover {
+    color: brown;
+}
+
+a:active {
+    color: blue;
+}
