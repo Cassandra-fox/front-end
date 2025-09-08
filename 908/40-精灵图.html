@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>精灵图</title>
+  <style>
+    .box {
+      width: 27px;
+      height: 26px;
+      /* 精灵图的核心是作为背景 */
+      background: url("../img/wz.webp") no-repeat;
+    }
+
+    .box1 {
+      margin: 100px auto;
+      background-position: 0 -169px;
+    }
+
+    .box2 {
+      margin: 100px auto;
+      background-position: -90px -170px;
+    }
+  </style>
+</head>
+
+<body>
+  <p>
+    精灵图：将多个小图标或图像合并到一张大图里，通过调整background_position属性来显示部分的图像技术<br>
+    减少http请求<br>
+    提升性能<br>
+    统一管理<br>
+  </p>
+  <div class="box box1"></div>
+  <div class="box box2"></div>
+</body>
+
+</html>

@@ -6,6 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>908</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
         .box {
             width: 1000px;
             height: 1000px;
@@ -15,7 +30,15 @@
             background-position: center;
             background-size: cover;
             /* 背景固定：默认scroll 滚动 */
+            /* 针对当前视口*/
             background-attachment: fixed;
+        }
+
+        .box2 {
+            width: 1000px;
+            height: 1000px;
+            /* 复合写法 */
+            background: url("../images/小王子.png") no-repeat center/cover fixed;
         }
     </style>
 </head>
@@ -24,6 +47,33 @@
 
     <h1>盒子背景</h1>
     <div class="box">1</div>
+    <p>复合写法</p>
+    <div class="box2">2</div>
+    <p>视差滚动效果</p>
+    <div class="box3">3</div>
+    <p>背景渐变</p>
+    <p>
+        盒子阴影<br>
+        过渡效果:用于在元素的属性值发送变化时，平滑地过渡<br>
+        写在盒子里<br>
+        transition: all 0.5s ease;
+    </p>
+
+    <h1>样式初始化</h1>
+    <p>
+        简单的样式初始化<br>
+        中大型项目：引入Normalize.css文件
+    </p>
+
+    <p>单行文本溢出省略：
+        <!-- 溢出隐藏 -->
+        overflow:hidden;
+        <!-- 文本溢出省略号 -->
+        text-overflow:ellipsis;
+        <!-- 不换行 -->
+        white-space:nowrap;
+    </p>
+
 </body>
 
 </html>
