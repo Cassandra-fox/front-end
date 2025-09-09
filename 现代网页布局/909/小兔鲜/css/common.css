@@ -111,3 +111,54 @@
 }
 
 /* 网页的底部 */
+.footer {
+    height: 580px;
+    background-color: #F5F5F5;
+}
+
+.slogan {
+    height: 178px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.slogan ul {
+    height: 178px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.slogan ul li {
+    display: flex;
+    align-items: center;
+}
+
+.slogan ul li .one {
+    width: 58px;
+    height: 58px;
+    background: url("../images/sprite.png") no-repeat;
+}
+
+.slogan ul li .two {
+    width: 58px;
+    height: 58px;
+    background: url("../images/sprite.png") no-repeat 0 -58px;
+}
+
+.slogan ul li .three {
+    width: 58px;
+    height: 58px;
+    background: url("../images/sprite.png") no-repeat 0 -116px;
+}
+
+.slogan ul li .four {
+    width: 58px;
+    height: 58px;
+    background: url("../images/sprite.png") no-repeat 0 -174px;
+}
+
+.slogan ul li p {
+    font-size: 28px;
+    margin-left: 20px;
+
+}
