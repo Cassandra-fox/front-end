@@ -160,5 +160,54 @@
 .slogan ul li p {
     font-size: 28px;
     margin-left: 20px;
+}
 
+.service {
+    display: flex;
+    margin-top: 60px;
+    justify-content: space-between;
+
+}
+
+.service-left {
+    display: flex;
+    gap: 84px;
+}
+
+.service-left dt {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.service-left dd {
+    margin-bottom: 10px;
+}
+
+.service-left dd a {
+    color: #969696;
+}
+
+.service-left dd a i {
+    color: #5EB69C;
+}
+
+.service-right ul {
+    display: flex;
+    text-align: center;
+}
+
+.service-right ul li {
+    margin-left: 55px;
+    color: #969696;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 100px;
+    line-height: 30px;
+    color: #A1A1A1;
+}
+
+.copyright a {
+    color: #A1A1A1;
 }
