@@ -1,0 +1,48 @@
+/* 公共样式 */
+
+/* 先写版心 */
+.w {
+    width: 1240px;
+    margin: 0 auto;
+}
+
+/* 网页的头部 */
+/* 快捷导航 */
+.shortcut {
+    height: 52px;
+    background-color: #333;
+}
+
+.shortcut ul {
+    height: 52px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.shortcut li a {
+    color: #fff;
+}
+
+.shortcut .line {
+    width: 1px;
+    height: 12px;
+    background-color: #999;
+    margin: 0 15px;
+}
+
+.shortcut li i {
+    font-size: 18px;
+    margin-right: 4px;
+}
+
+.shortcut li:first-child a {
+    color: #5EB69C;
+}
+
+.shortcut li a:hover {
+    color: #5EB69C;
+}
+
+
+/* 网页的底部 */
