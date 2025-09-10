@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网格布局</title>
+</head>
+
+<body>
+    <h1>Grid网格布局</h1>
+    <p>
+        一种二维布局模型，允许开发者通过定义行和列来精准控制网页元素的位置和尺寸，还可以实现响应式设计。<br>
+        实际开发中二者混用：Flexbox快速实现一维布局、动态内容对齐；grid提供更强大的二维控制能力。<br>
+    </p>
+
+    <h2>网格容器</h2>
+    容器设置display:grid;或者display:inline-grid;（行内）
+
+    <h2>网格轨道</h2>
+    Grid Tracks绘制网格
+    grid-template-columns:定义列
+    justify-content: 列对齐方式
+    grid-template-rows: 定义行
+    align-content: 行对齐方式
+    属性值：有几个属性值代表创建几行/列；长度单位
+    fr单位 分配剩余空间
+    repeat(n, [size]) 创建n个（或者自动填充）元素，size为元素大小
+    auto-fit 自动拉伸填充，占满整个容器
+    auto-fill 留有空白空间
+    minmax(min, max) 创建元素，min为最小值，max为最大值,限制元素大小
+
+    <H2>gap网格间距</H2>
+
+    <h2>网格线</h2>
+    编号从1 开始算
+    用来实现元素跨越多个网格单元
+    grid-column: 1 / 3;跨列，开始线编号到结束线编号 或 开始线编号/span 跨列数
+    grid-row: 1 / 3;跨行，开始线编号到结束线编号 或 开始线编号/span 跨行数
+    该属性写到子元素中
+
+    <h2>网格填充方式</h2>
+    grid-auto-flow: row | column | dense;
+    默认row先行后列;column先列后行;
+
+    <h2>图片缩放</h2>
+    object-fit 是css中用于控制替换元素内容如何适应其容器尺寸的属性
+    fill 默认值，完全填充
+    contain 保持原有宽高比且图片完全展示
+    cover 填充容器，可能被裁剪（常用）
+
+    object-position搭配使用控制图片在容器内的对齐位置
+
+    <h2>项目对齐方式</h2>
+    控制元素在网格内的对齐方式
+    justify-items:start（左） | end（右） | center | stretch（拉伸）; 水平对齐
+    align-items:start | end | center | stretch; 垂直对齐
+    place-items 水平+垂直对齐
+    给亲容器添加
+
+
+
+
+
+
+
+
+</body>
+
+</html>

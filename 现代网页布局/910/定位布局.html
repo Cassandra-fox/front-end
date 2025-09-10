@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定位布局</title>
+</head>
+
+<body>
+    <h1>定位布局</h1>
+    <p>实现元素脱离文档流、层叠，固定在特殊位置实现布局效果（定位和位置有关）</p>
+    <p>
+        使用场景：<br>
+        固定导航栏<br>
+        吸顶效果<br>
+        弹出菜单/下拉框<br>
+        悬浮效果<br>
+        <br>
+        定位分类：
+        相对定位<br>
+        position: relative;<br>
+        元素相对自身正常位置进行偏移，和绝对定位搭配使用，用于给绝对定位当亲元素。<br>
+        不脱离正常流，占位置。<br>
+        优先级：top>bottom;left>right <br>
+        <br>
+        绝对定位<br>
+        position: absolute;<br>
+        元素脱离文档流，不占位置。基于定位基准进行偏移<br>
+        相对于最近的的已定位亲元素移动位置。若都无定位则相对于视口来定位。<br>
+        <br>
+        固定定位<br>
+        position: fixed;<br>
+        元素脱离文档流，不占位置。<br>
+        相对于视口进行定位，元素会固定在某个位置<br>
+        <br>
+        <br>
+        粘性定位<br>
+        position: sticky;<br>
+        元素脱离文档流，不占位置。<br>
+        基于定位基准进行偏移，元素会根据滚动位置进行固定。<br>
+        混合定位模式，元素在滚动到指定位置前为相对定位，之后转为固定定位<br>
+        <br>
+    </p>
+
+    <h1>层叠顺序</h1>
+    <p>
+        控制元素在三维空间中的层叠顺序。<br>
+        z-index: 值越大，层级越高。<br>
+        z-index: auto; 默认值，后出现的元素更高<br>
+
+    </p>
+
+    <h1>常见组合</h1>
+    <p>
+        固定导航栏：position: fixed+z-insex<br>
+        弹窗：position:fixed+居中技巧+高 z-index<br>
+        吸顶效果：position:sticky+top
+    </p>
+
+</body>
+
+</html>
