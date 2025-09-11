@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>911</title>
+</head>
+transform是用于对元素进行2D/3D变换的核心属性，支持平移、旋转、缩放、倾斜等效果，并且不影响原有文档流布局。
+
+transform-origin: 调整中心点
+
+<h1>平移：</h1>
+transform:translate(x,y);
+transform:translateX(x);
+transform:translateY(y); 单位为百分比时相对于元素自身尺寸
+沿x/y轴移动元素位置，不改变元素的实际布局
+
+配合hover使用，实现元素悬停效果
+百分比搭配定位布局，实现元素居中
+transition 过渡效果
+
+<h1>旋转：</h1>
+通过改变元素在平面或空间中的角度来实现旋转效果
+transform:rotate(360deg);正值表示顺时针旋转，负值表示逆时针旋转
+需要转换行内块或者块级元素
+
+<h1>变换函数-2D缩放</h1>
+用于调整元素尺寸，且不改变元素在文档流中的原始占位
+transform:scale(x,y) | scale();
+transform:scaleX(x);
+transform:scaleY(y);
+
+<h1>变换函数-2D倾斜</h1>
+用于对元素进行二维倾斜变化，通过沿x轴或y轴扭曲元素的几何形状
+transform:skew(xdeg,ydeg);
+transform:skewX(x); 正值左倾斜
+transform:skewY(y); 正值上倾斜
+
+<h1>过渡进阶</h1>
+transition: all 1s linear 1s;
+过渡属性 持续时间 速度曲线 延迟时间
+ease linear ease-in ease-out ease-in-out
+cubic-bezier(n,n,n,n) 贝塞尔曲线
+
+<h1>变换函数-复合写法</h1>
+transform:translate(x,y) rotate(deg) scale(x,y) skew(xdeg,ydeg);
+执行顺序：从右到左
+同时实现多个效果需要使用复合写法
+
+<h1>变换函数-3D变换与透视</h1>
+CSS 3D效果通过将二维元素在三维空间中进行变换，为网页添加立体感和动态交互体验。
+相比javaScript或WebGL，CSS 3D利用GPU加速，动画更流畅，性能更高。
+网页中的三维坐标系是左手坐标系
+transform:rotateX(x);
+transform:rotateY(y);
+transform:rotateZ(z);
+旋转方向遵循左手法则
+
+透视：
+perspective: 1000px;视距
+视距数值越小，透视效果越强
+必须作为transform属性的第一个函数
+
+backface-visibility: hidden;用于隐藏翻转元素背面
+
+<h1>变换函数-3D位移</h1>
+transform:translate3d(x,y,z);
+位移建议通过3d变换强制启用GPU渲染，增强性能
+z属性需要配合perspective使用
+亲容器必须设置transform-style: preserve-3d; 使子元素保留3d位置
+
+
+
+<body>
+
+</body>
+
+</html>
