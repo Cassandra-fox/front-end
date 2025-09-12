@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.w {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    /* grid-template-rows: repeat(2, 1fr); */
+    justify-content: center;
+    column-gap: 54px;
+    row-gap: 73px;
+    width: 1240px;
+    height: 100%;
+    margin: 0 auto;
+    background-color: rgb(153, 195, 155);
+}
+
+.box {
+    position: relative;
+    width: 300px;
+    height: 540px;
+    /* perspective: 1000px;*/
+    --p: 1000px;
+    perspective: var(--p);
+    transform-style: preserve-3d;
+}
+
+/* .box>div {} */
+
+.box .imgf,
+.box .imgb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    transition: all 1.5s;
+    backface-visibility: hidden;
+    /* position: relative; */
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform-style: preserve-3d;
+    /* perspective: 1000px; */
+    transform-origin: center center;
+    transform: translateZ(0);
+}
+
+.box .imgf {
+    z-index: 2;
+}
+
+.box .imgb {
+    transform: rotateY(180deg);
+    z-index: 1;
+}
+
+.box .imgf .name,
+.box .imgb .state {
+    position: absolute;
+    left: 0;
+    z-index: 99;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.55);
+    color: #ccc;
+    --z: 60px;
+    border-radius: 0 0 10px 10px;
+    /* transform: translateZ(60px) scale(0.94); */
+    transform: translateZ(var(--z)) scale(calc((var(--p) - var(--z)) / var(--p)));
+    transform-origin: bottom center;
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+.box .imgf .name {
+    bottom: 16px;
+    height: 35px;
+    line-height: 35px;
+}
+
+.box .imgb .state {
+    bottom: 16px;
+    height: 70px;
+    line-height: 35px;
+}
+
+.w .box .imgb .state1 {
+    line-height: 70px;
+}
+
+.box .imgf .name p,
+.box .imgb .state p {
+    display: inline;
+}
+
+.box:hover .imgf {
+    transform: rotateY(180deg);
+    z-index: 1;
+}
+
+.box:hover .imgb {
+    transform: rotateY(0deg);
+    z-index: 2;
+}
+
+.box .imgf img,
+.box .imgb img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    /* overflow: hidden; */
+    object-fit: cover;
+    object-position: center;
+}
