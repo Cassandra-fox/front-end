@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            /* 使用动画 */
+            animation: move1 5s infinite;
+        }
+
+        .box2 {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            /* 使用动画 */
+            animation: move2 5s infinite;
+
+        }
+
+        @keyframes move1 {
+
+            /* 三个关键帧 */
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(200px, 0);
+                background-color: green;
+                border-radius: 50%;
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        /* from to  */
+        @keyframes move2 {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(300px, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        通过定义关键帧和动画属性来实现元素动态效果的技术
+        性能高效：GPU加速
+        代码简洁
+        交互增强：支持与鼠标交互
+
+        关键帧keyframe
+        中间帧通过算法自动生成，形成连贯的动画效果
+    </p>
+    <div class="box"></div>
+    <div class="box2"></div>
+
+    <p>
+        动画名称 动画时长 速度曲线 延迟时间 播放次数 播放方向 执行完毕状态;
+        alternate 交替播放方向（跑马灯效果）
+        forwards 默认值,动画定格在最后一帧
+        infinite 无限循环
+        动画名称和时长必须写，其他的可以不写，有顺序要求
+    </p>
+
+
+
+</body>
+
+</html>
