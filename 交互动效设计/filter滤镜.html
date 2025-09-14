@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>filter</title>
+    <style>
+        .box,
+        .box1 {
+            position: relative;
+            width: 300px;
+            height: 540px;
+            text-align: center;
+            margin: 60px auto;
+        }
+
+        .box img {
+            width: 100%;
+            transition: all linear .2s;
+        }
+
+        .box:hover img {
+            filter: drop-shadow(10px 10px 10px #000000);
+        }
+
+        .box1 span {
+            position: absolute;
+            top: 270px;
+            left: 0;
+            z-index: 99;
+            height: 40px;
+            width: 100%;
+            text-align: center;
+            line-height: 40px;
+            /* 毛玻璃效果 */
+            background: transparent;
+            backdrop-filter: saturate(150%) blur(28px);
+            color: #272727;
+            transform: translateY(-50%);
+        }
+
+        .box1 img {
+            width: 100%;
+            transition: all linear 1s;
+        }
+
+        .box1 img:hover {
+            /* 高司模糊 */
+            filter: blur(10px);
+        }
+    </style>
+</head>
+
+<body>
+    <p>filter滤镜</p>
+    <div class="box">
+        阴影
+        <img src="./路辰卡面突破前后展示项目/img/img1a.webp" alt="">
+    </div>
+    <div class="box1">
+        <span>高司模糊</span>
+        <img src="./路辰卡面突破前后展示项目/img/司.webp" alt="">
+    </div>
+
+    <p>backdrop-filter背景滤镜</p>
+    <p>对元素背后的区域应用滤镜效果，通常与半透明图片搭配使用，实现毛玻璃效果</p>
+</body>
+
+</html>

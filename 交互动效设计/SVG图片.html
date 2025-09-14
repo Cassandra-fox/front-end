@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG图片</title>
+    <style>
+        svg {
+            width: 100px;
+            height: 100px;
+            fill: none;
+            stroke: #1f4433;
+            stroke-width: 3;
+            /* stroke-dasharray: 100 100; */
+        }
+
+        /* @keyframes move {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-5px);
+
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        svg:hover {
+            animation: move 1s infinite;
+        } */
+
+        @keyframes draw {
+            0% {
+                /* ：实线长度+间隔长度 */
+                stroke-dasharray: 0 600;
+            }
+
+            100% {
+                stroke-dasharray: 600 0;
+
+            }
+        }
+
+        svg:hover {
+            animation: draw 1s;
+        }
+
+        .box1 svg {
+            width: 100px;
+            height: 100px;
+            fill: none;
+            stroke: #112d20;
+            stroke-dasharray: 6246.22705078125;
+        }
+
+        @keyframes drawing {
+            0% {
+                stroke-dashoffset: 6246.22705078125;
+            }
+
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .box1 svg:hover {
+            animation: drawing 3s;
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        一种基于XML的矢量图形标准，支持无损缩放、交互性和动态效果
+        可编辑性，兼容性
+    </p>
+    SVG图片：
+    <svg width="50" height="50">
+        <circle cx="25" cy="25" r="20" stroke="#1f4433" stroke-width="3" fill="#edf7ef" />
+    </svg>
+    <p>
+        在css里通过宽高修改大小
+    </p>
+
+    <svg t="1757829791100" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+        p-id="900" width="200" height="200">
+        <path
+            d="M203.904 42.688h82.624l106.688 312.832h237.568L737.472 42.688h82.56l190.08 570.112L512 992.32 13.888 612.8 203.968 42.688z m41.792 144.576L114.112 581.888 512 884.992l397.888-303.104-131.584-394.624-86.4 253.632H332.16L245.696 187.264z"
+            fill-opacity=".9" p-id="901"></path>
+    </svg>
+
+
+    <p>
+        stroke-dashoffset 调整虚线模式的起始偏移量
+        数值变大，让虚线向路径起点移动
+    </p>
+
+    <div class="box1">
+        <svg t="1757829791100" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+            p-id="900" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200">
+            <path id="fox"
+                d="M203.904 42.688h82.624l106.688 312.832h237.568L737.472 42.688h82.56l190.08 570.112L512 992.32 13.888 612.8 203.968 42.688z m41.792 144.576L114.112 581.888 512 884.992l397.888-303.104-131.584-394.624-86.4 253.632H332.16L245.696 187.264z"
+                fill-opacity=".9" p-id="901"></path>
+        </svg>
+    </div>
+
+</body>
+
+</html>

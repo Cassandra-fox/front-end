@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clip-path</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            color: #ccc;
+            background-color: rgb(75, 43, 255);
+            -webkit-clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+            clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+        }
+    </style>
+</head>
+
+<body>
+    <p>创建复杂的裁剪形状，使元素只显示被裁剪区域内的东西</p>
+    <div class="box">电竞客户端</div>
+
+    <p>1turn 一圈</p>
+</body>
+
+</html>
