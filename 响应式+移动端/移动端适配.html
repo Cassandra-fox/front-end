@@ -20,6 +20,38 @@
         使用PostCSS插件：less/sass代码直接写px，使用postcss-px-to-viewport插件，打包发布的时候会统一自动转换为vw。需要脚手架知识，Vue阶段学习。
 
     </p>
+
+    <p>vimn和vmax</p>
+    <p>
+        设备旋转时视口的宽高会变化，vmin始终取当前 宽高 的较小值，vmax取较大值<br>
+        屏幕旋转适配
+    </p>
+
+    <h1>rem适配方案</h1>
+    <p>
+        通过动态修改根元素(html)的font-size，使得页面元素基于rem进行布局，自适应屏幕尺寸。<br>
+        京东，淘宝，小米使用rem适配。
+    </p>
+    <p>
+        动态修改html文字大小：<br>
+        媒体查询<br>
+        js引入Flexible.js（阿里巴巴手淘团队开发的）<br>
+        设计稿转换方式：rem值 = 设计稿元素尺寸/html的font-size <br>
+    </p>
+
+    <p>
+        实现方案：
+        PostCSS插件
+    </p>
+
+    <h1>总结</h1>
+    <p>
+        视口标签<br>
+        css像素
+        移动端适配方案技术栈：flex+vw flex+rem
+    </p>
+
+
 </body>
 
 </html>
