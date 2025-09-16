@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>javascript</title>
+	<style>
+		.green {
+			background-color: darkcyan;
+		}
+	</style>
+</head>
+
+<body>
+	<p>更改制表符</p>
+
+	<h1>是什么</h1>
+	<p>
+		运行在客户端的编程语言，实现人机交互。
+		网页特效(监听用户行为做出反应)
+		表单验证
+		数据交互(获取后台的数据渲染到前端)
+		服务端编程（node.js）
+	</p>
+
+	<h1>组成</h1>
+	<p>
+		ECMAscript (语法规范:变量，分支语句，循环语句，对象等)
+		Web APIs: DOM(页面文档对象模型) BOM(浏览器对象模型)
+		DOM:操作文档，对页面元素进行移动大小，添加操作等操作
+		BOM:操作浏览器，页面弹窗，检测窗口宽度，存储数据到浏览器等
+	</p>
+
+	<button class="green">1</button>
+	<button>2</button>
+	<button>3</button>
+	<!-- 行内js -->
+	<!-- Vue框架这么写 -->
+	<button onclick="alert('哈哈')">4</button>
+
+	<p>
+		注释写法：
+		单行注释：// 这是单行注释 ctrl+/
+		多行注释：/* 这是多行注释 */ ctrl+shift+A
+	</p>
+
+	<p>
+		结束符
+		分号; 语句结束符，可以省略。风格统一。还是不写吧。
+	</p>
+
+	<h1>输入输出</h1>
+	<p>
+		用户向计算机输入信息，计算机向用户输出信息
+	</p>
+	<p>
+		输出
+		alert() 弹窗
+		document.write() 向文档写入内容
+		console.log() 控制台输出,程序员调试使用
+	</p>
+	<p>
+		输入
+		prompt() 弹窗输入
+		confirm() 弹窗确认
+	</p>
+	<p>
+		js代码执行顺序:
+		按文档流顺序执行，alert和prompt会阻塞代码执行
+	</p>
+
+	<h1>字面量</h1>
+	<p>
+		literal 字面量
+		直接量，直接写在代码中的固定值
+		数字字面量 123 3.14 -5
+		字符串字面量 'abc' "abc" `abc`
+		布尔字面量 true false
+		数组字面量 [1,2,3]
+		对象字面量 {name:'张三',age:20}
+	</p>
+
+	<!-- 内部js -->
+	<!-- <script>
+		let bts = document.querySelectorAll('button')
+		for (let i = 0; i < bts.length; i++) {
+			bts[i].addEventListener('click', function () {
+				document.querySelector('.green').className = ''
+				this.className = 'green'
+			})
+		}	
+	</script> -->
+
+	<!-- 外部js -->
+	<script src="./js.js"></script>
+</body>
+
+</html>
