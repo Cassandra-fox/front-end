@@ -9,6 +9,18 @@
 		.green {
 			background-color: darkcyan;
 		}
+
+		table,
+		th,
+		td {
+			height: 80px;
+			margin: 0 auto;
+			border-collapse: collapse;
+			border: 1px solid #000;
+			text-align: center;
+			font-size: 24px;
+			padding: 10px;
+		}
 	</style>
 </head>
 
@@ -80,6 +92,70 @@
 		数组字面量 [1,2,3]
 		对象字面量 {name:'张三',age:20}
 	</p>
+
+	<h1>变量</h1>
+	<p>
+		变量：存储数据的容器
+		声明变量：let 变量名; const 变量名=值;
+		命名规则：字母，数字，下划线，$符号，不能以数字开头，不能是关键字
+		字母严格区分大小写。小驼峰命名法：myNameIs
+		赋值：变量=值;
+	</p>
+	<p>
+		var现在已经不推荐使用了
+		可以先使用再声明，不合理
+		声明过的变量可以重复声明，不合理
+		没有块级作用域
+	</p>
+
+	<h1>数组</h1>
+	<p>
+		存储一组数据
+		let arr = [1,2,3,'abc',true];
+		通过索引访问数组元素，索引从0开始
+		arr[0] 访问第一个元素
+		arr.length 获取数组长度
+	</p>
+
+	<h1>常量</h1>
+	<p>
+		常量：一旦声明就不能修改的变量，不能重新赋值，声明时必须赋值
+		声明常量：const 常量名=值;
+		命名规则同变量
+	</p>
+
+	<h1>数据类型</h1>
+	<p>
+		js是弱数据类型语言，变量不需要指定数据类型，数据类型会自动转换
+		数据类型分为两大类：基本数据类型和引用数据类型
+		基本数据类型：Number数字，String字符串，Boolean布尔，Undefined未定义，Null空，BigInt大整数，Symbol符号
+		引用数据类型：Object对象，Array数组，Function函数
+		typeof 运算符可以检测数据类型
+		NaN 非数字,代表计算错误，是一个不正确的计算结果
+	</p>
+	<p>
+		算术运算符：+ - * / %取模 ++ --
+		赋值运算符：= += -= *= /=
+	</p>
+
+	<h1>类型转换</h1>
+	<p>
+		prompt输入的值都是字符串类型
+		<strong>隐式转换：</strong>自动进行类型转换
+		字符串和数字进行+运算会进行字符串拼接
+		其他运算符会将字符串转换为数字进行计算
+		布尔值true转换为1，false转换为0
+		+作为正号解析可以转换为数字
+		</strong>显式转换：</strong>手动进行类型转换
+		字符串转数字：Number() parseInt()取整 parseFloat()
+		会把不是数字的部分去掉
+		数字转字符串：String() toString()
+	</p>
+
+	<h1>交互案例</h1>
+	//订单确认表格
+
+
 
 	<!-- 内部js -->
 	<!-- <script>
