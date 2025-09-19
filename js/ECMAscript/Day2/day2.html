@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>day2</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <h1>赋值运算符</h1>
+  <p>
+    = += -= *= /= %=
+  </p>
+
+  <h1>一元运算符</h1>
+  <p>
+    ++ -- + - ~ !
+  </p>
+
+  <h1>比较运算符</h1>
+  <p>
+    ==(左右两边值是否相等) ===(值和类型都相等) != !==(值不相等或类型不相等) &lt; &lt;= &gt; &gt;= &lt;&lt; &gt;&gt; &gt;&gt;&gt;
+  </p>
+  <p>
+    比较运算符有隐式转换
+    == 会把字符串转换成数字再比较<br>
+    字符串比较，是在比较对应的ASCII码<br>
+    涉及到NaN的比较，结果都是false<br>
+    比较小数时，可能会出现精度问题。先转化成整数再比较<br>
+
+  </p>
+
+  <h1>逻辑运算符</h1>
+  <p>
+    &&(与) ||(或) !(非)
+  </p>
+
+  <h1>运算符优先级</h1>
+  <p>
+    一元运算符 > 算术运算符 > 比较运算符 > 相等运算符 > 逻辑运算符 > 赋值运算符
+    逻辑与的优先级高于逻辑或
+  </p>
+
+  <h1>语句</h1>
+  <h2>分支语句</h2>
+  <p>
+    if (条件) {
+    // 代码块
+    } else {
+    // 代码块
+    }
+  </p>
+  <p>
+    if (条件1) {
+    // 代码块
+    } else if (条件2) {
+    // 代码块
+    } else if (条件3) {
+    // 代码块
+    } else {
+    // 代码块
+    }
+  </p>
+  <p>
+    switch (表达式) {
+    case 值1:
+    // 代码块
+    break;
+    case 值2:
+    // 代码块
+    break;
+    default:
+    // 代码块
+    break;
+    }
+  </p>
+  <p>
+    //三元运算符
+    条件 ? 表达式1 : 表达式2
+  </p>
+
+  <h2>循环语句</h2>
+  <p>
+    for (初始化; 条件; 迭代) {
+    // 代码块
+    }<br>
+    用来打印数组
+  </p>
+
+  <p>
+    let i = 0;
+    while (条件) {
+    // 代码块
+    i++;
+    }
+  </p>
+
+  <p>
+    当明确循环次数时，优先使用for循环<br>
+    当循环次数不明确时，优先使用while循环<br>
+  </p>
+
+  <h3>循环退出</h3>
+  <p>
+    break: 退出整个循环<br>
+    while (true) 构建无限循环需要用到break<br>
+    例子：重女来袭<br>
+    continue: 退出本次循环，进入下一次循环<br>
+  </p>
+
+  <h3>循环嵌套</h3>
+  <p>
+    for循环嵌套<br>
+  </p>
+
+
+  <h1>断点调试</h1>
+  <p>
+    1.在代码行号处点击，添加断点<br>
+    2.刷新页面，程序会在断点处暂停<br>
+    3.查看变量的值<br>
+    4.单步执行代码（F10）<br>
+    5.移除断点
+  </p>
+
+  <h1>数组</h1>
+  <h2>增删改查</h2>
+  <p>
+    let arr = [元素1, 元素2, 元素3]<br>
+    arr[索引] = 新元素<br>
+    arr.push(新元素) //在末尾添加，并返回数组的长度<br>
+    arr.pop() //删除末尾元素<br>
+    arr.unshift(新元素) //在开头添加<br>
+    arr.shift() //删除开头元素<br>
+    arr.splice(起始索引, 删除个数, 新元素1, 新元素2) //从指定位置添加或删除元素<br>
+    arr.length //数组长度<br>
+    arr.indexOf(元素) //查找元素的索引，找不到返回-1<br>
+    arr.includes(元素) //查找数组是否包含某个元素，返回true或false<br>
+  </p>
+
+
+
+
+
+
+
+
+
+
+  <script>
+    let a = 1
+    console.log(a++)  //1
+    console.log(++a)  //3
+
+    console.log(NaN === NaN)  //false
+    console.log('-------------------')
+    let b = 1
+    console.log(1 > 2 && ++b)  //false
+    console.log(b)  //节约资源，b没有++，短路了
+
+    /* let c = prompt('请输入一个数字')
+    let d = prompt('请输入另一个数字')
+    alert('较大的数字是' + (c > d ? c : d)) */
+
+    // //数字补0
+    // let e = prompt('请输入一个数字')
+    // // alert(e < 10 ? '0' + e : e)
+    // e = e < 10 ? '0' + e : e
+    // console.log(typeof e)  //string prompt输入的是字符串
+
+    let i = 1
+    let total = 0;
+    while (i <= 100) {
+      total += i
+      i++
+    }
+    console.log(total)
+
+    let ii = 2
+    let total2 = 0
+    while (ii <= 100) {
+      total2 += ii
+      ii += 2
+    }
+    console.log(total2)
+
+    let i3 = 1
+    while (i3 <= 5) {
+      if (i3 === 3) {
+        i3++
+        continue  //跳过本次循环
+      }
+      console.log(i3)
+      i3++
+    }
+
+    let i4 = 1
+    while (i4 <= 5) {
+      if (i4 === 3) {
+        break  //退出整个循环
+      }
+      console.log(i4)
+      i4++
+    }
+
+    //重女来袭
+    while (true) {
+      let answer = prompt('你喜欢我吗？(y/n)')
+      if (answer === 'y') {
+        alert('我也喜欢你！')
+        break
+      } else if (answer === 'n') {
+        alert('再考虑考虑！')
+      } else {
+        alert('请输入y或n！')
+      }
+    }
+
+    let money = 100
+    while (true) {
+      let re = +prompt(`
+			请选择操作：
+			1.存钱
+			2.取钱
+			3.查询余额
+			4.退出
+			`)
+      if (re === 1) {
+        let cun = prompt('请输入存款金额')
+        if (cun > 0) {
+          money += Number(cun)
+          alert('存款成功！当前余额为' + money)
+        } else {
+          alert('存款金额必须大于0')
+        }
+      }
+
+      else if (re === 2) {
+        let qu = prompt('请输入取款金额')
+        if (qu > 0 && qu <= money) {
+          money -= Number(qu)
+          alert('取款成功！当前余额为' + money)
+        } else if (qu > money) {
+          alert('余额不足！')
+        } else {
+          alert('取款金额必须大于0')
+        }
+      }
+
+      else if (re === 3) {
+        alert('当前余额为' + money)
+      }
+
+      else if (re === 4) {
+        alert('欢迎下次光临！')
+        break
+      }
+    }
+
+    // for循环嵌套
+    for (let i = 1; i <= 5; i++) {
+      let row = ''
+      for (let j = 1; j <= i; j++) {
+        row += '*'
+      }
+      console.log(row)
+    }
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
