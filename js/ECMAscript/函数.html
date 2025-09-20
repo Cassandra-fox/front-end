@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>函数</h1>
+  <p>
+    命名规则：
+  <ul>
+    <li>函数名由字母、数字、下划线和美元符号组成，且不能以数字开头</li>
+    <li>函数名不能是JavaScript的关键字或保留字</li>
+    <li>函数名区分大小写</li>
+    <li>函数名应具有描述性，便于理解其功能，常用动词</li>
+  </ul>
+  </p>
+  <p>
+    函数的参数：
+  <ul>
+    <li>参数是函数定义时指定的变量，用于接收调用函数时传递的值</li>
+    <li>参数可以有默认值，如果调用函数时没有传递对应的参数，则使用默认值</li>
+    <li>参数可以是任意类型的数据，包括基本类型和引用类型</li>
+    <li>函数可以有多个参数，参数之间用逗号分隔</li>
+    <li>函数可以没有参数</li>
+  </ul>
+  </p>
+  <p>
+    函数的返回值:<br>
+    return后面的语句不会被执行，会立刻结束当前函数的执行<br>
+    多个返回值可以用数组或对象的形式返回<br>
+    如果函数没有返回值，默认返回undefined<br>
+  </p>
+  <p>
+    补充：<br>
+    相同名称的函数会覆盖前面的函数<br>
+    函数可以作为参数传递给另一个函数<br>
+    实参和形参的个数可以不一致，未传递的实参对应的形参值为undefined<br>
+    参数不匹配
+  </p>
+  <p>
+    作用域：<br>
+    函数内部定义的变量只能在函数内部访问，函数外部无法访问<br>
+    函数可以访问外部作用域的变量<br>
+    函数可以嵌套定义，内层函数可以访问外层函数的变量<br>
+    全局变量可以在任何地方访问，但不建议滥用全局变量<br>
+    特殊情况：函数内部如果没有使用var、let、const定义变量，则该变量会成为全局变量<br>
+    严格模式下，函数内部未声明的变量不能成为全局变量<br>
+    优先级：局部变量 > 外层函数变量 > 全局变量
+  </p>
+  <p>
+    匿名函数：<br>
+    没有函数名的函数称为匿名函数<br>
+    匿名函数通常用于一次性使用的场景，如事件处理、定时器等<br>
+    匿名函数可以赋值给变量，从而通过变量名调用该函数<br>
+    函数表达式：将函数赋值给变量的方式称为函数表达式<br>
+    和具名函数的差别：<br>
+    1.函数表达式不会被提升，必须在定义后才能调用<br>
+    2.具名函数可以在任何地方调用<br>
+  </p>
+  <p>
+    立即执行函数（IIFE）：<br>
+    立即执行函数是一种特殊的匿名函数，定义后立即执行<br>
+    (function () {
+    console.log("立即执行函数")
+    })()<br>
+    立即执行函数通常用于创建独立的作用域，避免变量污染全局作用域<br>
+    立即执行函数可以传递参数<br>
+    多个立即执行函数之间要加分号隔开，防止语法错误<br>
+  </p>
+  <p>
+    逻辑中断：
+    短路运算符：&&和||<br>
+    逻辑与（&&）：如果第一个操作数为真，则返回第二个操作数，否则返回第一个操作数<br>
+    逻辑或（||）：如果第一个操作数为假，则返回第二个操作数，否则返回第一个操作数<br>
+  </p>
+
+  <h1>转换为布尔型</h1>
+  <p>
+    以下值转换为false：<br>
+    false<br>
+    0<br>
+    -0<br>
+    0n（BigInt类型的零）<br>
+    ""（空字符串）<br>
+    null<br>
+    undefined<br>
+    NaN<br>
+    其他值转换为true
+  </p>
+
+
+
+
+
+
+
+  <script>
+    // 定义函数
+    function fName() {
+      console.log("函数被调用")
+    }
+    // 调用函数
+    fName()
+
+    // 定义带参数的函数
+    function add13(a = 0) {//形参 a=0表示形参默认值
+      return a + 13
+    }
+    // 调用带参数的函数
+    console.log(add13(10))//实参
+    console.log(add13(20))//实参
+    console.log(add13())//实参
+
+    function getSum(arr = []) {
+      let sum = 0
+      for (let i = 0; i < arr.length; i++) {
+        sum += arr[i]
+      }
+      return sum
+    }
+    console.log(getSum([1, 2, 3, 4, 5]))
+
+    // 函数表达式
+    let fn = function () {
+      console.log("函数表达式")
+    }
+    fn();//这里要加分号
+
+    //立即执行函数
+    (function () { console.log(1) })();//这里不加分号也会报错
+    (function (a, b) { console.log(a + b) })(10, 20);
+    (function (a, b) { console.log(a + b) }(10, 20));//这样写也行
+
+    let second = +prompt('请输入秒数：')
+    function getTime(second = 0) {
+      let h = parseInt(second / 60 / 60 % 24)
+      let m = parseInt(second / 60 % 60)
+      let s = parseInt(second % 60)
+      h = h < 10 ? '0' + h : h
+      m = m < 10 ? '0' + m : m
+      s = s < 10 ? '0' + s : s
+      return [h, m, s]
+    }
+    console.log(`${getTime(second)[0]}时${getTime(second)[1]}分${getTime(second)[2]}秒`)
+
+    // 逻辑中断
+    function checkAge(age) {
+      if (age < 0) {
+        console.log("年龄不能为负数")
+        return//中断函数
+      }
+      if (age > 120) {
+        console.log("年龄不能大于120岁")
+        return//中断函数
+      }
+      console.log("年龄输入正确")
+    }
+
+    function sum(x, y) {
+      x = x || 0
+      y = y || 0
+      return x + y
+    }
+
+  </script>
+</body>
+
+</html>

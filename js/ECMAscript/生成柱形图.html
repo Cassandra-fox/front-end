@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-around;
+      text-align: center;
+      height: 300px;
+      width: 700px;
+      border: 1px solid black;
+      margin: 50px auto;
+    }
+
+    .box div {
+      width: 50px;
+      background-color: lightgreen;
+      border: 1px solid black;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .box div span {
+      margin-top: -20px;
+    }
+
+    .box h4 {
+      margin-bottom: -35px;
+      width: 70px;
+      margin-left: -10px;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <script>
+    let arr = []
+    for (let i = 0; i < 4; i++) {
+      arr[i] = +prompt(`第${i + 1}季度的销售额为：`)
+    }
+    document.write(`
+    <div class="box">
+    <div style="height:${arr[0]}px">
+      <span>${arr[0]}</span>
+      <h4>第一季度</h4>
+    </div>
+    <div style="height:${arr[1]}px">
+      <span>${arr[1]}</span>
+      <h4>第二季度</h4>
+    </div>
+    <div style="height:${arr[2]}px">
+      <span>${arr[2]}</span>
+      <h4>第三季度</h4>
+    </div>
+    <div style="height:${arr[3]}px">
+      <span>${arr[3]}</span>
+      <h4>第四季度</h4>
+    </div>
+    </div>
+      `)
+  </script>
+</body>
+
+</html>
