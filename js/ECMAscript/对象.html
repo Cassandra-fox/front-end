@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>对象</title>
+  <style>
+
+
+  </style>
+</head>
+
+<body>
+  <h1>对象</h1>
+  <p>
+    一种数据类型，引用数据类型。<br>
+    一种无序的数据集合。<br>
+  </p>
+  <p>声明：
+    let 对象名 = {属性名1:属性值1,属性名2:属性值2,...};<br>
+    <br>
+    let 对象名 = new Object();<br>
+    对象名.属性名 = 属性值;<br>
+  </p>
+  <p>
+    对象由属性和方法组成。<br>
+    属性：对象的特征，描述对象的状态。<br>
+    方法：对象的行为，描述对象可以执行的操作。<br>
+  </p>
+  <p>
+    使用对象：<br>
+    增删改查<br>
+    访问属性：对象名.属性名 或 对象名['属性名']<br>
+    修改属性：对象名.属性名 = 新值 或 对象名['属性名'] = 新值<br>
+    添加属性：对象名.新属性名 = 属性值 或 对象名['新属性名'] = 属性值<br>
+    删除属性：delete 对象名.属性名 或 delete 对象名['属性名']<br>
+    遍历属性：for...in循环<br>
+    for (let key in 对象名) {
+    console.log(key + ': ' + 对象名[key]);
+    }
+
+
+
+  </p>
+  <p>
+    对于多词属性或属性名包含特殊字符的属性，必须使用[]访问<br>
+  </p>
+
+  <h2>方法</h2>
+  <p>
+    方法是对象的行为，是对象可以执行的操作。<br>
+    方法的声明：<br>
+    let 对象名 = {属性名1:属性值1,方法名1: function() { // 方法体 },...};<br>
+    方法的调用：对象名.方法名() 或 对象名['方法名']()<br>
+    方法内部可以使用this关键字来引用当前对象。<br>
+  </p>
+
+  <h2>数学内置对象</h2>
+  <p>
+    js内部提供的对象，可以直接使用，无需声明。<br>
+    Number对象：提供数字相关的属性和方法。<br>
+
+  </p>
+  <p>
+    Math对象：提供数学常数和函数。<br>
+    Math.PI：圆周率<br>
+    Math.abs(x)：返回x的绝对值<br>
+    Math.ceil(x)：返回大于等于x的最小整数，取整<br>
+    Math.floor(x)：返回小于等于x的最大整数，取整<br>
+    Math.round(x)：返回四舍五入后的整数<br>
+    Math.max(a,b,...)：返回一组数中的最大值<br>
+    Math.min(a,b,...)：返回一组数中的最小值<br>
+    Math.random()：返回0到1之间的随机小数，包括0但不包括1<br>
+    Math.sqrt(x)：返回x的平方根<br>
+    Math.pow(x,y)：返回x的y次幂<br>
+  </p>
+
+  <p>
+    注意：Math对象的方法都是静态方法，不能通过new Math()创建实例<br>
+    Math对象的属性和方法都是只读的，不能修改<br>
+  </p>
+
+  <p>
+    随机数<br>
+    生成指定范围的随机整数：Math.floor(Math.random() * (max - min + 1)) + min<br>
+    生成指定范围的随机小数：Math.random() * (max - min) + min<br>
+  </p>
+
+  <h1>补充</h1>
+  <p>
+    关键字：<br>
+    保留字:目前没有意义，但将来可能会具有特殊意义的单词。int,short,long<br>
+    标识（标识符）：用于标识变量、函数、属性等的名称，必须遵循一定的命名规则<br>
+  </p>
+  <p>
+    基本数据类型：undefined、null、boolean、number、string、symbol<br>
+    在存储变量时，基本数据类型直接存储值<br>
+    引用数据类型：object（对象）、array（数组）、function（函数）<br>
+    在存储变量时，引用数据类型存储的是地址（引用）<br>
+  </p>
+  <p>
+    栈和堆：<br>
+    栈：存储基本数据类型的值，存储空间小，存取速度快。由操作系统自动分配和释放内存<br>
+    堆：存储引用数据类型的值，存储空间大，存取速度慢。由程序员手动分配和释放内存，若程序员不释放，由垃圾回收机制自动回收<br>
+    栈和堆的区别：存储内容不同，存取速度不同，存储空间不同<br>
+  </p>
+
+
+
+
+
+
+
+
+
+  <script>
+    //声明对象
+    let mainCharacter = {
+      'Character-name': '路辰',
+      birthday: '0319',
+      eyeColor: '极光绿',
+      hairColor: '浅金',
+      cat: '阿粲',
+      animal: '狐狸',
+      speak: function (num) {
+        switch (num) {
+          case 1:
+            console.log('好呀好呀~')
+            break;
+          case 2:
+            console.log('好吧~~你开心，小熊就开心!')
+            break;
+          default:
+            console.log('学妹QAQ')
+            break;
+        }
+      }
+    }
+
+    console.log(mainCharacter);
+    console.log(mainCharacter['Character-name']);
+    mainCharacter.height = '182cm'
+    mainCharacter.animal = '鹿'
+    mainCharacter.speak()
+    mainCharacter.speak(2)
+
+    for (let key in mainCharacter) {
+      console.log(key + ': ' + mainCharacter[key]);
+    }
+
+    for (let k in mainCharacter) {
+      console.log(k)//属性名 字符串
+    }
+    for (let k in mainCharacter) {
+      console.log(mainCharacter[k])//属性值 因为k得到的属性名是字符串，所以用[]访问
+    }
+
+    console.log(111)//数字类型是紫色的
+
+    console.log(Math.round(-3.5))//-3
+    console.log(Math.round(-3.51))//-4
+
+    let obj = null
+
+    console.log(Math.random())//0-1之间的随机小数
+    console.log(Math.floor(Math.random() * (10 - 1 + 1)) + 1)//1-10之间的随机整数
+    console.log(Math.floor(Math.random() * (100 - 50 + 1)) + 50)//50-100之间的随机整数
+    console.log(Math.random() * (100 - 50) + 50)//50-100之间的随机小数
+
+
+  </script>
+</body>
+
+</html>

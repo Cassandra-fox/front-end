@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    span {
+      display: block;
+      width: 100px;
+      text-align: center;
+      margin: 0px auto;
+    }
+
+    div {
+      margin: 0 auto;
+      width: 200px;
+      height: 200px;
+      /* background-color: #ffffff; */
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <script>
+    let color = []
+    function getNum() {
+      return Math.floor(Math.random() * 256)
+    }
+    function getColor() {
+      for (let i = 0; i < 3; i++) {
+        color[i] = getNum()
+      }
+      return `rgb(${color[0]},${color[1]},${color[2]})`
+    }
+    document.write(`
+      <span>${getColor()}</span>
+      <div style="background-color:${getColor()}"></div>
+      `)
+
+    function getNum16() {
+      let num = Math.floor(Math.random() * 16)
+      if (num < 10) {
+        return num
+      } else {
+        switch (num) {
+          case 10: return 'A'
+          case 11: return 'B'
+          case 12: return 'C'
+          case 13: return 'D'
+          case 14: return 'E'
+          case 15: return 'F'
+        }
+      }
+    }
+    function getColor16() {
+      let color16 = '#'
+      for (let i = 0; i < 6; i++) {
+        color16 += getNum16()
+      }
+      return color16
+    }
+    document.write(`
+      <span>${getColor16()}</span>
+      <div style="background-color:${getColor16()}"></div>
+      `)
+  </script>
+</body>
+
+</html>
