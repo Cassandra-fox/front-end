@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件监听</title>
+  <style>
+    button {
+      cursor: pointer;
+    }
+
+    .hover-text {
+      color: gray;
+      font-size: 12px;
+    }
+
+    .random-name {
+      position: relative;
+      width: 300px;
+      height: 150px;
+      border: 1px solid gray;
+      margin: 20px auto;
+      background-color: rgb(129, 179, 162);
+    }
+
+    .random-name p {
+      top: 4px;
+      left: calc(50% - 45px);
+      width: 90px;
+      height: 40px;
+      text-align: center;
+      position: absolute;
+      font-size: 30px;
+      line-height: 40px;
+      margin-top: 30px;
+      color: #fff;
+    }
+
+    .random-name button {
+      position: absolute;
+      bottom: 22px;
+      width: 60px;
+      height: 30px;
+      border: none;
+      color: white;
+      border-radius: 4px;
+    }
+
+    .random-name .start {
+      background-color: rgb(85, 150, 115);
+      left: 61px;
+    }
+
+    .random-name .stop {
+      background-color: rgb(165, 129, 94);
+      right: 61px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>事件监听</h1>
+  <p>
+    事件：用户与页面交互时发生的事情，比如点击、加载、输入等。<br>
+    事件监听：监听某个事件的发生，并在事件发生时执行相应的代码。<br>
+    常见的事件类型：click（点击）、mouseover（鼠标悬停）、mouseout（鼠标移出）、keydown（按键按下）、keyup（按键释放）等。<br>
+    事件监听器：用于注册事件监听的函数，可以使用addEventListener方法添加<br>
+  </p>
+  <h2>语法</h2>
+  <p>
+    element.addEventListener(event, handler);<br>
+    element：要监听事件的DOM元素<br>
+    event：要监听的事件类型<br>
+    handler：事件发生时执行的函数<br>
+  </p>
+  <button>按钮</button>
+  <p class="hover-text"></p>
+
+  <p>随机点名</p>
+  <div class="random-name">
+    <p>路辰</p>
+    <button class="start">点名</button>
+    <button class="stop">停止</button>
+  </div>
+
+  <h2>事件监听版本</h2>
+  <p>
+    DOM L0 事件源.on事件=function(){}<br>
+    这种方式只能绑定一个事件处理函数，后绑定的会覆盖先绑定的。<br>
+    DOM L2 事件源.addEventListener(事件,处理函数)<br>
+    可以绑定多个事件处理函数，互不影响。<br>
+  </p>
+
+  <h2>鼠标事件</h2>
+  <p>
+    click：点击<br>
+    dblclick：双击<br>
+    mouseover/mouseenter：鼠标悬停<br>
+    mouseout/mouseleave：鼠标移出<br>
+    mousedown：鼠标按下<br>
+    mouseup：鼠标释放<br>
+  </p>
+
+  <h2>焦点事件</h2>
+  <p>
+    focus：获得焦点<br>
+    blur：失去焦点<br>
+  </p>
+
+  <h2>键盘事件</h2>
+  <p>
+    keydown：按键按下<br>
+    keyup：按键释放<br>
+    keypress：按键按下并保持<br>
+  </p>
+
+  <h2>文本事件</h2>
+  <p>input 用户输入事件</p>
+
+  <script>
+    //按钮事件处理
+    const btn = document.querySelector('button');
+    btn.addEventListener('click', function () {
+      alert('按钮被点击了！');
+    });
+    const p = document.querySelector('.hover-text');
+    btn.addEventListener('mouseover', function () {
+      btn.style.backgroundColor = 'lightblue';
+      // document.write('按呐')
+      p.innerText = '你在犹豫什么';
+    });
+    btn.addEventListener('mouseout', function () {
+      btn.style.backgroundColor = '';
+      p.innerText = '';
+    });
+
+    //随机点名
+    const names = ['艾因', '路辰', '罗夏', '司岚', '叶瑄']
+    const randomName = document.querySelector('.random-name p')
+    //定时器的全局变量
+    let timerId = 0
+    //抽到的元素的全局变量
+    let drawnName = 0
+    //开始按钮
+    const startBtn = document.querySelector('.random-name .start');
+    startBtn.addEventListener('click', function () {
+      //定时器
+      timerId = setInterval(function () {
+        //生成随机数
+        function getRandom(x) {
+          return parseInt(Math.random() * x)
+        }
+        drawnName = getRandom(names.length)
+        //显示名字
+        randomName.innerText = names[drawnName]
+      }, 35);
+
+      //限制点名
+      //这个判断在点击开始按钮时进行，所以当数组里剩两个元素时仍能进行抽取，再开始并结束时数组里就剩一个元素了，但是此时还没有进行判断，再点击开始时会先抽取最后一个元素，此时还没有删除，然后进行判断：数组只剩一个元素，禁用两个按钮
+      if (names.length === 1) {
+        startBtn.disabled = true;
+        startBtn.style.backgroundColor = 'gray';
+        stopBtn.disabled = true;
+        stopBtn.style.backgroundColor = 'gray';
+      }
+    });
+
+    //停止按钮
+    const stopBtn = document.querySelector('.random-name .stop');
+    stopBtn.addEventListener('click', function () {
+      //停止定时器
+      clearInterval(timerId);
+      //删除抽到的元素
+      names.splice(drawnName, 1);
+      console.log(names);
+    });
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

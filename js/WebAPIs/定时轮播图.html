@@ -40,7 +40,7 @@
     .slider-footer .toggle {
       position: absolute;
       right: 0;
-      top: 12px;
+      top: 43px;
       display: flex;
     }
 
@@ -99,7 +99,7 @@
       <img src="./img/slider1.webp" alt="">
     </div>
     <div class="slider-footer">
-      <p>叽里咕噜说什么呢换了</p>
+      <p>为我而生的星星。下一次，我不想再目送你离开了。</p>
       <ul class="slider-indicator">
         <li class="active"></li>
         <li></li>
@@ -120,33 +120,27 @@
   <!-- js -->
   <script>
     const sliderData = [
-      { url: './img/slider1.webp', title: '叽里咕噜说什么呢反正这是第一张', color: 'rgb(100, 67, 68)' },
-      { url: './img/slider2.webp', title: '叽里咕噜说什么呢反正这是第二张', color: 'rgb(67, 100, 68)' },
-      { url: './img/slider3.webp', title: '叽里咕噜说什么呢反正这是第三张', color: 'rgb(83, 96, 112)' },
-      { url: './img/slider4.webp', title: '叽里咕噜说什么呢反正这是第四张', color: 'rgb(56, 150, 146)' },
-      { url: './img/slider5.webp', title: '叽里咕噜说什么呢反正这是第五张', color: 'rgb(84, 40, 32)' },
-      { url: './img/slider6.webp', title: '叽里咕噜说什么呢反正这是第六张', color: 'rgb(58, 94, 66)' },
-      { url: './img/slider7.webp', title: '叽里咕噜说什么呢反正这是第七张', color: 'rgb(81, 104, 171)' },
-      { url: './img/slider8.webp', title: '叽里咕噜说什么呢反正这是第八张', color: 'rgb(34, 113, 118)' },
+      { url: './img/slider1.webp', title: '为我而生的星星。下一次，我不想再目送你离开了。', color: 'rgb(100, 67, 68)' },
+      { url: './img/slider2.webp', title: '我会一次次拯救你。冲破命运的樊笼，和我一起出逃吧。', color: 'rgb(67, 100, 68)' },
+      { url: './img/slider3.webp', title: '不顾一切地找寻你。我心甘情愿，纵身跃入这条绿色的河流。', color: 'rgb(83, 96, 112)' },
+      { url: './img/slider4.webp', title: '再做一次交易吧。在你选择的未来里，书写群星的法则。', color: 'rgb(56, 150, 146)' },
+      { url: './img/slider5.webp', title: '向前跑，别停留。想被世界倾听，而世界是你。', color: 'rgb(84, 40, 32)' },
+      { url: './img/slider6.webp', title: '藏在心底的秘密。在你关注到我的时候，你也走进了我的世界。', color: 'rgb(58, 94, 66)' },
+      { url: './img/slider7.webp', title: '青龙与你所想并不相同。即便这样……你也愿意留在我身边吗？', color: 'rgb(81, 104, 171)' },
+      { url: './img/slider8.webp', title: '你我已经血脉交融。一路同行，便是你我最好的未来。', color: 'rgb(34, 113, 118)' },
     ]
 
+    const slider = document.querySelector('.slider')
     const img = document.querySelector('.slider-wrapper img');
     const p = document.querySelector('.slider-footer p');
     // const li 
     //开定时器
     let i = 0//信号量
-    setInterval(function () {
-      i++
-      if (i >= sliderData.length) {
-        i = 0
-      }
-      img.src = sliderData[i].url
-      p.innerText = sliderData[i].title
-      document.querySelector('.slider-footer').style.backgroundColor = sliderData[i].color
-      const lis = document.querySelector(`.slider-indicator li:nth-child(${i + 1})`)
-      const actlis = document.querySelector('.slider-indicator li.active')//排杂(查？)
-      actlis.classList.remove('active')//排杂(查？)
-      lis.classList.add('active')
+    let timerId = 0
+
+    timerId = setInterval(function () {
+      //利用js代码触发下一张按钮的点击事件
+      next.click()
     }, 2000);
 
     //切换按钮
@@ -180,10 +174,30 @@
       lis.classList.add('active')
     }
 
+    //鼠标移入移出暂停轮播
+    slider.addEventListener('mouseenter', function () {
+      clearInterval(timerId);
+    })
 
+    slider.addEventListener('mouseleave', function () {
+      timerId = setInterval(function () {
+        next.click()
+      }, 2000);
+    })
 
-
-
+    //点击小圆点切换
+    const indicatorItems = document.querySelectorAll('.slider-indicator li')
+    indicatorItems.forEach((item, index) => {
+      item.addEventListener('click', function () {
+        i = index
+        img.src = sliderData[i].url
+        p.innerText = sliderData[i].title
+        document.querySelector('.slider-footer').style.backgroundColor = sliderData[i].color
+        const actlis = document.querySelector('.slider-indicator li.active')//排杂(查？)
+        actlis.classList.remove('active')//排杂(查？)
+        item.classList.add('active')
+      })
+    })
 
   </script>
 </body>
