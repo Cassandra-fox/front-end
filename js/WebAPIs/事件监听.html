@@ -104,9 +104,11 @@
 
   <h2>焦点事件</h2>
   <p>
+    表单获得光标<br>
     focus：获得焦点<br>
     blur：失去焦点<br>
   </p>
+  <input type="text">
 
   <h2>键盘事件</h2>
   <p>
@@ -117,6 +119,14 @@
 
   <h2>文本事件</h2>
   <p>input 用户输入事件</p>
+  <input type="text">
+
+  <h2>事件对象</h2>
+  <p>
+    事件对象包含了事件的相关信息，比如事件类型、触发事件的元素、鼠标位置等。<br>
+    在事件处理函数中，可以通过参数获取事件对象。<br>
+    例如：element.addEventListener('click', function(event) { // event是事件对象 })<br>
+  </p>
 
   <script>
     //按钮事件处理
@@ -175,6 +185,12 @@
       names.splice(drawnName, 1);
       console.log(names);
     });
+
+    const input = document.querySelector('input')
+    input.addEventListener('input', function () {
+      console.log(input.value);
+    });
+
 
 
 

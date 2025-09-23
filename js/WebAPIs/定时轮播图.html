@@ -180,6 +180,7 @@
     })
 
     slider.addEventListener('mouseleave', function () {
+      clearInterval(timerId);
       timerId = setInterval(function () {
         next.click()
       }, 2000);
