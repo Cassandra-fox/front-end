@@ -32,7 +32,7 @@
 
     .slider-footer {
       height: 80px;
-      background-color: rgb(100, 67, 68);
+      background-color: rgb(65, 40, 85);
       padding: 12px 12px 0 12px;
       position: relative;
     }
@@ -122,12 +122,12 @@
     const sliderData = [
       { url: './img/slider1.webp', title: '叽里咕噜说什么呢反正这是第一张', color: 'rgb(100, 67, 68)' },
       { url: './img/slider2.webp', title: '叽里咕噜说什么呢反正这是第二张', color: 'rgb(67, 100, 68)' },
-      { url: './img/slider3.webp', title: '叽里咕噜说什么呢反正这是第三张', color: 'rgb(68, 67, 100)' },
-      { url: './img/slider4.webp', title: '叽里咕噜说什么呢反正这是第四张', color: 'rgb(100, 68, 67)' },
-      { url: './img/slider5.webp', title: '叽里咕噜说什么呢反正这是第五张', color: 'rgb(67, 68, 100)' },
-      { url: './img/slider6.webp', title: '叽里咕噜说什么呢反正这是第六张', color: 'rgb(68, 100, 67)' },
-      { url: './img/slider7.webp', title: '叽里咕噜说什么呢反正这是第七张', color: 'rgb(100, 100, 67)' },
-      { url: './img/slider8.webp', title: '叽里咕噜说什么呢反正这是第八张', color: 'rgb(67, 100, 100)' },
+      { url: './img/slider3.webp', title: '叽里咕噜说什么呢反正这是第三张', color: 'rgb(83, 96, 112)' },
+      { url: './img/slider4.webp', title: '叽里咕噜说什么呢反正这是第四张', color: 'rgb(56, 150, 146)' },
+      { url: './img/slider5.webp', title: '叽里咕噜说什么呢反正这是第五张', color: 'rgb(84, 40, 32)' },
+      { url: './img/slider6.webp', title: '叽里咕噜说什么呢反正这是第六张', color: 'rgb(58, 94, 66)' },
+      { url: './img/slider7.webp', title: '叽里咕噜说什么呢反正这是第七张', color: 'rgb(81, 104, 171)' },
+      { url: './img/slider8.webp', title: '叽里咕噜说什么呢反正这是第八张', color: 'rgb(34, 113, 118)' },
     ]
 
     const img = document.querySelector('.slider-wrapper img');
@@ -142,14 +142,47 @@
       }
       img.src = sliderData[i].url
       p.innerText = sliderData[i].title
-      // document.querySelector('.slider-footer').style.backgroundColor = sliderData[i].color
+      document.querySelector('.slider-footer').style.backgroundColor = sliderData[i].color
       const lis = document.querySelector(`.slider-indicator li:nth-child(${i + 1})`)
       const actlis = document.querySelector('.slider-indicator li.active')//排杂(查？)
       actlis.classList.remove('active')//排杂(查？)
       lis.classList.add('active')
-
     }, 2000);
-    //小圆点
+
+    //切换按钮
+    const prev = document.querySelector('.prev')
+    const next = document.querySelector('.next')
+    prev.onclick = function () {
+      i--
+      if (i < 0) {
+        i = sliderData.length - 1
+      }
+      img.src = sliderData[i].url
+      p.innerText = sliderData[i].title
+      document.querySelector('.slider-footer').style.backgroundColor = sliderData[i].color
+      const lis = document.querySelector(`.slider-indicator li:nth-child(${i + 1})`)
+      const actlis = document.querySelector('.slider-indicator li.active')//排杂(查？)
+      actlis.classList.remove('active')//排杂(查？)
+      lis.classList.add('active')
+    }
+
+    next.onclick = function () {
+      i++
+      if (i >= sliderData.length) {
+        i = 0
+      }
+      img.src = sliderData[i].url
+      p.innerText = sliderData[i].title
+      document.querySelector('.slider-footer').style.backgroundColor = sliderData[i].color
+      const lis = document.querySelector(`.slider-indicator li:nth-child(${i + 1})`)
+      const actlis = document.querySelector('.slider-indicator li.active')//排杂(查？)
+      actlis.classList.remove('active')//排杂(查？)
+      lis.classList.add('active')
+    }
+
+
+
+
 
 
   </script>
