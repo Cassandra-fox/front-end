@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <form id="myForm">
+    <input type="checkbox" id="selectAll"> Select All<br>
+    <input type="checkbox" name="item" value="1"> Item 1<br>
+    <input type="checkbox" name="item" value="2"> Item 2<br>
+    <input type="checkbox" name="item" value="3"> Item 3<br>
+    <input type="checkbox" name="item" value="4"> Item 4<br>
+    <input type="checkbox" name="item" value="5"> Item 5<br>
+  </form>
+
+
+
+
+
+  <script>
+    const selectAllCheckbox = document.getElementById('selectAll');
+    const itemCheckboxes = document.querySelectorAll('input[name="item"]');
+
+    selectAllCheckbox.addEventListener('change', function () {
+      itemCheckboxes.forEach(checkbox => {
+        checkbox.checked = selectAllCheckbox.checked;
+      });
+    });
+
+    itemCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', function () {
+        //Array将NodeList转换为数组;every方法检测数组所有元素是否都符合条件,如果是则返回true,赋值给allChecked
+        const allChecked = Array.from(itemCheckboxes).every(cb => cb.checked);
+        selectAllCheckbox.checked = allChecked;
+      });
+    });
+  </script>
+</body>
+
+</html>

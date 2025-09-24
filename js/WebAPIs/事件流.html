@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <h1>事件流</h1>
+  <p>
+    事件流（Event Flow）是指在网页中事件从触发到被处理的整个过程。理解事件流有助于我们更好地管理和响应用户交互。事件流主要包括三个阶段：捕获阶段、目标阶段和冒泡阶段。
+  </p>
+  <p>
+    实际工作处理冒泡居多
+  </p>
+  <h2>事件捕获</h2>
+  <p>
+    事件捕获阶段是事件从最外层的元素（通常是document对象）向内层目标元素传播的过程。在这个阶段，事件会依次经过每个祖先元素，直到到达目标元素。事件捕获阶段允许我们在事件到达目标元素之前对其进行处理。
+  </p>
+  <h2>目标阶段</h2>
+  <p>
+    目标阶段是事件到达目标元素并触发事件处理程序的阶段。在这个阶段，事件处理程序会在目标元素上被调用。此时，事件已经经过了捕获阶段，并且即将进入冒泡阶段。
+  </p>
+  <h2>事件冒泡</h2>
+  <p>
+    当一个元素的事件被触发时，同样的事件会在该元素的所有祖先元素中依次被触发。在这个阶段，事件会依次经过每个祖先元素，直到到达最外层的元素（通常是document对象）。事件冒泡允许我们在事件离开目标元素后对其进行处理。<br>
+    事件冒泡是默认存在的。
+  </p>
+  <h2>阻止事件冒泡</h2>
+  <p>
+    有时我们可能希望阻止事件冒泡，以防止事件在祖先元素中被触发。可以通过调用事件对象的stopPropagation()方法来实现这一点。<br>
+    此方法可以阻止事件流动传播，冒泡和捕获都阻止。
+  </p>
+
+  <h2>解绑事件</h2>
+  <p>
+    解绑事件是指移除已经绑定的事件处理程序。可以通过调用元素的removeEventListener()方法来实现这一点。<br>
+    需要注意的是，解绑事件时必须使用与绑定时相同的函数引用。匿名函数无法解绑。
+  </p>
+  <p>
+    L0:重新赋值为null
+    L2:target.removeEventListener(事件类型, 事件处理函数, useCapture)
+  </p>
+
+  <h2>鼠标经过事件的区别</h2>
+  <p>
+    mouseover和mouseout事件会在鼠标进入或离开一个元素及其子元素时触发，而mouseenter和mouseleave事件只会在鼠标进入或离开一个元素本身时触发。<br>
+    也就是说，mouseover和mouseout事件会冒泡，而mouseenter和mouseleave事件不会冒泡。
+  </p>
+
+  <h2>事件委托</h2>
+  <p>
+    事件委托是一种将事件处理程序绑定到父元素上，而不是每个子元素上，从而利用事件冒泡机制来处理子元素事件的技术。<br>
+    通过事件委托，可以减少内存消耗，提高性能，并简化代码维护。<br>
+    事件委托的实现通常涉及以下步骤：<br>
+    1. 将事件处理程序绑定到父元素上。<br>
+    2. 在事件处理程序中，使用事件对象的target属性来确定实际触发事件的子元素。<br>
+    3. 根据需要对目标子元素进行处理。
+  </p>
+  <p>
+    减少注册次数，提高程序性能<br>
+  </p>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+
+
+
+
+  <script>
+    //事件委托
+    const ul = document.querySelector('ul')
+    ul.addEventListener('click', function (event) {
+      //event.target 获取实际触发事件的元素(点击的对象)
+      //tagName 获取标签名(大写)，用来锁定元素
+      if (event.target.tagName === 'LI') {
+        alert(`你点击了${event.target.innerText}`)
+      }
+    })
+
+  </script>
+</body>
+
+</html>
