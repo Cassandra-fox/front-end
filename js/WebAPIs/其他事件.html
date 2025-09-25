@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      height: 3000px;
+    }
+
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: rgb(100, 181, 184);
+      /* transition: all 0.3s; */
+    }
+
+    .fix-box {
+      position: fixed;
+      top: 50px;
+      right: 50px;
+    }
+  </style>
+  <!-- <script>
+    // 页面加载事件
+    window.addEventListener('load', function () {
+      const button = document.querySelector('button')
+      button.addEventListener('click', function () {
+        console.log('按钮被点击')
+      })
+      console.log('页面及其所有资源完全加载完成')
+    })
+    document.addEventListener('DOMContentLoaded', function () {
+      console.log('初始的HTML文档被完全加载和解析完成')//快
+    })
+  </script> -->
+</head>
+
+<body>
+  <h1>其他事件</h1>
+  <h2>页面加载事件</h2>
+  <p>
+    图片、外联css\js等外部资源加载完成后触发的事件
+  </p>
+  <p>
+    load事件：当页面及其所有资源（如图片、脚本等）完全加载后触发。<br>
+    DOMContentLoaded事件：当初始的HTML文档被完全加载和解析完成后触发，不需要等待样式表、图片和子框架的加载完成。<br>
+    beforeunload事件：当用户尝试离开页面时触发，可以用来提示用户保存未保存的数据。
+  </p>
+  <button>测试按钮</button>
+
+  <h2>页面滚动事件</h2>
+  <p>
+    scroll事件：当页面或某个元素被滚动时触发。可以用来实现懒加载、无限滚动等功能。
+  </p>
+  <p>
+    获取位置<br>
+    scrollLeft：获取元素的水平滚动位置。<br>
+    scrollTop：获取元素的垂直滚动位置。<br>
+    这两个值是可读写的。<br>
+  </p>
+  <div class="box"></div>
+
+  <h2>页面尺寸事件</h2>
+  <p>
+    resize事件：当浏览器窗口的大小发生变化时触发。可以用来实现响应式设计。
+  </p>
+  <p>
+    获取窗口大小<br>
+    innerWidth：获取窗口的内部宽度。<br>
+    innerHeight：获取窗口的内部高度。<br>
+    这两个值是只读的。<br>
+    clientWidth：获取元素的可见宽度（不包括border,margin,滚动条）。<br>
+    clientHeight：获取元素的可见高度（不包括border,margin,滚动条）。<br>
+  </p>
+
+  <h2>元素尺寸与位置</h2>
+  <p>
+    offsetWidth：获取元素自身的布局宽度（包括padding和border）。<br>
+    offsetHeight：获取元素自身的布局高度（包括padding和border）。<br>
+    获取的是数值<br>
+    获取的是可视宽高<br>
+  </p>
+  <p>
+    offsetLeft:获取元素距离自己定位亲元素的左距离<br>
+    offsetTop:获取元素距离自己定位亲元素的上距离<br>
+    是只读属性<br>
+    定位亲元素：离当前元素最近的已定位（position不为static）的祖先元素<br>
+    若都没有定位亲元素，则相对于body定位<br>
+  </p>
+
+
+
+
+
+
+
+
+
+  <script>
+    const box = document.querySelector('.box')
+
+    //会被浏览器自动恢复之前的滚动位置
+    history.scrollRestoration = 'manual' //禁止自动恢复
+    document.documentElement.scrollTop = 2000
+    console.log(document.documentElement.scrollTop);
+
+    //也可以给某个元素绑定scroll事件
+    window.addEventListener('scroll', function () {
+      // console.log('页面被滚动了')
+      //documentElement对应html标签
+      // console.log('水平滚动位置：', document.documentElement.scrollLeft || document.body.scrollLeft)
+      // console.log(document.documentElement.scrollTop)
+      //返回数字型，没有单位
+      if (document.documentElement.scrollTop > 600) {
+        box.style.display = 'block'
+        // box.style.position = 'fixed'
+        box.classList.add('fix-box')
+      }
+      else {
+        box.style.display = 'none'
+      }
+    })
+
+    window.addEventListener('resize', function () {
+      console.log('窗口大小发生变化了')
+      console.log('窗口内部宽度：', window.innerWidth)
+      console.log('窗口内部高度：', window.innerHeight)
+      console.log('元素可见宽度：', document.documentElement.clientWidth)
+      console.log('元素可见高度：', document.documentElement.clientHeight)
+    })
+
+
+
+
+
+  </script>
+</body>
+
+</html>

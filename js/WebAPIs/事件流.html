@@ -71,6 +71,13 @@
     <li>3</li>
   </ul>
 
+  <h2>阻止默认行为</h2>
+  <p>
+    链接的跳转，表单域跳转<br>
+    阻止默认行为的方法：event.preventDefault()
+  </p>
+  <a href="./事件监听.html">事件监听</a>
+
 
 
 
@@ -83,6 +90,11 @@
       if (event.target.tagName === 'LI') {
         alert(`你点击了${event.target.innerText}`)
       }
+    })
+
+    const a = document.querySelector('a')
+    a.addEventListener('click', function (event) {
+      event.preventDefault() //阻止默认行为
     })
 
   </script>
