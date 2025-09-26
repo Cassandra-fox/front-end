@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>查找DOM节点</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <h1>DOM节点</h1>
+  <p>
+    DOM树里每一个内容<br>
+    <strong>元素节点(Element Node)</strong>：所有的标签，html是根节点<br>
+    属性节点(Attribute Node)：所有的属性<br>
+    文本节点(Text Node)：所有的文本<br>
+    注释节点(Comment Node)<br>
+  </p>
+
+  <h2>查找节点</h2>
+  <p>
+    根据关系查找<br>
+    以下为属性<br>
+    parentNode：子元素.parentNode 返回亲元素对象<br>
+    childNodes:亲元素.children 返回所有子元素对象（仅获得元素节点，返回一个伪数组）<br>
+    nextElementSibling：元素.nextElementSibling 返回下一个同级元素对象<br>
+    previousElementSibling：元素.previousElementSibling 返回上一个同级元素对象<br>
+  </p>
+
+  <h2>增加节点</h2>
+  <p>
+    createElement(tagName)：document.createElement('div') 创建一个指定标签的元素节点<br>
+    createTextNode(text)：document.createTextNode('hello') 创建一个文本节点<br>
+    appendChild(node)：parent.appendChild(child) 添加一个子节点到最后<br>
+    insertBefore(newNode, referenceNode)：parent.insertBefore(newNode, referenceNode) 在参考节点前插入一个新节点<br>
+  </p>
+
+  <div class="nodes"></div>
+
+  <h2>克隆节点</h2>
+  <p>
+    元素.cloneNode(true|false)：克隆一个节点<br>
+    true：深克隆，连同子节点一起克隆<br>
+    false：浅克隆，只克隆元素本身<br>
+  </p>
+
+  <h2>删除节点</h2>
+  <p>
+    在js原生DOM中删除元素必须通过亲元素删除<br>
+    parent.removeChild(child)：删除一个子节点<br>
+    child.parentNode.removeChild(child)：删除一个子节点<br>
+  </p>
+
+
+
+
+  <script>
+    const nodes = document.querySelector('.nodes')
+    //创建节点
+    const div1 = document.createElement('div')
+    div1.classList.add('div1')
+    const divip = document.createElement('div')
+    divip.classList.add('divip')
+    //追加节点
+    nodes.appendChild(div1)
+    div1.textContent = 'div1'
+    nodes.insertBefore(divip, nodes.firstChild)//在某个节点前插入
+    divip.textContent = 'divip'
+
+    //克隆节点
+    const div2 = div1.cloneNode(true)
+    nodes.appendChild(div2)
+    div2.classList.add('div2')
+
+    //删除节点
+    nodes.removeChild(div2)
+
+
+
+  </script>
+</body>
+
+</html>

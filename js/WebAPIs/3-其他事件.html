@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+    /* 页面滑动 */
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       height: 3000px;
     }
@@ -71,9 +76,9 @@
     获取窗口大小<br>
     innerWidth：获取窗口的内部宽度。<br>
     innerHeight：获取窗口的内部高度。<br>
-    这两个值是只读的。<br>
     clientWidth：获取元素的可见宽度（不包括border,margin,滚动条）。<br>
     clientHeight：获取元素的可见高度（不包括border,margin,滚动条）。<br>
+    只读。<br>
   </p>
 
   <h2>元素尺寸与位置</h2>
@@ -87,10 +92,27 @@
     offsetLeft:获取元素距离自己定位亲元素的左距离<br>
     offsetTop:获取元素距离自己定位亲元素的上距离<br>
     是只读属性<br>
-    定位亲元素：离当前元素最近的已定位（position不为static）的祖先元素<br>
+    定位亲元素：离当前元素最近的已定位的祖先元素<br>
     若都没有定位亲元素，则相对于body定位<br>
   </p>
+  <p>
+    element.getBoundingClientRect():获取元素的大小及其相对于视口的位置<br>
+    返回一个DOMRect对象，包含left, top, right, bottom, width, height属性<br>
+    left和top表示元素的左上角相对于视口的位置<br>
+  </p>
 
+  <h2>自定义属性</h2>
+  <p>
+    data-*属性：允许我们在HTML元素中嵌入自定义数据。<br>
+    这些属性以"data-"开头，后跟自定义名称，可以通过JavaScript访问和操作这些数据。<br>
+    例如，<br>
+    <code>&lt;div id="myDiv" data-user-id="12345" data-role="admin"&gt;Hello&lt;/div&gt;</code><br>
+    可以通过以下方式访问这些数据：<br>
+    <code>const div = document.getElementById('myDiv');</code><br>
+    <code>const userId = div.dataset.userId; // "12345"</code><br>
+    <code>const role = div.dataset.role; // "admin"</code><br>
+    dataset属性是一个DOMStringMap对象，包含所有以data-开头的属性，属性名去掉了data-并转换为驼峰命名法。
+  </p>
 
 
 

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日期对象</title>
+  <style>
+    .left-time {
+      width: 300px;
+      height: 100px;
+      background-color: #468c70;
+      color: #fff;
+      text-align: center;
+      line-height: 100px;
+      font-size: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>日期对象</h1>
+  <p>
+    JavaScript 提供了 Date 对象来处理日期和时间。Date 对象包含了与日期和时间相关的方法，可以用来获取当前日期、设置特定日期、格式化日期等。
+  </p>
+  <h2>实例化</h2>
+  <p>
+    在代码中发现new关键字，表示实例化一个对象。Date对象可以通过以下几种方式实例化：<br>
+    1. const date = new Date()：创建一个表示当前日期和时间的 Date 对象。<br>
+    2. const date = new Date(milliseconds)：创建一个表示自1970年1月1日以来经过的毫秒数的 Date 对象。<br>
+    3. const date = new Date(dateString)：创建一个表示指定日期字符串的 Date 对象。<br>
+    4. const date = new Date(year, month, day, hours, minutes, seconds, milliseconds)：创建一个表示指定日期和时间的 Date
+    对象。注意，月份是从0开始计数的（0表示1月，11表示12月）。<br>
+  </p>
+
+  <h2>日期对象方法</h2>
+  <p>
+    Date 对象提供了许多方法来操作和获取日期信息，以下是一些常用的方法：<br>
+    1. getFullYear()：返回四位数的年份。<br>
+    2. getMonth()：返回月份（0-11）。<br>
+    3. getDate()：返回月份中的某一天（1-31）。<br>
+    4. getDay()：返回星期几（0-6）。<br>
+    5. getHours()：返回小时（0-23）。<br>
+    6. getMinutes()：返回分钟（0-59）。<br>
+    7. getSeconds()：返回秒数（0-59）。<br>
+    8. getTime()：返回自1970年1月1日以来的毫秒数。<br>
+    9. setFullYear(year)：设置年份。<br>
+    10. setMonth(month)：设置月份（0-11）。<br>
+    11. setDate(day)：设置月份中的某一天（1-31）。<br>
+    12. setHours(hours)：设置小时（0-23）。<br>
+    13. setMinutes(minutes)：设置分钟（0-59）。<br>
+    14. setSeconds(seconds)：设置秒数（0-59）。<br>
+    15. toDateString()：将日期转换为字符串格式。<br>
+    16. toTimeString()：将时间转换为字符串格式。<br>
+    17. toISOString()：将日期转换为ISO格式的字符串。<br>
+  </p>
+
+  <p class="time"></p>
+
+  <h2>时间戳</h2>
+  <p>
+    时间戳是指自1970年1月1日00:00:00 UTC以来经过的毫秒数。可以使用Date对象的getTime()方法获取当前时间的时间戳，或者使用Date.now()方法获取当前时间的时间戳。
+  </p>
+  <p>
+    算法:<br>
+    将来的毫秒数 - 现在的毫秒数 = 剩余的毫秒数<br>
+    剩余毫秒数 转换为 剩余时间的年月日时分秒<br>
+  </p>
+  <p>
+    获取时间戳：<br>
+    getTime()方法<br>
+    +new Date() 也可以获取时间戳<br>
+    Date.now() 方法<br>
+  </p>
+
+  <div class="left-time">
+  </div>
+
+
+
+
+  <script>
+    //实例化
+    const date1 = new Date()
+    console.log(date1)
+    console.log(date1.getFullYear())
+    console.log(date1.getMonth() + 1)
+    console.log(date1.getDate());//几号
+    console.log(date1.getDay());//星期几
+    console.log(`${date1.getFullYear()}-${date1.getMonth() + 1}-${date1.getDate()} ${date1.getHours()}:${date1.getMinutes()}:${date1.getSeconds()}`);
+
+
+    const date2 = new Date('2008-08-08 08:08:08')
+    console.log(date2)
+
+    const time = document.querySelector('.time')
+    time.innerHTML = `当前时间：${date1.getFullYear()}-${date1.getMonth() + 1}-${date1.getDate()} ${date1.getHours()}:${date1.getMinutes()}:${date1.getSeconds()}`
+    setInterval(function () {
+      const date1 = new Date()
+      time.innerHTML = `当前时间：${date1.getFullYear()}-${date1.getMonth() + 1}-${date1.getDate()} ${date1.getHours()}:${date1.getMinutes()}:${date1.getSeconds()}`
+    }, 1000)
+
+    console.log(date1.toDateString());
+    console.log(date1.toTimeString());
+    console.log(date1.toISOString());
+    console.log(date1.toLocaleString());
+
+    // getTime()方法获取时间戳
+    const date3 = new Date()//必须实例化
+    console.log(date3.getTime())
+
+    //+new Date() 也可以获取时间戳
+    console.log(+new Date())
+    console.log(+new Date('2025-9-26 18:00:00'));
+
+
+    // Date.now() 方法获取时间戳
+    //只能用在获取当前时间戳
+    console.log(Date.now())
+
+    //显示星期几
+    const week = ['日', '一', '二', '三', '四', '五', '六']
+    console.log(`今天是星期${week[date1.getDay()]}`);
+
+    //休息倒计时
+    const leftTimeDiv = document.querySelector('.left-time')
+    const rest = +new Date('2025-9-26 18:00:00')
+    const now = +new Date()
+    const leftTime = rest - now
+    function getLeftTime(leftTime) {
+      const leftHours = parseInt(leftTime / 1000 / 60 / 60 % 24)
+      const leftMinutes = parseInt(leftTime / 1000 / 60 % 60)
+      const leftSeconds = parseInt(leftTime / 1000 % 60)
+      return `${leftHours >= 10 ? leftHours : '0' + leftHours}:${leftMinutes >= 10 ? leftMinutes : '0' + leftMinutes}:${leftSeconds >= 10 ? leftSeconds : '0' + leftSeconds}`
+    }
+    leftTimeDiv.innerHTML = getLeftTime(leftTime)
+    setInterval(function () {
+      const now = +new Date()
+      const leftTime = rest - now
+      function getLeftTime(leftTime) {
+        const leftHours = parseInt(leftTime / 1000 / 60 / 60 % 24)
+        const leftMinutes = parseInt(leftTime / 1000 / 60 % 60)
+        const leftSeconds = parseInt(leftTime / 1000 % 60)
+        return `${leftHours >= 10 ? leftHours : '0' + leftHours}:${leftMinutes >= 10 ? leftMinutes : '0' + leftMinutes}:${leftSeconds >= 10 ? leftSeconds : '0' + leftSeconds}`
+      }
+      leftTimeDiv.innerHTML = getLeftTime(leftTime)
+    }, 1000)
+
+
+
+
+  </script>
+</body>
+
+</html>
