@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>本地存储</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <h1>本地存储</h1>
+  <p>
+    HTML5引入了两种本地存储机制：localStorage和sessionStorage。<br>
+    数据存储在用户浏览器中，不会随页面刷新或关闭而丢失。<br>
+    容量较大，一般为5MB左右。<br>
+    localStorage用于在浏览器中存储数据，数据没有过期时间，除非手动删除，否则数据会一直保存在浏览器中。<br>
+    sessionStorage用于在浏览器会话期间存储数据，数据在浏览器窗口关闭后会被删除。<br>
+    本地存储的优点是可以在客户端存储大量数据，减少服务器请求，提高性能。缺点是数据存储在客户端，可能存在安全风险。<br>
+    本地存储只能存储字符串类型的数据，如果需要存储其他类型的数据，需要先将其转换为字符串类型，例如使用JSON.stringify()方法将对象转换为JSON字符串。<br>
+    使用localStorage和sessionStorage的常用方法有：setItem()、getItem()、removeItem()和clear()。<br>
+    例如，使用localStorage存储一个键值对：<br>
+    localStorage.setItem('key', 'value');<br>
+    获取存储的值：<br>
+    var value = localStorage.getItem('key');<br>
+    删除存储的值：<br>
+    localStorage.removeItem('key');<br>
+    清空所有存储的值：<br>
+    localStorage.clear();<br>
+  </p>
+
+  <h2>localStorage</h2>
+  <p>
+    可以将数据永久存储在本地，除非手动删除，否则数据不会过期。<br>
+    可以多窗口共享数据。<br>
+    以键值对的形式存储数据，键和值都是<strong>字符串</strong>类型。<br>
+  </p>
+  <p>
+    localStorage的常用方法：<br>
+    setItem(key, value)：存储数据<br>
+    getItem(key)：获取数据<br>
+    removeItem(key)：删除数据<br>
+    clear()：清空所有数据<br>
+  </p>
+
+  <h2>sessionStorage</h2>
+  <p>
+    可以将数据临时存储在本地，数据在浏览器窗口关闭后会被删除。<br>
+    只能在同一窗口中共享数据。<br>
+    以键值对的形式存储数据，键和值都是<strong>字符串</strong>类型。<br>
+  </p>
+  <p>
+    sessionStorage的常用方法：<br>
+    setItem(key, value)：存储数据<br>
+    getItem(key)：获取数据<br>
+    removeItem(key)：删除数据<br>
+    clear()：清空所有数据<br>
+  </p>
+
+  <h2>本地存储复杂数据</h2>
+  <p>
+    本地存储可以存储复杂数据，例如对象和数组。需要使用JSON.stringify()将数据转换为字符串，获取时使用JSON.parse()将字符串转换回对象。<br>
+  </p>
+
+  <h2>数组map方法</h2>
+  <p>
+    map()方法创建一个新数组，其结果是该数组中的每个元素调用一个提供的函数后返回的结果。<br>
+    语法：array.map(function(currentValue, index, arr), thisValue)<br>
+    currentValue：当前元素的值<br>
+    index：当前元素的索引<br>
+    arr：当前元素所属的数组<br>
+    thisValue：可选参数，传递给函数的值<br>
+    返回值：一个新数组，数组中的元素是原始数组调用函数处理后的值<br>
+    例如，将一个数字数组中的每个元素都乘以2：<br>
+    const numbers = [1, 2, 3, 4];<br>
+    const doubled = numbers.map(num => num * 2);<br>
+    console.log(doubled); // 输出: [2, 4, 6, 8]<br>
+  </p>
+
+  <h2>数组join方法</h2>
+  <p>
+    join()方法将数组中的所有元素转换为一个字符串，并返回这个字符串。<br>
+    语法：array.join(separator)<br>
+    separator：可选参数，指定用于分隔数组元素的字符串。如果省略，默认使用逗号（,）作为分隔符。<br>
+    返回值：一个字符串，表示数组中的所有元素连接在一起，中间用指定的分隔符分隔。<br>
+    例如，将一个字符串数组中的所有元素连接成一个字符串：<br>
+    const words = ['Hello', 'world', 'this', 'is', 'JavaScript'];<br>
+    const sentence = words.join(' ');<br>
+    console.log(sentence); // 输出: "Hello world this is JavaScript"<br>
+  </p>
+
+  <h2>渲染页面思路</h2>
+  <p>
+    使用map遍历数组处理数据生成tr，返回一个新数组。<br>
+    使用join将新数组转换为字符串。<br>
+    将生成的字符串插入到table的tbody中。<br>
+  </p>
+
+
+
+
+  <script>
+    // 使用localStorage存储数据
+    localStorage.setItem('name', '路辰');
+    localStorage.setItem('height', '181cm');
+
+    // 获取存储的数据
+    console.log('Name:', localStorage.getItem('name')); // 输出: Name: 路辰
+    console.log('Height:', localStorage.getItem('height'));   // 输出: Height: 181cm
+
+    // 删除存储的数据
+    // localStorage.removeItem('height');
+
+    // 清空所有存储的数据
+    // localStorage.clear();
+
+    // 存储复杂数据
+    const user = { name: '叶瑄', age: '?', weapon: '时光之轮' };
+    localStorage.setItem('叶瑄', JSON.stringify(user));//JSON对象，所有属性和值都为双引号包裹的字符串
+    const storedUser = JSON.parse(localStorage.getItem('叶瑄'));
+    console.log('Stored User:', storedUser);
+
+    //map方法
+    const numbers = [1, 2, 3, 4];
+    const doubled = numbers.map(function (ele, index) {
+      return ele * 2;
+    });
+
+    console.log('Doubled:', doubled); // 输出: Doubled: [2, 4, 6, 8]
+
+  </script>
+</body>
+
+</html>
