@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>变量提升</title>
+</head>
+
+<body>
+  <h1>变量提升</h1>
+  <p>
+    变量提升（Hoisting）是 JavaScript 中的一个行为特性，指的是在代码执行前，var变量和函数声明（！不提升赋值）会被提升到其所在作用域的顶部。这意味着无论变量或函数在代码中出现的位置如何，它们都可以在声明之前被访问。
+  </p>
+
+  <p>
+    变量未声明即访问会报语法错误。<br>
+    声明了但未赋值的变量，访问时值为undefined。<br>
+    变量提升只对var声明的变量有效，let和const声明的变量不会提升。<br>
+  </p>
+
+  <p>
+    因此es6引入了let和const来避免变量提升带来的困惑，推荐使用let和const来声明变量以提高代码的可读性和可维护性。
+  </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    // 变量提升示例
+    // var hoistedVar;//相当于
+    console.log(hoistedVar); // 输出: undefined
+    var hoistedVar = 10;
+    console.log(hoistedVar); // 输出: 10
+
+  </script>
+</body>
+
+</html>

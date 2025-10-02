@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>函数进阶</title>
+</head>
+
+<body>
+  <h1>1.函数提升</h1>
+  <p>
+    函数提升（Function Hoisting）是 JavaScript 中的一个行为特性，指的是在代码执行前，函数声明会被提升到其所在作用域的顶部。这意味着无论函数在代码中出现的位置如何，它们都可以在声明之前被调用。
+  </p>
+
+  <p>
+    需要注意的是，函数调用和函数表达式（Function Expression）不会被提升。只有函数声明（Function Declaration）会被提升。
+  </p>
+
+  <h1>2.函数参数</h1>
+  <h2>动态参数</h2>
+  <p>
+    JavaScript 中的函数可以接受任意数量的参数。通过 arguments 对象，可以访问所有传入的参数。
+  </p>
+
+  <h2>默认参数</h2>
+  <p>
+    ES6 引入了默认参数的概念，可以为函数参数设置默认值。
+  </p>
+
+  <h2>剩余参数</h2>
+  <p>
+    剩余参数（Rest Parameters）允许将不定数量的参数表示为一个数组。通过在参数前添加三个点（...），可以将所有剩余参数收集到一个数组中。
+  </p>
+
+  <h2>展开运算符</h2>
+  <p>
+    展开运算符（Spread Operator）允许将数组或对象展开为多个元素。通过在数组或对象前添加三个点（...），可以将其展开。
+  </p>
+  <p>
+    典型使用场景：求数组最大值/最小值，合并数组，合并对象等。
+  </p>
+
+
+  <h1>3.箭头函数</h1>
+  <p>
+    箭头函数（Arrow Function）是 ES6 引入的一种新的函数定义方式。它使用更简洁的语法来定义函数，并且不绑定自己的 this 值。
+  </p>
+  <p>使用场景：替代匿名函数</p>
+  <h2>基本语法</h2>
+  <p>
+    箭头函数的基本语法如下：
+  </p>
+  <pre><code>const functionName = (parameters) => {
+  // function body
+};</code></pre>
+  <h2>与普通函数的区别</h2>
+  <p>
+    1. 语法更简洁：箭头函数省略了 function 关键字和大括号（如果只有一行代码）。
+  </p>
+  <p>
+    2. 不绑定 this：箭头函数不会创建自己的 this 值，而是继承外部函数的 this 值。<br>
+    DOM 事件处理函数中不建议使用箭头函数，因为 this 不指向触发事件的元素。
+  </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    // 函数提升示例
+    hoistedFunction(); // 输出: "This function has been hoisted!"
+
+    function hoistedFunction() {
+      console.log("This function has been hoisted!");
+    }
+
+    // 函数表达式不会被提升
+    // nonHoistedFunction(); // 会报错: TypeError: nonHoistedFunction is not a function
+
+    var nonHoistedFunction = function () {
+      console.log("This function expression is not hoisted.");
+    };
+
+    nonHoistedFunction(); // 输出: "This function expression is not hoisted."
+
+
+    // 动态参数示例
+    //arguments对象,是个类数组对象，只存在于函数内部
+    function dynamicArgs() {
+      for (let i = 0; i < arguments.length; i++) {
+        console.log(`Argument ${i}: ${arguments[i]}`);
+      }
+    }
+    dynamicArgs(1, 'two', true);
+
+    //剩余参数示例
+    //置于参数列表最后，收集多余参数到一个数组，提倡使用
+    function sum(...numbers) {
+      return numbers.reduce((acc, curr) => acc + curr, 0);
+    }
+    console.log(sum(1, 2, 3, 4)); // 输出: 10
+
+    //展开运算符示例
+    const arr1 = [1, 2, 3];
+    const arr2 = [4, 5, 6];
+    const mergedArray = [...arr1, ...arr2];//合并数组
+    console.log(mergedArray); // 输出: [1, 2, 3, 4, 5, 6]
+    console.log(Math.max(...mergedArray)); // 输出: 6
+    console.log(Math.min(...mergedArray)); // 输出: 1
+
+    //箭头函数示例
+    const add = (a, b) => a + b; // 单行代码可以省略大括号和return
+    console.log(add(2, 3)); // 输出: 5
+
+    const square = x => x * x;//只有一个参数可以省略括号
+    console.log(square(4)); // 输出: 16
+
+    //箭头函数可以返回一个对象字面量，需要用括号包裹
+    const createObject = (uname) => ({ uname: uname });
+    console.log(createObject('路辰')); // 输出: { uname: '路辰' }
+
+    const fn = () => { console.log(this); };//this继承自外部作用域
+    fn(); // 输出: Window 对象（在浏览器环境中）
+
+    const getSum = (...nums) => nums.reduce((a, b) => a + b, 0);
+    console.log(getSum(1, 2, 3, 4, 5));//15
+
+    //箭头函数的this示例
+    //继承自外部作用域的this
+    function Counter() {
+      this.count = 0;
+      setInterval(() => {
+        this.count++;
+        console.log(this.count); // this 指向 Counter 实例
+      }, 1000);
+    }
+
+    //对象方法箭头函数this
+    const obj = {
+      value: 42,
+      getValue: () => {
+        console.log(this); // this 不指向 obj 对象
+      }
+    };
+    obj.getValue(); // 输出: Window 对象（在浏览器环境中）
+
+    //函数里面才有自己的this
+    const obj1 = {
+      value: 42,
+      getValue: function () {
+        console.log(this); // this 指向 obj1 对象
+        const innerFunction = () => {
+          console.log(this); // this 指向 obj1 对象
+        };
+        innerFunction();
+      }
+    };
+    obj1.getValue(); // 输出: { value: 42, getValue: [Function: getValue] }
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
