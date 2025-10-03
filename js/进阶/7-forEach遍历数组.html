@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>forEach 遍历数组</title>
+</head>
+
+<body>
+  <h1>forEach 遍历数组</h1>
+  <p>forEach 方法用于遍历数组中的每个元素，并对每个元素执行指定的操作。</p>
+  <p>语法：array.forEach(callback(currentValue, index, array), thisArg)</p>
+  <p>参数：</p>
+  <ul>
+    <li><code>currentValue</code>：当前元素的值。</li>
+    <li><code>callback</code>：对每个元素执行的函数。</li>
+    <li><code>thisArg</code>（可选）：执行回调时使用的 <code>this</code> 值。</li>
+  </ul>
+  <p>注意：forEach 不会返回新数组，且无法中途停止遍历。</p>
+  <p>适用于遍历数组对象。</p>
+
+
+
+
+
+
+
+  <script>
+    const array = ['a', 'b', 'c']
+
+    // 使用 forEach 遍历数组
+    array.forEach((element, index, arr) => {
+      console.log(`元素: ${element}, 索引: ${index}, 数组: ${arr}`);
+    });
+
+    // 使用 forEach 计算数组元素的总和
+    const numbers = [1, 2, 3, 4, 5];
+    let sum = 0;
+    numbers.forEach(num => {
+      sum += num;
+    });
+    console.log(`数组元素的总和: ${sum}`); // 输出: 数组元素的总和: 15
+
+    // 使用 forEach 修改原数组
+    const nums = [1, 2, 3];
+    nums.forEach((num, index, arr) => {
+      arr[index] = num * 2; // 将每个元素乘以2
+    });
+    console.log(`修改后的数组: ${nums}`); // 输出: 修改后的数组: 2,4,6
+
+  </script>
+</body>
+
+</html>

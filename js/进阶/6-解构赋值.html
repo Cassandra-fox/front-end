@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>解构赋值</title>
+</head>
+
+<body>
+  <h1>解构赋值</h1>
+  <p>解构赋值是 JavaScript 中的一种表达式，它可以从数组或对象中提取值，并将其赋值给变量。</p>
+
+  <h2>数组解构</h2>
+  <p>数组解构将数组的单元值批量快速地赋值给一系列变量。顺序一一对应。</p>
+  <p>
+    变量多于数组元素时，未被赋值的变量会被赋值为 undefined。<br>
+    变量少于数组元素时，未被赋值的数组元素会被忽略。<br>
+    <br>
+    利用剩余参数语法，可以将多余的数组元素收集到一个数组中。<br>
+    防止undefined，可以设置默认值。<br>
+    使用逗号忽略某些元素。<br>
+    支持多维数组解构。<br>
+  </p>
+
+  <h2>对象解构</h2>
+  <p>对象解构将对象的属性值批量快速地赋值给一系列变量。变量名和对象的属性名要相同。不要和外部变量名冲突。</p>
+  <p>
+    命名冲突时，使用冒号重命名。<br>
+    解构数组对象。<br>
+    支持多级对象解构。<br>
+  </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    // 数组解构示例
+    const array = [1, 2, 3]
+    const [a, b, c] = array
+    console.log(a) // 输出: 1
+    console.log(b) // 输出: 2
+    console.log(c) // 输出: 3
+
+    let one = 1
+    let two = 2;//必须加分号，否则报错
+    [one, two] = [two, one] // 交换变量值
+    console.log(`两个变量交换：${one} ${two}`) // 输出: 2 1
+    //直接[]开头时会被解析为和上一行一起的代码块，要在之前的语句后加分号隔开，或者用括号括起来
+
+    //防止undefined，可以设置默认值。
+    const [m = 0, n = 0, p = 0] = [1, 2]
+    console.log(m) // 输出: 1
+    console.log(n) // 输出: 2
+    console.log(p) // 输出: 0
+
+    //使用逗号忽略某些元素。
+    const [first, , third] = [10, 20, 30]
+    console.log(first) // 输出: 10
+    console.log(third) // 输出: 30
+
+    //多维数组解构
+    const nestedArray = [1, [2, 3], 4]
+    console.log(nestedArray[1][0]) // 输出: 2;   
+    const [aa, [bb, cc], dd] = nestedArray
+    console.log(aa) // 输出: 1
+    console.log(bb) // 输出: 2
+    console.log(cc) // 输出: 3
+    console.log(dd) // 输出: 4
+
+
+    // 对象解构示例
+    const obj = { x: 10, y: 20 }
+    const { x, y } = obj
+    console.log(x) // 输出: 10
+    console.log(y) // 输出: 20
+
+    //命名冲突时，使用冒号重命名
+    const { x: newX, y: newY } = obj
+    console.log(newX) // 输出: 10
+    console.log(newY) // 输出: 20
+
+    //解构数组对象
+    const mainchar = [
+      {
+        name: '路辰',
+        height: 181
+      }
+    ]
+    const [{ name, height }] = mainchar
+    console.log(name) // 输出: 路辰
+    console.log(height) // 输出: 181
+
+    //多级对象解构
+    const person = {
+      name: 'Alice',
+      address: {
+        city: 'Wonderland',
+        zip: '12345'
+      }
+    }
+    const { name: personName, address: { city, zip } } = person
+    console.log(personName) // 输出: Alice
+    console.log(city) // 输出: Wonderland
+    console.log(zip) // 输出: 12345
+    //作为函数参数
+    function getAddress({ address: myAddress }) {
+      console.log(myAddress);
+    }
+    getAddress(person)
+
+  </script>
+</body>
+
+</html>
