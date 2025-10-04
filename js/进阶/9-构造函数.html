@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>构造函数</title>
+</head>
+
+<body>
+  <h1>构造函数</h1>
+  <h2>深入对象</h2>
+  <p>
+    创建对象三种方式：
+  </p>
+  <ul>
+    <li>字面量方式</li>
+    <li>new Object()方式</li>
+    <li>构造函数方式</li>
+  </ul>
+
+  <h2>构造函数</h2>
+  <p>
+    一种特殊的函数，用来初始化对象。快速创建多个类似对象。
+  </p>
+  <p>
+    使用new关键字调用函数的行为成为实例化。<br>
+    实例化构造函数时没有参数可以省略（）<br>
+    构造函数内部无需return语句，默认返回this对象。写了return也没用。<br>
+    new Object ,new Array ,new Date等都是实例化构造函数
+  </p>
+
+  <h3>实例化执行过程</h3>
+  <ol>
+    <li>创建一个新对象</li>
+    <li>将构造函数的作用域赋给新对象（this指向新对象）</li>
+    <li>执行构造函数中的代码（为新对象添加属性）</li>
+    <li>返回新对象</li>
+  </ol>
+  <p>
+    构造函数创建的对象彼此独立，互不影响。<br>
+  </p>
+
+  <h2>实例成员和静态成员</h2>
+  <p>
+    实例成员：通过构造函数创建的对象是实例对象，实例对象中的属性和方法称为实例成员。<br>
+    静态成员：构造函数的属性和方法称为静态成员。<br>
+    静态成员通过构造函数本身调用，实例成员通过实例对象调用。<br>
+    静态成员通常用来存储类的共有信息，实例成员用来存储每个实例对象的独有信息。
+  </p>
+
+  <h2>内置构造函数</h2>
+  <p>
+    JavaScript提供了一些内置的构造函数，用于创建特定类型的对象。常见的内置构造函数有：
+  </p>
+  <ul>
+    <li>Object：创建对象</li>
+    <li>Array：创建数组</li>
+    <li>Date：创建日期对象</li>
+    <li>RegExp：创建正则表达式对象</li>
+  </ul>
+  <ul>
+    <li>String：创建字符串对象</li>
+    <li>Number：创建数字对象</li>
+    <li>Boolean：创建布尔对象</li>
+  </ul>
+
+  <p>
+    js底层会对简单数据类型进行包装，创建临时对象来调用方法，调用完毕后销毁这个临时对象。
+  </p>
+
+  <h3>Object</h3>
+  <p>
+    三个静态方法：Object.create()、Object.keys()、Object.values()
+  </p>
+  <ul>
+    <li>Object.create(proto)：创建一个新对象，指定其原型为proto</li>
+    <li>Object.keys(obj)：返回一个数组，包含对象自身的所有可枚举属性名</li>
+    <li>Object.values(obj)：返回一个数组，包含对象自身的所有可枚举属性值</li>
+    <li>Object.assign(target, ...sources)：将所有可枚举属性从一个或多个源对象复制到目标对象</li>
+  </ul>
+
+  <h3>Array</h3>
+  <p>
+    forEach()、map()、filter()、reduce()等常用方法
+  </p>
+  <ul>
+    <li>forEach()遍历数组：不返回数组，对数组的每个元素执行一次提供的函数</li>
+    <li>map()迭代数组：返回新数组，包含通过调用提供的函数处理过的每个元素</li>
+    <li>filter()过滤数组：创建一个新数组，包含所有通过测试的元素</li>
+    <li>reduce()累计器：返回累计处理的结果，对数组中的每个元素执行一个 reducer 函数，最终计算出一个值</li>
+  </ul>
+  <p>reduce执行过程</p>
+  <ol>
+    <li>初始化累加器：reduce()的第二个参数作为初始值</li>
+    <li>遍历数组：对数组中的每个元素执行 reducer 函数</li>
+    <li>更新累加器：reducer 函数返回值作为下一个元素的累加器</li>
+    <li>返回最终结果：遍历完成后返回累加器的最终值</li>
+  </ol>
+  <p>其他方法</p>
+  <ul>
+    <li>find()：返回数组中第一个满足条件的元素</li>
+    <li>some()：检测数组中是否至少有一个元素满足条件</li>
+    <li>every()：检测数组中是否所有元素都满足条件</li>
+    <li>join()：将数组元素连接成一个字符串</li>
+    <li>slice()：返回数组的一个片段，不修改原数组</li>
+    <li>from()：将类数组对象或可迭代对象转换为数组</li>
+  </ul>
+
+  <h3>String</h3>
+  <p>
+    toUpperCase()、toLowerCase()、charAt()、indexOf()等常用方法
+  </p>
+  <ul>
+    <li>toUpperCase()：将字符串转换为大写</li>
+    <li>toLowerCase()：将字符串转换为小写</li>
+    <li>charAt(index)：返回指定位置的字符</li>
+    <li>indexOf(substring)：返回子字符串在字符串中首次出现的位置，找不到返回-1</li>
+  </ul>
+
+  <script>
+    // 构造函数
+    // 函数名首字母大写
+    function Person(name, eyeColor, hairColor) {
+      // 属性（实例成员）
+      this.name = name
+      this.eyeColor = eyeColor
+      this.hairColor = hairColor
+      // 方法（实例成员）
+      this.sayHello = function () {
+        console.log(`我是${this.name}`)
+      }
+    }
+
+    // 创建对象
+    // new + 构造函数
+    // new 会创建一个新对象，并将this指向这个新对象
+    const luchen = new Person('路辰', '极光绿', '浅金')
+    const silan = new Person('司岚', '蓝色', '蓝色')
+    const yexuan = new Person('叶瑄', '紫色', '银白色')
+    const luoxia = new Person('罗夏', '薄荷蓝色', '金色')
+    const aiyin = new Person('艾因', '红色', '黑色')
+
+    aiyin.sayHello()
+    luchen.sayHello()
+    luoxia.sayHello()
+    silan.sayHello()
+    yexuan.sayHello()
+
+    //简单数据类型的包装对象
+    const str = 'hello'
+    console.log(str.toUpperCase())
+    const num = 123.456
+    console.log(num.toFixed(2))
+
+    // Object静态方法
+    const arr = Object.keys(luchen)
+    console.log(arr)
+    console.log(Object.values(luchen))
+
+    const Alkaid = Object.assign({ gender: '男' }, luchen)
+    // Object.assign(Alkaid, { gender: '男' })
+    console.log(Alkaid)
+
+    //Array常用方法
+    const colors = ['red', 'green', 'blue', 'yellow']
+    colors.forEach((item, index) => {
+      console.log(index, item)
+    })
+
+    const colorsMap = colors.map((item) => {
+      return item.toUpperCase()
+    })
+    console.log(colorsMap)
+
+    const colorsFilter = colors.filter((item) => {
+      return item.startsWith('b')
+    })
+    console.log(colorsFilter)
+
+    const colorsReduce = colors.reduce((acc, item) => {
+      return acc + item.length
+    }, 0)
+    console.log(colorsReduce)
+
+    //计算薪资案例
+    const employees = [
+      { name: '路辰', salary: 15000 },//是的我偏心
+      { name: '司岚', salary: 6000 },
+      { name: '叶瑄', salary: 7000 },
+      { name: '罗夏', salary: 8000 },
+      { name: '艾因', salary: 9000 }
+    ]
+
+    // 计算总薪资
+    const totalSalary = employees.reduce((acc, item) => {
+      return acc + item.salary
+    }, 0)
+    console.log(totalSalary)
+    // 计算平均薪资
+    const avgSalary = totalSalary / employees.length
+    console.log(avgSalary)
+
+    // 查找薪资大于8000的员工
+    const highSalaryEmployees = employees.filter((item) => {
+      return item.salary > 8000
+    })
+    console.log(highSalaryEmployees)
+    // 查找第一个薪资大于8000的员工
+    const firstHighSalaryEmployee = employees.find((item) => {
+      return item.salary > 8000
+    })
+    console.log(firstHighSalaryEmployee)
+    //查询叶瑄的薪资
+    const yeXuanSalary = employees.find((item) => {
+      return item.name === '叶瑄'
+    })
+    console.log(yeXuanSalary.salary)
+    //检查是否所有员工薪资都大于5000
+    const allAbove5000 = employees.every((item) => {
+      return item.salary > 5000
+    })
+    console.log(allAbove5000)
+    //检查是否有员工薪资大于10000
+    const anyAbove10000 = employees.some((item) => {
+      return item.salary > 10000
+    })
+    console.log(anyAbove10000)
+    //将所有员工姓名连接成一个字符串
+    const employeeNames = employees.map((item) => item.name).join(', ')
+    console.log(employeeNames)
+
+
+    //from方法
+    const str2 = 'hello'
+    const strArr = Array.from(str2)
+    console.log(strArr)
+
+
+    //split方法，将字符串分割成数组
+    const str3 = 'hello,world,js'
+    const strArr2 = str3.split(',')
+    console.log(strArr2)
+
+    //substring方法，提取字符串中介于两个指定下标之间的字符
+    const str4 = 'hello world'
+    const substr = str4.substring(0, 5)
+    console.log(substr)
+
+    //startsWith方法,检测字符串是否以指定子字符串开头
+    const str5 = 'hello world'
+    console.log(str5.startsWith('hello'))
+
+    //includes方法,检测字符串是否包含指定子字符串
+    const str6 = 'hello world'
+    console.log(str6.includes('world'))
+    console.log(str6.includes('world', 7)) //从位置7开始查找
+    console.log(str6.includes('world', 6)) //从位置6开始查找
+
+
+  </script>
+</body>
+
+</html>
