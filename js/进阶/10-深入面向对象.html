@@ -90,10 +90,25 @@
 
   </p>
 
+  <h1>原型链</h1>
+  <p>
+    每个对象都有一个属性__proto__，指向该对象的原型对象。使得实例对象可以访问原型对象上的属性和方法。<br>
+    通过原型链实现属性和方法的继承。<br>
+    当访问一个对象的属性或方法时，如果该对象没有该属性或方法，则会沿着原型链向上查找，直到找到该属性或方法为止。如果一直查找到原型链的顶端（Object.prototype），仍然没有找到该属性或方法，则返回undefined。<br>
+    原型链的顶端是Object.prototype，它的__proto__属性为null。<br>
+    可以通过Object.create()方法创建一个新对象，并指定其原型对象。<br>
+    可以通过Object.getPrototypeOf()方法获取一个对象的原型对象。<br>
+    可以通过Object.setPrototypeOf()方法设置一个对象的原型对象，但不推荐使用，因为性能较差。<br>
+  </p>
 
-
-
-
+  <h2>instanceof运算符</h2>
+  <p>
+    instanceof用于检测一个对象是否是某个构造函数的实例。<br>
+    检测构造函数的porototype属性是否在对象的原型链上。<br>
+    语法：object instanceof constructor<br>
+    如果object是constructor的实例，返回true；否则返回false。<br>
+    instanceof会沿着原型链向上查找，直到找到constructor为止。<br>
+  </p>
 
   <script>
     // 构造函数
@@ -174,6 +189,61 @@
     //__proto__指向原型对象
     console.log(Person.prototype === luchen.__proto__);
     console.log(luchen.__proto__);
+
+
+    // //原型继承
+    // const Human = {
+    //   eyes: 2,
+    //   hands: 2
+    // }
+
+    //构造函数
+    function Human() {
+      this.eyes = 2
+      this.hands = 2
+    }
+
+    //女
+    function Woman() {
+    }
+
+    //子类的原型 = new 亲类
+    Woman.prototype = new Human()
+    Woman.prototype.constructor = Woman
+
+    Woman.prototype.ovarium = 2
+
+    const woman = new Woman()
+    console.log(woman);
+    console.log(Woman.prototype);
+
+    //男
+    function Man() {
+    }
+
+    Man.prototype = new Human()
+    Man.prototype.constructor = Man
+
+    Man.prototype.testes = 2
+
+    const man = new Man()
+    console.log(man);
+    // console.log(Man.prototype);
+
+    console.log(Woman.prototype === Man.prototype);
+
+    //instanceof运算符
+    console.log('--------------------------------');
+    console.log(man instanceof Man); // true
+    console.log(man instanceof Woman); // false
+    console.log(man instanceof Human); // true
+    console.log(woman instanceof Woman); // true
+    console.log(woman instanceof Human); // true
+
+
+
+
+
 
   </script>
 </body>
