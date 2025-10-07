@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .modalbox {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .modalbox .header {
+      padding: 12px 16px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #eee;
+      font-weight: bold;
+    }
+
+    .modalbox .body {
+      padding: 16px;
+    }
+
+    .close-btn {
+      float: right;
+      cursor: pointer;
+      font-size: 20px;
+      line-height: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="deleteBtn">删除</button>
+  <button id="loginBtn">登录</button>
+
+  <!-- <div class="modalbox">
+    <div class="header">温馨提示</div>
+    <div class="body">您有未保存的更改，确定要离开吗？</div>
+  </div> -->
+
+  <script>
+    //把模态框封装为一个构造函数
+    //实现打开和关闭功能，写在原型对象上
+    function Modal(title = '', message = '') {
+      //创建盒子
+      this.modalBox = document.createElement("div")
+      this.modalBox.className = "modalbox"
+      this.modalBox.innerHTML = `
+      <div class="header">${title}<i class="close-btn">x</i></div>
+      <div class="body">${message}</div>
+    `
+    }
+
+    //open方法
+    Modal.prototype.open = function () {
+      //防止显示多个模态框
+      const box = document.querySelector(".modalbox")
+      box && box.remove()
+      //不能用箭头函数
+      document.body.append(this.modalBox)
+      //盒子显示后绑定事件
+      const closeBtn = this.modalBox.querySelector(".close-btn")
+      closeBtn.addEventListener("click", () => {
+        //这个this指向的是Modal实例对象
+        this.close()
+      })
+    }
+
+    //close方法
+    Modal.prototype.close = function () {
+      this.modalBox.remove()
+    }
+
+    //复用性强
+    document.getElementById("deleteBtn").addEventListener("click", function () {
+      const deleteModal = new Modal("温馨提示", "您没有删除权限")
+      deleteModal.open()
+    })
+
+    document.getElementById("loginBtn").addEventListener("click", function () {
+      const loginModal = new Modal("友情提示", "您还没有注册")
+      loginModal.open()
+    })
+
+
+
+  </script>
+</body>
+
+</html>
