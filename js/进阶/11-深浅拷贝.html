@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>深浅拷贝</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <h1>深浅拷贝</h1>
+  <p>
+    开发中经常要复制对象，如果直接赋值的话，复制的是对象的引用地址，修改新对象会影响原对象。<br>
+    深拷贝和浅拷贝只针对引用类型。<br>
+    <br>
+    浅拷贝：属性复制的是简单数据类型的值和复杂类型引用地址，适用于单层对象。<br>
+    深拷贝：复制对象的所有层级属性，属性是引用类型，复制的是新对象。<br>
+    <br>
+    浅拷贝可以使用Object.assign()和扩展运算符...<br>
+    深拷贝可以使用JSON.parse(JSON.stringify())，但是这种方法有局限性，不能复制函数、undefined、正则等。<br>
+    也可以使用递归函数来实现深拷贝，或者使用第三方库如lodash的_.cloneDeep()方法。<br>
+  </p>
+
+  <h2>递归函数</h2>
+  <p>
+    容易发生栈溢出，必须加退出条件return<br>
+    只能复制对象和数组，不能复制函数、正则等<br>
+  </p>
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script>
+    const obj = {
+      name: '路辰',
+      height: 181,
+      cat: {
+        name: '阿粲',
+        gender: '男'
+      },
+      unames: ['小路学长', '小法师', '花园宝宝', '小鹿', '院长', '深渊小鱿鱼'],
+      sayHi: function () {
+        console.log('但你开心，小熊就开心~~')
+      }
+    }
+
+    // 浅拷贝
+    const obj2 = Object.assign({}, obj)
+    // const obj2 = { ...obj }
+    obj2.name = '阿奇亚德'
+    // obj2.cat.name = '阿粲粲'//也会影响原对象内的cat对象
+    console.log(obj, obj2)
+    obj2.sayHi() //可以复制函数
+
+    // 递归
+    let n = 1
+    function fn() {
+      console.log(`这是第${n}次递归`)
+      if (n === 5) return //退出条件
+      n++
+      fn()
+    }
+    fn()
+
+    //深拷贝
+    const obj3 = {}
+    function deepCopy(newObj, oldObj) {
+      for (let key in oldObj) {
+        //key是属性名
+        //必须先写数组，因为数组是对象，数组的实例也是对象
+        if (oldObj[key] instanceof Array) {
+          newObj[key] = []
+          deepCopy(newObj[key], oldObj[key])//递归
+        } else if (oldObj[key] instanceof Object) {
+          newObj[key] = {}
+          deepCopy(newObj[key], oldObj[key])//递归
+        } else newObj[key] = oldObj[key]
+      }
+
+    }
+    deepCopy(obj3, obj)
+    obj3.name = 'Alkaid'
+    obj3.cat.name = '阿粲粲'//不会影响原对象内的cat对象
+    obj3.unames.push('阿奇亚德老师')
+    console.log(obj3);
+    console.log(obj);
+    // obj3.sayHi() //报错，不能复制函数。因为函数里没处理
+
+    //lodash深拷贝
+    const obj4 = _.cloneDeep(obj)
+    obj4.name = '辰辰'
+    console.log(obj4);
+    obj4.sayHi() //可以复制函数
+
+    //JSON深拷贝
+    const obj5 = JSON.parse(JSON.stringify(obj))
+    obj5.name = '小路学长'
+    console.log(obj5);
+    // obj5.sayHi() //报错，不能复制函数
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

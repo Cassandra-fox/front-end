@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>异常处理</title>
+</head>
+
+<body>
+  <h1>异常处理</h1>
+  <p>
+    预估代码运行中可能会出现的问题，进行处理，保证程序的健壮性。<br>
+  </p>
+  <h2>throw抛异常</h2>
+  <p>
+    throw语句用于抛出一个自定义的异常。<br>
+    throw后面可以跟任何类型的值，通常跟Error对象。<br>
+    抛出异常后，后续代码不会执行，程序会中断，除非有try...catch捕获。<br>
+  </p>
+  <h2>try...catch捕获异常</h2>
+  <p>
+    try...catch语句用于捕获异常，保证程序的正常运行。<br>
+    try块中放置可能会抛出异常的代码，catch块中放置处理异常的代码。<br>
+  </p>
+
+  <h2>debugger调试</h2>
+  <p>
+    debugger语句用于设置断点，调试代码。<br>
+    当代码执行到debugger语句时，会自动暂停，方便查看变量状态和调用栈。<br>
+  </p>
+
+
+
+  <script>
+    // 抛出异常
+    function checkAge(age) {
+      if (age < 0) {
+        throw new Error('年龄不能为负数')
+      } else if (age > 120) {
+        throw '你是外星人吧？'
+      }
+      return age
+    }
+
+    console.log(checkAge(10));
+    // console.log(checkAge(-5));
+    // console.log(checkAge(800));
+
+    // try...catch捕获异常
+    try {
+      console.log(checkAge(150));
+    } catch (err) {
+      console.log('出错了：' + err.message || err);
+    } finally {
+      console.log('不管有没有错，都会执行')
+    }
+
+    console.log('程序继续运行')
+
+  </script>
+</body>
+
+</html>
