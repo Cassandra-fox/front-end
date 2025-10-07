@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>节流</title>
+</head>
+
+<body>
+  <h1>节流throttle</h1>
+  <p>
+    单位时间内，只执行一次事件。<br>
+    适用于按钮频繁点击、页面滚动等场景。<br>
+    实现方式：使用时间戳和定时器。<br>
+  </p>
+
+  <p>
+    在setTimeout里面是无法删除定时器的，因为setTimeout是异步执行的，而clearTimeout是在同步代码中执行的。<br>
+    当setTimeout的回调函数执行时，clearTimeout已经执行完毕了，所以无法删除定时器。<br>
+    使用timer=null来标记定时器是否存在，而不是依赖于clearTimeout来删除定时器。<br>
+  </p>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script>
+    // 使用lodash的节流函数
+    const throttledLog = _.throttle(() => {
+      console.log('Throttled function executed');
+    }, 2000);
+    // 模拟按钮频繁点击
+    setInterval(() => {
+      throttledLog();
+    }, 500); // 每500毫秒尝试调用一次，但实际只会每2000毫秒执行一次
+
+    // 原生节流函数
+    function throttle(fn, t) {
+      let timer = null
+      return function () {
+        if (!timer) {
+          timer = setTimeout(function () {
+            fn()
+            timer = null
+          }, t)
+        }
+      }
+    }
+
+
+  </script>
+</body>
+
+</html>

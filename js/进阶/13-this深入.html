@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this关键字</title>
+</head>
+
+<body>
+  <h1>this关键字</h1>
+  <h2>this指向</h2>
+  <p>
+    普通函数调用：指向全局对象（浏览器中是window，严格模式下是undefined）<br>
+    对象方法调用：指向调用该方法的对象<br>
+    构造函数调用：指向新创建的对象<br>
+  </p>
+  <h2>箭头函数中的this</h2>
+  <p>
+    箭头函数没有自己的this，它会捕获其所在上下文的this值，作为自己的this值。<br>
+    这意味着箭头函数中的this是静态的，不会随着调用方式的不同而改变。<br>
+    例如，在一个对象的方法中定义一个箭头函数，箭头函数中的this将指向该对象，而不是全局对象。<br>
+  </p>
+  <p>
+    DOM事件处理 一般不要用箭头函数，因为你可能需要使用this来引用触发事件的DOM元素。<br>
+    如果使用箭头函数，this将不会指向触发事件的元素，而是指向定义该函数时的上下文对象（通常是window）。<br>
+    这可能会导致代码无法正常工作。<br>
+  </p>
+  <p>
+    原型方法和构造函数 中的箭头函数要小心使用，因为箭头函数没有自己的this，它会捕获其所在上下文的this值，作为自己的this值。<br>
+    如果在原型方法中使用箭头函数，箭头函数中的this将指向定义该函数时的上下文对象，而不是实例对象。<br>
+    这可能会导致代码无法正常工作。<br>
+  </p>
+
+  <h2>改变this指向</h2>
+  <h3>call方法</h3>
+  <p>
+    call方法可以显式地改变函数内部this的指向。<br>
+    语法：function.call(thisArg, arg1, arg2, ...)<br>
+    thisArg：要绑定到函数内部的this值。<br>
+    arg1, arg2, ...：传递给函数的参数。<br>
+  </p>
+  <h3>apply方法</h3>
+  <p>
+    apply方法与call方法类似，也可以显式地改变函数内部this的指向。<br>
+    语法：function.apply(thisArg, [argsArray])<br>
+    thisArg：要绑定到函数内部的this值。<br>
+    argsArray：一个数组或类数组对象，包含传递给函数的参数。<br>
+  </p>
+  <h3>bind方法</h3>
+  <p>
+    bind方法不会调用函数，可以创建一个新的函数，并将this绑定到指定的值。<br>
+    返回由指定的this值和初始参数预设的新函数。<br>
+    语法：const newFunction = function.bind(thisArg, arg1, arg2, ...)<br>
+    thisArg：要绑定到函数内部的this值。<br>
+    arg1, arg2, ...：预设的参数。<br>
+  </p>
+
+
+  <script>
+    //严格模式
+    // 'use strict'
+
+    const user = { name: 'Alice' };
+
+    //call
+    function greet(x, y) {
+      console.log('Hello, ' + this.name + (x + y));
+    }
+    greet.call(user, 1, 2); // Hello, Alice3
+
+    //apply
+    function introduce(age, city) {
+      console.log(`My name is ${this.name}, I'm ${age} years old and I live in ${city}.`);
+    }
+    introduce.apply(user, [30, 'New York']); // My name is Alice, I'm 30 years old and I live in New York.
+
+    //bind
+    function sayGoodbye() {
+      console.log('Goodbye, ' + this.name);
+    }
+    const sayGoodbyeUser = sayGoodbye.bind(user);
+    sayGoodbyeUser(); // Goodbye, Alice
+  </script>
+</body>
+
+</html>

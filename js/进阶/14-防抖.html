@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>防抖</title>
+</head>
+
+<body>
+  <h1>防抖debounce</h1>
+  <p>
+    单位事件内，频繁触发事件，只执行最后一次。<br>
+    适用于输入框搜索、窗口缩放等场景。<br>
+    实现方式：使用setTimeout和clearTimeout。<br>
+  </p>
+  <h2>案例：鼠标在盒子内滑动数字加一</h2>
+  <div id="box" style="width:200px;height:200px;background-color:lightblue;">
+    <p id="num">0</p>
+  </div>
+
+
+
+
+
+
+
+
+
+  <script>
+    const box = document.getElementById('box');
+    const num = document.getElementById('num');
+
+    // 原生防抖函数
+    function debounce(func, delay) {
+      let timer;
+      return function (...args) {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => {
+          func.apply(this, args);
+        }, delay);
+      };
+    }
+
+    // 使用lodash的防抖函数
+    // const debouncedIncrement = _.debounce(() => {
+    //   num.textContent = parseInt(num.textContent) + 1;
+    // }, 300);
+
+    // 使用防抖函数包装事件处理函数
+    const debouncedIncrement = debounce(() => {
+      num.textContent = parseInt(num.textContent) + 1;
+    }, 300);
+
+    box.addEventListener('mousemove', debouncedIncrement);
+  </script>
+</body>
+
+</html>
