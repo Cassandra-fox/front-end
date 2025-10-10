@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React 初识</title>
+  <style>
+    #test {
+      height: 120px;
+      width: 130px;
+      background-color: PINK;
+    }
+
+    .hello {
+      margin: 10px;
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>React</h1>
+  <p>
+    用于构建用户界面的 JavaScript 库。<br>
+    由 Facebook 在 2013 年发布。<br>
+    1.组件化模式，提高开发效率和代码复用性。<br>
+    JSX 语法，JavaScript 和 HTML 混写。<br>
+    2.声明式编码，编码人员无需直接操作 DOM，提高开发效率。<br>
+    3.使用虚拟 DOM 和优秀的 diff 算法，提高性能。<br>
+    4.React Native 用于移动端开发。<br>
+  </p>
+
+  <!-- 准备一个容器 -->
+  <div id="test"></div>
+
+  <h1>JSX</h1>
+  <p>
+    JavaScript XML 的缩写，是一种类似 XML 的 JavaScript 语法扩展。<br>
+    1.可以在 JavaScript 代码中直接编写 HTML 结构。<br>
+    2.可以使用大括号 {} 在 JSX 中嵌入 JavaScript 表达式。<br>
+    3.JSX 代码会被 Babel 转换为纯 JavaScript 代码。<br>
+    4.JSX 语法更接近 HTML，易于理解和使用。<br>
+    5.JSX 可以提高代码的可读性和维护性。<br>
+  </p>
+  <p>
+    XML早期用来存储和传输数据<br>
+    1.可扩展性：XML 允许用户定义自己的标签，具有良好的可扩展性。<br>
+    2.自描述性：XML 数据具有自描述性，易于理解和解析。<br>
+    3.平台无关性：XML 是纯文本格式，可以在不同平台之间传输。<br>
+  </p>
+  <p>
+    JSON<br>
+    1.轻量级：JSON 格式简洁，占用空间小，传输效率高。<br>
+    2.易于解析：JSON 格式易于解析和生成，许多编程语言都支持 JSON。<br>
+    3.与 JavaScript 兼容：JSON 是 JavaScript 的子集，可以直接在 JavaScript 中使用。<br>
+    4.广泛应用：JSON 广泛应用于 Web 开发中的数据交换。<br>
+  </p>
+
+  <h1>虚拟DOM和真实DOM</h1>
+  <p>
+    1.真实 DOM 是浏览器中的 DOM 树，操作真实 DOM 会导致页面重绘和回流，性能较低。<br>
+    2.虚拟 DOM 是 React 内部维护的一棵轻量级的 JavaScript 对象树，表示 UI 的结构。<br>
+    3.当状态改变时，React 会先更新虚拟 DOM，然后通过 diff 算法计算出最小的变更集，最后批量更新真实 DOM。<br>
+    4.使用虚拟 DOM 可以减少对真实 DOM 的操作，提高性能。<br>
+    5.虚拟 DOM 的概念使得 React 能够实现高效的 UI 更新和渲染。<br>
+  </p>
+
+  <h1>组件与模块</h1>
+  <p>
+    组件：是构建用户界面的独立、可复用的代码块。<br>
+    1.组件可以包含自己的状态和生命周期方法。<br>
+    2.组件可以通过 props 接收外部数据。<br>
+    3.组件可以嵌套使用，构建复杂的 UI 结构。<br>
+    4.组件化开发提高了代码的可维护性和复用性。<br>
+    模块：是指将代码分割成独立的文件或单元，每个模块封装特定的功能或逻辑。<br>
+    1.模块可以导出变量、函数或类，供其他模块使用。<br>
+    2.模块化开发有助于组织代码，避免命名冲突。<br>
+    3.ES6 引入了原生的模块系统（import/export），使得模块化更加方便。<br>
+    4.模块化有助于提高代码的可维护性和可测试性。<br>
+  </p>
+
+  <!-- 引入react核心库 -->
+  <script src="../../lib/react/react.development.js"></script>
+  <!-- 引入react-dom,用于操作DOM -->
+  <script src="../../lib/react/react-dom.development.js"></script>
+  <!-- 引入babel,用于将JSX语法转为js -->
+  <script src="../../lib/react/babel.min.js"></script>
+  <!-- 此处必须使用text/babel -->
+
+  <script type="text/babel">
+    // 渲染虚拟DOM到页面
+    const myData = 'Hello React'
+    const VDOM = (
+      <div>
+        <h1 className="hello">
+          <span>{myData.toUpperCase()}</span>
+        </h1>
+
+      </div>
+    )//不能加引号，因为加引号就是字符串了
+
+    ReactDOM.render(VDOM, document.getElementById('test'))//是替换不是追加
+
+    /* jsx语法
+      1.定义虚拟DOM时不要写引号
+      2.标签中混入js表达式要用{}
+      3.样式的类名用className
+      4.内联样式，要用style={{key:value}}  双大括号
+      5.虚拟DOM只能有一个根标签
+      6.标签必须闭合
+      7.若小写字母开头，则转为html标签，若大写字母开头，则转为自定义组件
+    */
+
+    /* 表达式：一个表达式会产生一个值，可以放在任意一个需要值的地方。
+       a  a+b  demo(a)  arr.map() function text(){}
+    语句（代码）：一条语句是一个完整的指令，执行后会产生副作用，但不一定会返回值。
+      if(){} for(){} while(){} swith(){} 不会返回一个值
+    */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
