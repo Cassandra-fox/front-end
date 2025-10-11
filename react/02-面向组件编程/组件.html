@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件</title>
+  <style>
+    .weather h1 {
+      cursor: pointer;
+    }
+
+    .weatherDemo h1 {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>函数式组件</h1>
+  <p>
+
+  </p>
+  <div class="demo"></div>
+
+  <h1>类组件</h1>
+  <p>
+
+  </p>
+  <div class="class"></div>
+  <h2>组件实例的三大属性</h2>
+  <ul>
+    <li>props: 用于组件间传递数据</li>
+    <li>state: 组件内部状态</li>
+    <li>context: 组件树中传递数据</li>
+  </ul>
+
+  <div class="weather"></div>
+  <div class="weatherDemo"></div>
+
+  <h2>state</h2>
+  <p>
+    称为状态机，通过更新组件的状态来更新对应的页面显示<br>
+    组件自定义方法this指向解决：使用箭头函数，或者在构造器中手动绑定this指向<br>
+    state的简写：直接在类中定义state属性，省略构造器<br>
+    state的更新必须通过setState()方法<br>
+  </p>
+
+
+
+
+
+
+
+
+
+  <!-- 引入react核心库 -->
+  <script src="../../lib/react/react.development.js"></script>
+  <!-- 引入react-dom,用于操作DOM -->
+  <script src="../../lib/react/react-dom.development.js"></script>
+  <!-- 引入babel,用于将JSX语法转为js -->
+  <script src="../../lib/react/babel.min.js"></script>
+  <script type="text/babel">
+    //创建组件,命名首字母大写
+    function Demo() {
+      console.log(this);//函数式组件中this是undefined,因为babel帮我们把函数式组件转为严格模式
+
+      return <span>函数式简单组件</span>
+    }
+    //渲染组件，标签必须闭合
+    ReactDOM.render(<Demo />, document.querySelector('.demo'))
+
+
+    //类组件,必须继承React.Component
+    class ClassDemo extends React.Component {
+      //使用render()方法,返回要渲染的内容
+      //render放在类的原型对象上
+      render() {
+        console.log(this);//类组件中this是当前类的实例对象
+        return <span>类组件</span>
+      }
+    }
+
+    ReactDOM.render(<ClassDemo />, document.querySelector('.class'))
+
+    //state状态
+    /* 
+    有状态的是复杂组件
+    组件的状态驱动着页面的变化 
+    */
+
+    class Weather extends React.Component {
+      //构造器仅调用一次
+      constructor(props) {
+        super(props);//调用亲类的构造函数
+        //初始化状态
+        this.state = {
+          isHot: true,
+          wind: '南风'
+        }
+        //手动绑定this指向
+        this.changeWeather = this.change.bind(this)
+      }
+      //render调用1+n次
+      render() {
+        const { isHot, wind } = this.state
+        return <h1 onClick={this.changeWeather}>今天天气{isHot ? '炎热' : '凉爽'}，{wind}</h1>
+      }
+      //将change交给了onClick作为回调,不是通过实例对象调用的，是直接调用的
+      //类中的方法开启了局部严格模式
+      change() {
+        // console.log(this);//undefined
+        // console.log(this.state);//报错
+        // console.log(this);
+        //状态的更新必须通过setState()方法
+        const { isHot, wind } = this.state
+        this.setState({
+          isHot: !isHot
+        })
+      }
+    }
+
+    ReactDOM.render(<Weather />, document.querySelector('.weather'))
+    /*
+    类中方法this指向：
+      1.普通函数：undefined
+      2.箭头函数：定义时所在上下文的this
+      3.构造函数：实例对象
+      4.事件处理函数：undefined
+
+    */
+
+    //state简写
+    class WeatherDemo extends React.Component {
+      //state的简写
+      state = {
+        isHot: true,
+        wind: '南风'
+      }
+
+      render() {
+        const { isHot, wind } = this.state
+        return <h1 onClick={this.change}>今天天气{isHot ? '炎热' : '凉爽'}，{wind}</h1>
+      }
+
+      //使用箭头函数定义事件处理函数，this指向定义时所在上下文的this
+      change = () => {
+        const { isHot, wind } = this.state
+        this.setState({
+          isHot: !isHot
+        })
+      }
+    }
+
+    ReactDOM.render(<WeatherDemo />, document.querySelector('.weatherDemo'))
+
+    //props
+
+
+  </script>
+</body>
+
+</html>

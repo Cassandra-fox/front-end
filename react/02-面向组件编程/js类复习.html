@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>类</title>
+</head>
+
+<body>
+  <h1>总结</h1>
+  <p>
+    1.类是对象的模板，对象是类的实例。<br>
+    2.类的定义使用 class 关键字，类名首字母大写。<br>
+    3.类中包含构造器方法 constructor 和一般方法。<br>
+    4.构造器方法用于初始化实例对象的属性。<br>
+    5.一般方法定义在类的原型对象上，共享给所有实例对象。<br>
+    6.使用 new 关键字创建类的实例对象。<br>
+    7.类支持继承，子类使用 extends 关键字继承亲类。<br>
+    8.子类必须调用 super() 方法调用亲类的构造器方法。<br>
+    9.子类可以重写亲类的方法，实现多态性。<br>
+    10.类的静态方法使用 static 关键字定义，不能被实例对象调用。<br>
+  </p>
+
+  <h1>类中方法this指向</h1>
+  <p>
+    1.普通函数：undefined<br>
+    2.箭头函数：定义时所在上下文的this<br>
+    3.构造函数：实例对象<br>
+    4.事件处理函数：undefined<br>
+  </p>
+
+
+
+
+
+
+
+  <script>
+    class Person {
+      //构造器方法
+      constructor(name, age) {
+        //this指向当前类的实例对象
+        this.name = name
+        this.age = age
+      }
+      //实例属性,放在了实例对象上
+      home = 'earth'
+      //一般方法,放在了原型对象上,在局部开启了严格模式
+      say() {
+        console.log(`hello,im ${this.name}`)
+      }
+    }
+
+    //继承
+    class Student extends Person {
+      //想加新的属性
+      constructor(name, age, sno) {
+        //必须调用亲类的构造器方法
+        super(name, age)
+        this.sno = sno
+      }
+      //重写亲类的方法
+      say() {
+        console.log(`编号 MA-031-${this.sno},你好`)
+      }
+
+      speak() {
+        console.log("我愿你平安幸福");
+
+      }
+    }
+
+    const luchen = new Person('路辰', 18)
+    const silan = new Person('司岚', 18)
+    console.log(luchen)
+    luchen.say()
+    console.log(silan)
+
+    const yexuan = new Student('叶瑄', 18, '707')
+    console.log(yexuan)
+    yexuan.say()
+    yexuan.speak()
+  </script>
+</body>
+
+</html>
