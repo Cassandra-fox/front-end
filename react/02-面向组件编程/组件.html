@@ -46,6 +46,29 @@
     state的更新必须通过setState()方法<br>
   </p>
 
+  <h2>props</h2>
+  <p>
+    props是组件的外部数据，亲组件通过props向子组件传递数据<br>
+    props是只读的，子组件不能修改props<br>
+    props可以是任意类型，包括基本类型、对象、数组、函数等<br>
+  </p>
+  <div class="person"></div>
+  <div class="person1"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -60,10 +83,12 @@
   <script src="../../lib/react/react-dom.development.js"></script>
   <!-- 引入babel,用于将JSX语法转为js -->
   <script src="../../lib/react/babel.min.js"></script>
+  <!-- 引入prop-types,用于类型检查 -->
+  <script src="../../lib/react/prop-types.js"></script>
   <script type="text/babel">
     //创建组件,命名首字母大写
     function Demo() {
-      console.log(this);//函数式组件中this是undefined,因为babel帮我们把函数式组件转为严格模式
+      // console.log(this);//函数式组件中this是undefined,因为babel帮我们把函数式组件转为严格模式
 
       return <span>函数式简单组件</span>
     }
@@ -76,7 +101,7 @@
       //使用render()方法,返回要渲染的内容
       //render放在类的原型对象上
       render() {
-        console.log(this);//类组件中this是当前类的实例对象
+        // console.log(this);//类组件中this是当前类的实例对象
         return <span>类组件</span>
       }
     }
@@ -154,8 +179,43 @@
 
     ReactDOM.render(<WeatherDemo />, document.querySelector('.weatherDemo'))
 
-    //props
 
+
+
+    //props
+    class Person extends React.Component {
+      render() {
+        const { name, height } = this.props
+        return (
+          <ul>
+            <li>{name}</li>
+            <li>{height}</li>
+          </ul>
+        )
+      }
+    }
+
+    //规定参数类型和设置默认值
+    Person.propTypes = {
+      name: PropTypes.string.isRequired,
+      height: PropTypes.number.isRequired,
+      speak: PropTypes.func
+    }
+    Person.defaultProps = {
+      name: '路人甲',
+      height: 180
+    }
+
+    //传递props
+    const info = [
+      { name: '路辰', height: 181, speak() { console.log('hello') } },
+      { name: '司岚', height: 184 },
+      { name: '叶瑄', height: 183 }
+    ]
+    //渲染组件
+    //{...obj}对象展开运算符，将对象的所有属性作为独立的props传递给组件，仅适用于标签属性的传递
+    ReactDOM.render(<Person {...info[0]} />, document.querySelector('.person'))
+    ReactDOM.render(<Person />, document.querySelector('.person1'))
 
   </script>
 </body>
