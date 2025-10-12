@@ -54,8 +54,16 @@
   </p>
   <div class="person"></div>
   <div class="person1"></div>
+  <div class="person2"></div>
+  <div class="person3"></div>
 
-
+  <h2>refs与事件处理</h2>
+  <p>
+    refs: 获取组件或DOM元素的引用<br>
+    事件处理：通过on事件名={事件处理函数}绑定事件<br>
+    注意：React事件处理函数中的this默认是undefined<br>
+  </p>
+  <div class="demoRef"></div>
 
 
 
@@ -215,8 +223,106 @@
     //渲染组件
     //{...obj}对象展开运算符，将对象的所有属性作为独立的props传递给组件，仅适用于标签属性的传递
     ReactDOM.render(<Person {...info[0]} />, document.querySelector('.person'))
-    ReactDOM.render(<Person />, document.querySelector('.person1'))
+    // ReactDOM.render(<Person />, document.querySelector('.person1'))
 
+    //props简写
+    class Person1 extends React.Component {
+      //引入prop-types.js后全局多了个PropTypes对象
+      static propTypes = {
+        name: PropTypes.string.isRequired,
+        height: PropTypes.number.isRequired,
+        speak: PropTypes.func
+      }
+      static defaultProps = {
+        name: '路人甲',
+        height: 180
+      }
+
+      render() {
+        const { name, height } = this.props
+        return (
+          <ul>
+            <li>{name}</li>
+            <li>{height}</li>
+          </ul>
+        )
+      }
+    }
+    ReactDOM.render(<Person1 {...info[1]} />, document.querySelector('.person1'))
+
+
+
+    //构造器中访问props
+    class Person2 extends React.Component {
+      //构造器可以省略，但如果要在构造器中使用props，必须调用super(props)
+      constructor(props) {
+        super(props)
+        // console.log(props);
+      }
+
+      static propTypes = {
+        name: PropTypes.string.isRequired,
+        height: PropTypes.number.isRequired,
+        speak: PropTypes.func
+      }
+      static defaultProps = {
+        name: '路人甲',
+        height: 180
+      }
+
+      render() {
+        const { name, height } = this.props
+        return (
+          <ul>
+            <li>{name}</li>
+            <li>{height}</li>
+          </ul>
+        )
+      }
+    }
+    ReactDOM.render(<Person2 {...info[2]} />, document.querySelector('.person2'))
+
+
+
+    //函数式组件访问props
+    function Person3(props) {
+      // console.log(props);
+      const { name, height } = props
+      return (
+        <ul>
+          <li>{name}</li>
+          <li>{height}</li>
+        </ul>
+      )
+    }
+    ReactDOM.render(<Person3 {...info[0]} />, document.querySelector('.person3'))
+
+
+
+    //refs与事件处理
+    //
+    class DemoRef extends React.Component {
+      show = () => {
+        // console.log(this);
+        alert(this.refs.input1.value);
+      }
+      showContent = () => {
+        alert(this.refs.input2.value);
+      }
+      render() {
+        return (
+          <div>
+            <input ref="input1" type="text" placeholder="请输入内容" />
+            <button ref="button1" onClick={this.show}>显示输入内容</button>&nbsp;
+            <input ref="input2" onBlur={this.showContent} type="text" placeholder="失去焦点提示数据" />
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<DemoRef />, document.querySelector('.demoRef'))
+
+    //回调形式的ref
   </script>
 </body>
 
