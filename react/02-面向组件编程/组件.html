@@ -64,6 +64,7 @@
     注意：React事件处理函数中的this默认是undefined<br>
   </p>
   <div class="demoRef"></div>
+  <div class="demoRef1"></div>
 
 
 
@@ -160,7 +161,7 @@
       2.箭头函数：定义时所在上下文的this
       3.构造函数：实例对象
       4.事件处理函数：undefined
-
+ 
     */
 
     //state简写
@@ -300,7 +301,7 @@
 
 
     //refs与事件处理
-    //
+    //已过时的字符串形式的ref
     class DemoRef extends React.Component {
       show = () => {
         // console.log(this);
@@ -312,6 +313,7 @@
       render() {
         return (
           <div>
+            {/*这样注释*/}
             <input ref="input1" type="text" placeholder="请输入内容" />
             <button ref="button1" onClick={this.show}>显示输入内容</button>&nbsp;
             <input ref="input2" onBlur={this.showContent} type="text" placeholder="失去焦点提示数据" />
@@ -323,6 +325,48 @@
     ReactDOM.render(<DemoRef />, document.querySelector('.demoRef'))
 
     //回调形式的ref
+    class DemoRef1 extends React.Component {
+      show = () => {
+        alert(this.input1.value)
+      }
+      render() {
+        return (
+          <div>
+            <input ref={i => { this.input1 = i }} type="text" placeholder="请输入内容" />
+            <button onClick={this.show}>显示输入内容</button>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<DemoRef1 />, document.querySelector('.demoRef1'))
+
+    //回调次数的问题
+    /*
+      如果refs回调函数是以内联函数的形式定义的，那么在更新过程中它会被执行两次，第一次传入参数null，第二次传入参数DOM元素
+    */
+
+    //createRef形式的ref
+    class DemoRef2 extends React.Component {
+      constructor(props) {
+        super(props)
+        //创建ref容器对象
+        this.input1 = React.createRef()
+        this.button1 = React.createRef()
+      }
+      show = () => {
+        alert(this.input1.current.value)
+        console.log(this.button1.current);
+      }
+      render() {
+        return (
+          <div>
+            <input ref={this.input1} type="text" placeholder="请输入内容" />
+            <button ref={this.button1} onClick={this.show}>显示输入内容</button>
+          </div>
+        )
+      }
+    }
+
   </script>
 </body>
 
