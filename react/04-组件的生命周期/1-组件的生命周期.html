@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件的生命周期</title>
+  <style>
+    .life {
+      position: relative;
+      margin: 20px auto;
+      height: 150px;
+      width: 150px;
+      background-color: red;
+    }
+
+    .life h2 {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%);
+      color: white;
+      text-align: center;
+    }
+
+    .life button {
+      position: absolute;
+      bottom: 19px;
+      left: 50%;
+      transform: translate(-50%);
+      padding: 5px 10px;
+      border: none;
+      background-color: rgb(241, 76, 103);
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>组件的生命周期</h1>
+  <div class="lifeBox"></div>
+
+  <p>
+    挂载mount：
+  </p>
+
+  <p>
+    更新update：
+  </p>
+
+  <p>
+    卸载unmount：
+  </p>
+
+  <p>
+    组件的生命周期函数：
+  <ul>
+    <li>constructor：构造函数，创建组件时调用，一般用于初始化state和绑定事件处理函数。</li>
+    <li>static getDerivedStateFromProps(props, state)：在渲染之前调用，可以根据props更新state。</li>
+    <li>render()：渲染函数，返回要渲染的React元素。</li>
+    <li>componentDidMount()：组件挂载后调用，可以进行DOM操作或数据请求。</li>
+    <li>shouldComponentUpdate(nextProps, nextState)：决定组件是否需要更新，返回true或false。</li>
+    <li>getSnapshotBeforeUpdate(prevProps, prevState)：在更新前获取一些信息，如滚动位置。</li>
+    <li>componentDidUpdate(prevProps, prevState, snapshot)：组件更新后调用，可以进行DOM操作或数据请求。</li>
+    <li>componentWillUnmount()：组件卸载前调用，可以进行清理工作，如取消订阅或定时器。</li>
+    <li>componentDidCatch(error, info)：捕获子组件的错误，可以进行错误处理。</li>
+  </ul>
+
+  </p>
+
+  <!-- 引入react核心库 -->
+  <script src="../../lib/react/react.development.js"></script>
+  <!-- 引入react-dom,用于操作DOM -->
+  <script src="../../lib/react/react-dom.development.js"></script>
+  <!-- 引入babel,用于将JSX语法转为js -->
+  <script src="../../lib/react/babel.min.js"></script>
+  <!-- 引入prop-types,用于类型检查 -->
+  <script src="../../lib/react/prop-types.js"></script>
+  <script type="text/babel">
+    //创建组件
+    class Life extends React.Component {
+
+      state = {
+        opacity: 1
+      }
+
+      death = () => {
+        ReactDOM.unmountComponentAtNode(document.querySelector('.lifeBox'))
+      }
+
+      render() {
+        return (
+          <div className="life">
+            <h2 style={{ opacity: this.state.opacity }}>react学不会</h2>
+            <button onClick={this.death}>不活了</button>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Life />, document.querySelector('.lifeBox'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
