@@ -39,18 +39,22 @@
 
 <body>
   <h1>组件的生命周期</h1>
+  <h2>生命周期回调函数=> 生命周期钩子函数=>生命周期函数=>生命周期钩子</h2>
   <div class="lifeBox"></div>
 
   <p>
-    挂载mount：
+    挂载mount：<br>
+    <code>componentDidMount()</code>
   </p>
 
   <p>
-    更新update：
+    更新update：<br>
+    <code>componentDidUpdate()</code>
   </p>
 
   <p>
-    卸载unmount：
+    卸载unmount：<br>
+    <code>componentWillUnmount()</code>
   </p>
 
   <p>
@@ -66,8 +70,32 @@
     <li>componentWillUnmount()：组件卸载前调用，可以进行清理工作，如取消订阅或定时器。</li>
     <li>componentDidCatch(error, info)：捕获子组件的错误，可以进行错误处理。</li>
   </ul>
-
   </p>
+
+  <p>
+    constructor()=>componentWillMount()=>render()=>componentDidMount()
+  </p>
+
+  <p>
+    setState()=>shouldComponentUpdate()=>componentWillUpdate()=>render()=>componentDidUpdate()
+  </p>
+
+  <p>
+    forceUpdate()=>componentWillUpdate()=>render()=>componentDidUpdate()
+  </p>
+
+  <p>
+    基组件更新=>componentWillReceiveProps()=>shouldComponentUpdate()=>componentWillUpdate()=>render()=>componentDidUpdate()
+  </p>
+
+  <p>
+    componentWillUnmount()常用，一般在这个钩子中做一些收尾的事，例如关闭定时器、取消订阅消息等。<br>
+    render()函数是必须的，其他的函数都是可选的。
+  </p>
+
+
+
+  <div class="countBox"></div>
 
   <!-- 引入react核心库 -->
   <script src="../../lib/react/react.development.js"></script>
@@ -78,6 +106,7 @@
   <!-- 引入prop-types,用于类型检查 -->
   <script src="../../lib/react/prop-types.js"></script>
   <script type="text/babel">
+
     //创建组件
     class Life extends React.Component {
 
@@ -86,9 +115,29 @@
       }
 
       death = () => {
+        //卸载组件
         ReactDOM.unmountComponentAtNode(document.querySelector('.lifeBox'))
       }
 
+      //只在组件挂载好时调用一次
+      componentDidMount() {
+        this.timer = setInterval(() => {
+          let { opacity } = this.state
+          opacity -= 0.1
+          if (opacity <= 0) {
+            opacity = 1
+          }
+          this.setState({ opacity })
+        }, 200)
+      }
+
+      //组件卸载时调用
+      componentWillUnmount() {
+        //清除定时器
+        clearInterval(this.timer)
+      }
+
+      //初始化渲染，每次组件状态更新时都调用
       render() {
         return (
           <div className="life">
@@ -98,23 +147,105 @@
         )
       }
     }
-    ReactDOM.render(<Life />, document.querySelector('.lifeBox'))
+    // ReactDOM.render(<Life />, document.querySelector('.lifeBox'))
 
 
 
+    //观察生命周期
+    //亲组件
+    class Count extends React.Component {
+
+      //构造器
+      constructor(props) {
+        super(props)
+        this.state = { count: 0 }
+        console.log('1.构造器-constructor')
+      }
+
+      add = () => {
+        this.setState(state => ({ count: state.count + 1 }))
+      }
+
+      //组件即将挂载
+      componentWillMount() {
+        console.log('2.组件即将挂载-componentWillMount')
+      }
+
+      //组件挂载完成
+      componentDidMount() {
+        console.log('4.组件挂载完成-componentDidMount')
+      }
+
+      //控制组件更新的阀门
+      shouldComponentUpdate(nextProps, nextState) {
+        console.log('5.是否需要更新-shouldComponentUpdate')
+        return true
+      }
+
+      //组件即将更新
+      componentWillUpdate() {
+        console.log('6.组件即将更新-componentWillUpdate')
+      }
+
+      //组件更新完成
+      componentDidUpdate() {
+        console.log('8.组件更新完成-componentDidUpdate')
+      }
+
+      //强制更新
+      force = () => {
+        this.forceUpdate()
+      }
+
+      render() {
+        console.log('3.渲染-render')
+        const { count } = this.state
+        return (
+          <div>
+            <h2>当前求和为{count}</h2>
+            <button onClick={this.add}>点我+1</button>
+            <button onClick={this.force}>强制更新</button>
+            <CountExtend count={count} />
+          </div>
+        )
+      }
+    }
+
+    //创建一个子组件
+    class CountExtend extends React.Component {
+      //接收亲组件传递的props，第一次渲染不会调用
+      componentWillReceiveProps() {
+        console.log('7.接收新的props-componentWillReceiveProps')
+      }
+
+      //控制组件更新的阀门
+      shouldComponentUpdate(nextProps, nextState) {
+        console.log('5.是否需要更新-shouldComponentUpdate')
+        return true
+      }
+
+      //组件即将更新
+      componentWillUpdate() {
+        console.log('6.组件即将更新-componentWillUpdate')
+      }
+
+      //组件更新完成
+      componentDidUpdate() {
+        console.log('8.组件更新完成-componentDidUpdate')
+      }
+
+      render() {
+        console.log('3.渲染-render')
+        return (
+          <div>
+            {this.props.count}
+          </div>
+        )
+      }
+    }
 
 
-
-
-
-
-
-
-
-
-
-
-
+    ReactDOM.render(<Count />, document.querySelector('.countBox'))
 
   </script>
 </body>
