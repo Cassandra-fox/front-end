@@ -1,2 +1,18 @@
-# Ignore CRA test app
-/react/00-初始化项目/test/
+# CRA test 子项目产物（仅忽略生成文件）
+react/00-初始化项目/test/node_modules/
+react/00-初始化项目/test/.pnp
+react/00-初始化项目/test/.pnp.js
+
+react/00-初始化项目/test/coverage/
+react/00-初始化项目/test/build/
+
+# 环境与杂项
+react/00-初始化项目/test/.DS_Store
+react/00-初始化项目/test/.env.local
+react/00-初始化项目/test/.env.development.local
+react/00-初始化项目/test/.env.test.local
+react/00-初始化项目/test/.env.production.local
+
+react/00-初始化项目/test/npm-debug.log*
+react/00-初始化项目/test/yarn-debug.log*
+react/00-初始化项目/test/yarn-error.log*
