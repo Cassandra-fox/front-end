@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件</title>
+</head>
+<body>
+  <h1>组件的导入导出</h1>
+  <p>
+    组件的神奇之处在于它们的可重用性：你可以创建一个由其他组件构成的组件。但当你嵌套了越来越多的组件时，则需要将它们拆分成不同的文件。这样可以使得查找文件更加容易，并且能在更多地方复用这些组件。
+  </p>
+
+  <h2>引入组件</h2>
+  <p>引入过程中，你可能会遇到一些文件并未添加 .js 文件后缀，如下所示：<br>
+  
+  import Gallery from './Gallery';<br>
+  无论是 './Gallery.js' 还是 './Gallery'，在 React 里都能正常使用，只是前者更符合 原生 ES 模块。
+  </p>
+
+  <h2>导出组件</h2>
+  <p>
+    这是 JavaScript 里两个主要用来导出值的方式：默认导出和具名导出。到目前为止，我们的示例中只用到了默认导出。但你可以在一个文件中，选择使用其中一种，或者两种都使用。一个文件里有且仅有一个 默认 导出，但是可以有任意多个 具名
+    导出。
+  </p>
+  <p>组件的导出方式决定了其导入方式。当你用默认导入的方式，导入具名导出的组件时，就会报错。</p>
+  <table border="1" cellspacing="0" cellpadding="5">
+    <tr>
+      <th>语法</th>
+      <th>导出语句</th>
+      <th>导入语句</th>
+    </tr>
+    <tr>
+      <td>默认</td>
+      <td>export default function Button() {}</td>
+      <td>import Button from './Button.js';</td>
+    </tr>
+    <tr>
+      <td>具名</td>
+      <td>export function Button() {}</td>
+      <td>import { Button } from './Button.js';</td>
+    </tr>
+  </table>
+  <p>
+    当使用默认导入时，你可以在 import 语句后面进行任意命名。比如 import Banana from './Button.js'，如此你能获得与默认导出一致的内容。相反，对于具名导入，导入和导出的名字必须一致。这也是称其为 具名
+    导入的原因！<br>
+    
+    通常，文件中仅包含一个组件时，人们会选择默认导出，而当文件中包含多个组件或某个值需要导出时，则会选择具名导出。 无论选择哪种方式，请记得给你的组件和相应的文件命名一个有意义的名字。我们不建议创建未命名的组件，比如 export
+    default () => {}，因为这样会使得调试变得异常困难。
+  </p>
+
+
+
+
+
+
+
+</body>
+</html>
