@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hooks</title>
+</head>
+
+<body>
+  <p>
+    以use开头的函数称为Hook，useState 是 React 提供的一个内置 Hook。你可以在 React API 参考 中找到其他内置的 Hook。你也可以通过组合现有的 Hook 来编写属于你自己的 Hook。
+  </p>
+  <p>Hook 比普通函数更为严格。你只能在你的组件（或其他 Hook）的 顶层 调用 Hook。如果你想在一个条件或循环中使用 useState，请提取一个新的组件并在组件内部使用它。</p>
+
+  <h1>组件间共享数据</h1>
+  <p>
+    状态提升：需要将各个按钮的 state “向上” 移动到最接近包含所有按钮的组件之中。
+  </p>
+  <p>使用props将state传递给子组件</p>
+  <p>函数式组件通过参数接收传来的props</p>
+  <p>default 关键字表明它是文件中的主要函数。</p>
+  <p>
+    React 组件必须返回单个 JSX 元素，不能像两个按钮那样返回多个相邻的 JSX 元素。要解决此问题，可以使用 Fragment（<> 与 </>）包裹多个相邻的 JSX 元素，
+  </p>
+  <p>
+    来自 @types/react 的类型定义包括内置的 Hook，因此你可以在组件中使用它们，无需任何额外设置。它们是根据你在组件中编写的代码构建的，所以你会得到很多 类型推断，并且理想情况下不需要处理提供类型的细节。
+  </p>
+  <p>
+    当你有一个联合类型时，你可能想要提供一个 type。例如，这里的 status 可以是几个不同的字符串之一：<br>
+    
+    type Status = "idle" | "loading" | "success" | "error";<br>
+    
+    const [status, setStatus] = useState<Status>("idle");
+  </p>
+  <p>
+    type RequestState =
+    | { status: 'idle' }
+    | { status: 'loading' }
+    | { status: 'success', data: any }
+    | { status: 'error', error: Error };
+    
+    const [requestState, setRequestState] = useState<RequestState>({ status: 'idle' });
+  </p>
+  <p>
+    有些 JavaScript 函数是 纯粹 的。纯函数的基本定义：
+    
+    只负责自己的任务。 它不会更改在该函数调用前就已存在的对象或变量。
+    输入相同，输出也相同。 在输入相同的情况下，对纯函数来说应总是返回相同的结果。
+    严格遵循纯函数的定义编写组件，可以让代码库体量增长时，避免一些令人困惑的错误和不可预测的行为。
+  </p>
+
+  <p>
+    将 UI 视为树
+    React 使用树形关系建模以展示组件和模块之间的关系。
+    
+    React 渲染树是组件之间继承关系的表示。
+  </p>
+  <p>
+    位于树顶部、靠近根组件的组件被视为顶层组件。没有子组件的组件被称为叶子组件。对组件的这种分类对于理解数据流和渲染性能非常有用。
+  </p>
+  <p>
+    对 JavaScript 模块之间的关系进行建模是了解应用程序的另一种有用方式。我们将其称为模块依赖树。
+    构建工具经常使用依赖树来捆绑客户端下载和渲染所需的所有 JavaScript 代码。对于 React 应用程序，打包大小会导致用户体验退化。了解模块依赖树有助于调试此类问题。
+  </p>
+  <p>
+    没有括号包裹的话，任何在 return 下一行的代码都 将被忽略！
+  </p>
+  <p>
+    组件是常规的 JavaScript 函数，所以你可以将多个组件保存在同一份文件中。当组件相对较小或彼此紧密相关时，这是一种省事的处理方式。如果这个文件变得臃肿，你也可以随时将 Profile 移动到单独的文件中。<br>
+    组件可以渲染其他组件，但是 请不要嵌套他们的定义：
+  </p>
+
+  <h1>万物皆组件</h1>
+  <p>
+    你的 React 应用程序从“根”组件开始。通常，它会在启动新项目时自动创建。例如，如果你使用 CodeSandbox，根组件定义在 src/App.js 中。如果使用 Next.js 框架，根组件定义在 pages/index.js
+    中。在这些示例中，一直有导出根组件。<br>
+    
+    大多数 React 应用程序只有组件。这意味着你不仅可以将组件用于可复用的部分，例如按钮，还可以用于较大块的部分，例如侧边栏、列表以及最终的完整页面！组件是组织 UI 代码和标签的一种快捷方式，即使其中一些组件只使用了一次。<br>
+    
+    像 Next.js 这样的框架会做更多事情。与使用一个空白的 HTML 页面并让 React 使用 JavaScript “接手”管理页面不同，框架还会根据你的 React 组件自动生成 HTML。这使你的应用程序在加载
+    JavaScript 代码之前能够展示一些内容。<br>
+    
+    尽管如此，许多网站仅使用 React 来 添加“交互性”。它们有很多根组件，而不是整个页面的单个组件。你可以根据需要尽可能多或尽可能少地使用 React。
+  </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
