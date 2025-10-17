@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>State</title>
+</head>
+<body>
+  <h1>State</h1>
+  <p>
+    组件通常需要根据交互更改屏幕上显示的内容。输入表单应该更新输入字段，单击轮播图上的“下一个”应该更改显示的图片，单击“购买”应该将商品放入购物车。组件需要“记住”某些东西：当前输入值、当前图片、购物车。在 React
+    中，这种组件特有的记忆被称为 state。
+  </p>
+
+  <p>
+    要使用新数据更新组件，需要做两件事：<br>
+
+    保留 渲染之间的数据。<br>
+    触发 React 使用新数据渲染组件（重新渲染）。<br>
+    useState Hook 提供了这两个功能：<br>
+    
+    State 变量 用于保存渲染间的数据。<br>
+    State setter 函数 更新变量并触发 React 再次渲染组件。<br>
+    添加一个 state 变量
+  </p>
+
+  <p>const [index, setIndex] = useState(0);</p>
+  <p>
+    这里的 [ 和 ] 语法称为数组解构，它允许你从数组中读取值。 useState 返回的数组总是正好有两项。
+  </p>
+
+  <strong style="color:red">在 React 中，useState 以及任何其他以“use”开头的函数都被称为 Hook。</strong>
+  <p>Hook 是特殊的函数，只在 React 渲染时有效（我们将在下一节详细介绍）。它们能让你 “hook” 到不同的 React 特性中去。</p>
+  <p>
+    Hooks ——以 use 开头的函数——只能在组件或自定义 Hook 的最顶层调用。 你不能在条件语句、循环语句或其他嵌套函数内调用 Hook。Hook 是函数，但将它们视为关于组件需求的无条件声明会很有帮助。在组件顶部 “use”
+    React 特性，类似于在文件顶部“导入”模块。
+  </p>
+
+  <h1>剖析 useState</h1>
+  <p>当你调用 useState 时，你是在告诉 React 你想让这个组件记住一些东西：惯例是将这对返回值命名为 const [thing, setThing]。</p>
+  <p>useState 的唯一参数是 state 变量的初始值。</p>
+  <p>如果你有一个包含多个字段的表单，那么有一个值为对象的 state 变量比每个字段对应一个 state 变量更方便。</p>
+  <p>
+    为了使语法更简洁，在同一组件的每次渲染中，Hooks 都依托于一个稳定的调用顺序。这在实践中很有效，因为如果你遵循上面的规则（“只在顶层调用 Hooks”），Hooks 将始终以相同的顺序被调用。此外，linter
+    插件也可以捕获大多数错误。
+    
+    在 React 内部，为每个组件保存了一个数组，其中每一项都是一个 state 对。它维护当前 state 对的索引值，在渲染之前将其设置为 “0”。每次调用 useState 时，React 都会为你提供一个 state 对并增加索引值。
+  </p>
+
+  <h2>State 是隔离且私有的</h2>
+  <p>与 props 不同，state 完全私有于声明它的组件。亲组件无法更改它。</p>
+
+  <p>
+    State 变量仅用于在组件重渲染时保存信息。在单个事件处理函数中，普通变量就足够了。当普通变量运行良好时，不要引入 state 变量。
+  </p>
+
+
+
+
+
+
+
+
+
+
+
+  
+</body>
+</html>
