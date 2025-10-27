@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>异步编程</title>
+</head>
+<body>
+  <h1>异步编程</h1>
+  <p>
+    异步（Asynchronous, async）是与同步（Synchronous, sync）相对的概念。
+    
+    在我们学习的传统单线程编程中，程序的运行是同步的（同步不意味着所有步骤同时运行，而是指步骤在一个控制流序列中按顺序执行）。而异步的概念则是不保证同步的概念，也就是说，一个异步过程的执行将不再与原有的序列有顺序关系。
+    
+    简单来理解就是：同步按你的代码顺序执行，异步不按照代码顺序执行，异步的执行效率更高。
+    
+    以上是关于异步的概念的解释，接下来我们通俗地解释一下异步：异步就是从主线程发射一个子线程来完成任务。
+  </p>
+
+  <p>
+    在前端编程中（甚至后端有时也是这样），我们在处理一些简短、快速的操作时，例如计算 1 + 1 的结果，往往在主线程中就可以完成。主线程作为一个线程，不能够同时接受多方面的请求。所以，当一个事件没有结束时，界面将无法处理其他请求。
+    
+    现在有一个按钮，如果我们设置它的 onclick 事件为一个死循环，那么当这个按钮按下，整个网页将失去响应。
+    
+    为了避免这种情况的发生，我们常常用子线程来完成一些可能消耗时间足够长以至于被用户察觉的事情，比如读取一个大文件或者发出一个网络请求。因为子线程独立于主线程，所以即使出现阻塞也不会影响主线程的运行。但是子线程有一个局限：一旦发射了以后就会与主线程失去同步，我们无法确定它的结束，如果结束之后需要处理一些事情，比如处理来自服务器的信息，我们是无法将它合并到主线程中去的。
+    
+    为了解决这个问题，JavaScript 中的异步操作函数往往通过回调函数来实现异步任务的结果处理。
+  </p>
+
+  <p>
+    setTimeout()方法就是异步执行的<br>
+    它的第一个参数是一个回调函数，第二个参数是延迟的毫秒数<br>
+    方法执行后会产生一个子线程，子线程会等待指定的时间，然后调用回调函数<br>
+    主线程不会等待子线程完成，而是继续执行后面的代码<br>
+  </p>
+
+  <h1>异步 AJAX</h1>
+  <p>
+    除了 setTimeout 函数以外，异步回调广泛应用于 AJAX 编程。<br>
+    XMLHttpRequest 常常用于请求来自远程服务器上的 XML 或 JSON 数据。一个标准的 XMLHttpRequest 对象往往包含多个回调：<br>
+    XMLHttpRequest 的 onload 和 onerror 属性都是函数，分别在它请求成功和请求失败时被调用。如果你使用完整的 jQuery 库，也可以更加优雅的使用异步 AJAX：
+  </p>
+
+  <h1>JavaScript Promise</h1>
+  <p>
+    Promise 是一个 ECMAScript 6 提供的类，目的是更加优雅地书写复杂的异步任务。
+    
+    Promise 是 JavaScript 中用于处理异步操作的对象，它代表一个异步操作的最终完成（或失败）及其结果值。
+    
+    简单来说，Promise 是一个"承诺"，表示将来某个时间点会返回一个结果（可能是成功的结果，也可能是失败的原因）。
+  </p>
+  <p>
+    Promise 有三种状态：<br>
+    
+    <ul>
+      <li>pending：初始状态，既不是成功，也不是失败状态</li>
+      <li>fulfilled：意味着操作成功完成</li>
+      <li>rejected：意味着操作失败</li>
+    </ul>
+  </p>
+
+  <h2>Promise 的使用方法</h2>
+  <p>then() 方法用于指定 Promise 状态变为 fulfilled 或 rejected 时的回调函数。</p>
+  <p>catch() 方法专门用于处理 Promise 被拒绝的情况。</p>
+  <p>finally() 方法无论 Promise 最终状态如何都会执行。</p>
+
+  <h2>Promise 的链式调用</h2>
+  <p>Promise 的一个强大特性是可以链式调用多个异步操作。</p>
+
+  <h2>Promise 的静态方法</h2>
+  <p>
+    Promise.all()
+    等待所有 Promise 完成，或任意一个 Promise 失败。
+  </p>
+  <p>
+    Promise.race()
+    返回最先完成（无论成功或失败）的 Promise 的结果。
+  </p>
+  <p>
+    Promise.race()
+    返回最先完成（无论成功或失败）的 Promise 的结果。
+  </p>
+  <p>
+    Promise.resolve() 和 Promise.reject()
+    快速创建已解决或已拒绝的 Promise。
+  </p>
+
+  <h1>JavaScript async/await</h1>
+  <p>同步（Synchronous）编程：代码按顺序执行，前一个操作完成后才会执行下一个<br>
+  异步编程（Asynchronous）：某些操作被放入"任务队列"，主线程继续执行后续代码，等主线程空闲时再处理队列中的任务</p>
+
+  <p>ES2017 引入了 async/await，它建立在 Promise 之上，让异步代码看起来像同步代码一样。</p>
+  <h2>async</h2>
+  <p>在函数声明前添加 async 关键字，表示该函数是异步的：</p>
+  <p>async 函数总是返回一个 Promise：</p>
+  <ul>
+    <li>如果返回值不是 Promise，会自动包装成 resolved Promise</li>
+    <li>如果抛出异常，会返回 rejected Promise</li>
+  </ul>
+  <h2>await</h2>
+  <p>await 只能在 async 函数内部使用：</p>
+  <p>await 会暂停 async 函数的执行，等待 Promise 完成：</p>
+  <ul>
+    <li>如果 Promise 被 resolve，返回 resolve 的值</li>
+    <li>如果 Promise 被 reject，抛出错误（可以用 try/catch 捕获）</li>
+  </ul>
+
+  <h2>常见问题</h2>
+  <ol>
+    <li>不要忘记await</li>
+    <li>避免不必要的async</li>
+    <li>在模块顶层可以直接使用await(ES2022)</li>
+    <li>性能考虑
+      <ul>
+        <li>顺序执行 vs 并行执行：合理使用 Promise.all 提高性能</li>
+        <li>错误处理：确保所有可能的错误都被捕获</li>
+      </ul>
+    </li>
+  </ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    const myPromise = new Promise((resolve, reject) => {
+        // 异步操作代码
+
+        if (true) { // 根据异步操作的结果决定调用 resolve 还是 reject
+          resolve('成功的结果'); // 将 Promise 状态改为 fulfilled
+        } else {
+          reject('失败的原因'); // 将 Promise 状态改为 rejected
+        }
+      });
+
+    myPromise
+        .then((result) => {
+          console.log('操作成功:', result);
+        })
+        .catch((error) => {
+          console.error('操作失败:', error);
+        })
+         .finally(() => {
+        console.log('操作完成');
+      });
+
+
+    // 链式调用示例
+    doFirstThing()
+        .then((result) => doSecondThing(result))
+        .then((newResult) => doThirdThing(newResult))
+        .then((finalResult) => {
+          console.log('最终结果:', finalResult);
+        })
+        .catch((error) => {
+          console.error('链中某处出错:', error);
+        });
+
+    function doFirstThing() {
+        return new Promise((resolve, reject) => {
+          // 执行第一件事的异步操作
+          resolve('第一件事的结果');
+        });
+    }
+
+    function doSecondThing(input) {
+        return new Promise((resolve, reject) => {
+          // 执行第二件事的异步操作
+          resolve('第二件事的结果');
+        });
+    }
+
+    function doThirdThing(input) {
+        return new Promise((resolve, reject) => {
+          // 执行第三件事的异步操作
+          resolve('第三件事的结果');
+        });
+    }
+
+    // async/await 示例
+    //基本用法
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
+    async function showMessage() {
+      console.log('开始');
+      await delay(1000);
+      console.log('1秒后');
+      await delay(1000);
+      console.log('又1秒后');
+    }
+    showMessage();
+
+    //错误处理
+    // async function fetchUserData() {
+    //     try {
+    //       const response = await fetch('https://api.example.com/user');
+    //       if (!response.ok) {
+    //         throw new Error('网络响应不正常');
+    //       }
+    //       const data = await response.json();
+    //       console.log(data);
+    //     } catch (error) {
+    //       console.error('获取数据失败:', error);
+    //     }
+    //   }
+    // fetchUserData();
+
+    //并行执行
+    //如果需要并行执行多个异步操作，可以使用 Promise.all：
+    // async function fetchMultipleData() {
+    //     const [userData, productData] = await Promise.all([
+    //       fetch('/api/user'),
+    //       fetch('/api/products')
+    //     ]);
+
+    //     const user = await userData.json();
+    //     const products = await productData.json();
+
+    //     return { user, products };
+    //   }
+    // fetchMultipleData().then(data => {
+    //     console.log(data);
+    //   });
+
+  </script>
+  
+</body>
+</html>

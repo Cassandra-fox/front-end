@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>选择 State 结构</title>
+</head>
+
+<body>
+  <h1>选择 State 结构</h1>
+  <h2>构建state的原则</h2>
+  <ul>
+    <li>合并关联的 state。如果你总是同时更新两个或更多的 state 变量，请考虑将它们合并为一个单独的 state 变量。</li>
+    <li>避免互相矛盾的 state。当 state 结构中存在多个相互矛盾或“不一致”的 state 时，你就可能为此会留下隐患。应尽量避免这种情况。</li>
+    <li>避免冗余的 state。如果你能在渲染期间从组件的 props 或其现有的 state 变量中计算出一些信息，则不应将这些信息放入该组件的 state 中。</li>
+    <li>避免重复的 state。当同一数据在多个 state 变量之间或在多个嵌套对象中重复时，这会很难保持它们同步。应尽可能减少重复。</li>
+    <li>避免深度嵌套的 state。深度分层的 state 更新起来不是很方便。如果可能的话，最好以扁平化方式构建 state。</li>
+  </ul>
+
+  <h2>插播一条表单验证</h2>
+  <form name="myForm" action="demo-form.php" onsubmit="return validateForm();" method="post">
+    Email: <input type="text" name="email">
+    <input type="submit" value="提交">
+  </form>
+
+  <input id="id1" type="number" min="100" max="300" required>
+  <button onclick="myFunction()">验证</button>
+  
+  <p id="demo"></p>
+
+  <p>void 是 JavaScript 中非常重要的关键字，该操作符指定要计算一个表达式但是不返回值。</p>
+
+  <h2 style="color:red">警告:不要在 state 中镜像 props</h2>
+  <p>
+    以下代码是体现 state 冗余的一个常见例子：<br>
+    
+    <code>
+      function Message({ messageColor }) {<br>
+      const [color, setColor] = useState(messageColor);
+    </code><br>
+    这里，一个 color state 变量被初始化为 messageColor 的 prop 值。这段代码的问题在于，如果父组件稍后传递不同的 messageColor 值（例如，将其从 'blue' 更改为 'red'），则 color state 变量将不会更新！ state 仅在第一次渲染期间初始化。<br>
+    
+    这就是为什么在 state 变量中，“镜像”一些 prop 属性会导致混淆的原因。相反，你要在代码中直接使用 messageColor 属性。如果你想给它起一个更短的名称，请使用常量：<br>
+    
+    <code>
+      function Message({ messageColor }) {<br>
+      const color = messageColor;
+    </code><br>
+    这种写法就不会与从父组件传递的属性失去同步。<br>
+    
+    只有当你 想要 忽略特定 props 属性的所有更新时，将 props “镜像”到 state 才有意义。按照惯例，prop 名称以 initial 或 default 开头，以阐明该 prop 的新值将被忽略：<br>
+    
+    <code>
+        function Message({ initialColor }) {
+        // 这个 `color` state 变量用于保存 `initialColor` 的 **初始值**。
+        // 对于 `initialColor` 属性的进一步更改将被忽略。
+        const [color, setColor] = useState(initialColor);
+    </code>
+  </p>
+
+
+
+
+
+
+
+
+
+  <script>
+    function validateForm() {
+        var x = document.forms["myForm"]["email"].value;
+        var atpos = x.indexOf("@");
+        var dotpos = x.lastIndexOf(".");
+        if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= x.length) {
+          alert("不是一个有效的 e-mail 地址");
+          return false;
+        }
+      }
+
+    function myFunction() {
+        var inpObj = document.getElementById("id1");
+        if (inpObj.checkValidity() == false) {
+          document.getElementById("demo").innerHTML = inpObj.validationMessage;
+        }
+      }
+  </script>
+
+  
+</body>
+</html>
