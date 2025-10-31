@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用 ref 操作 DOM</title>
+</head>
+<body>
+  <h1>使用 ref 操作 DOM</h1>
+  <p>
+    由于 React 会自动处理更新 DOM 以匹配你的渲染输出，因此你在组件中通常不需要操作 DOM。但是，有时你可能需要访问由 React 管理的 DOM 元素 —— 例如，让一个节点获得焦点、滚动到它或测量它的尺寸和位置。在 React
+    中没有内置的方法来做这些事情，所以你需要一个指向 DOM 节点的 ref 来实现。
+  </p>
+
+  <h2>获取指向节点的 ref</h2>
+  <p>
+    要访问由 React 管理的 DOM 节点，首先，引入 useRef Hook：
+    
+    import { useRef } from 'react';
+    然后，在你的组件中使用它声明一个 ref：
+    
+    const myRef = useRef(null);
+    最后，将 ref 作为 ref 属性值传递给想要获取的 DOM 节点的 JSX 标签：
+    
+    &lt;div ref={myRef}>
+  </p>
+  <p>
+    useRef Hook 返回一个对象，该对象有一个名为 current 的属性。最初，myRef.current 是 null。当 React 为这个 &lt;div> 创建一个 DOM 节点时，React 会把对该节点的引用放入
+      myRef.current。然后，你可以从 事件处理器 访问此 DOM 节点，并使用在其上定义的内置浏览器 API。
+    
+      // 你可以使用任意浏览器 API，例如：
+      myRef.current.scrollIntoView();
+  </p>
+
+  <p>Hook 只能在组件的顶层被调用。不能在循环语句、条件语句或 map() 函数中调用 useRef 。</p>
+
+  <h2>访问另一个组件的 DOM 节点</h2>
+  <p>
+    你可以 像其它 prop 一样 将 ref 从父组件传递给子组件。
+  </p>
+
+  <h2>React 何时添加 refs</h2>
+  <p>
+    在 React 中，每次更新都分为 两个阶段：
+    
+    在 渲染 阶段， React 调用你的组件来确定屏幕上应该显示什么。
+    在 提交 阶段， React 把变更应用于 DOM。
+    通常，你 不希望 在渲染期间访问 refs。这也适用于保存 DOM 节点的 refs。在第一次渲染期间，DOM 节点尚未创建，因此 ref.current 将为 null。在渲染更新的过程中，DOM 节点还没有更新。所以读取它们还为时过早。
+    
+    React 在提交阶段设置 ref.current。在更新 DOM 之前，React 将受影响的 ref.current 值设置为 null。更新 DOM 后，React 立即将它们设置到相应的 DOM 节点。
+    
+    通常，你将从事件处理器访问 refs。 如果你想使用 ref 执行某些操作，但没有特定的事件可以执行此操作，你可能需要一个 effect。
+  </p>
+
+  <p>
+    要解决此问题，你可以强制 React 同步更新（“刷新”）DOM。 为此，从 react-dom 导入 flushSync 并将 state 更新包裹 到 flushSync 调用中：
+    
+    flushSync(() => {
+    setTodos([ ...todos, newTodo]);
+    });
+    listRef.current.lastChild.scrollIntoView();
+    这将指示 React 当封装在 flushSync 中的代码执行后，立即同步更新 DOM。因此，当你尝试滚动到最后一个待办事项时，它已经在 DOM 中了：
+  </p>
+
+  <h2>使用 refs 操作 DOM 的最佳实践</h2>
+  <p>
+    Refs 是一种脱围机制。你应该只在你必须“跳出 React”时使用它们。这方面的常见示例包括管理焦点、滚动位置或调用 React 未暴露的浏览器 API。
+    
+    如果你坚持聚焦和滚动等非破坏性操作，应该不会遇到任何问题。但是，如果你尝试手动修改 DOM，则可能会与 React 所做的更改发生冲突。
+  </p>
+  <p>
+    避免更改由 React 管理的 DOM 节点。 对 React 管理的元素进行修改、添加子元素、从中删除子元素会导致不一致的视觉结果，或与上述类似的崩溃。
+    
+    但是，这并不意味着你完全不能这样做。它需要谨慎。 你可以安全地修改 React 没有理由更新的部分 DOM。 例如，如果某些 <div> 在 JSX 中始终为空，React 将没有理由去变动其子列表。 因此，在那里手动增删元素是安全的。
+  </p>
+
+
+
+
+
+
+
+
+
+  
+</body>
+</html>
